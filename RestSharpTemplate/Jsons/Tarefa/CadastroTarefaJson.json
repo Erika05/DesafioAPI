@@ -1,0 +1,29 @@
+{
+  "summary": "$resumo",
+  "description": "$descricao",
+  "additional_information": "$informacao",
+  "project": {
+    "name": "$projeto"
+  },
+  "category": {
+    "name": "$categoria"
+  },
+  "view_state": {
+    "name": "public"
+  },
+  "priority": {
+    "name": "normal"
+  },
+  "severity": {
+    "name": "trivial"
+  },
+  "reproducibility": {
+    "name": "always"
+  },
+  "sticky": false,
+  "tags": [
+    {
+      "name": "$tag"
+    }
+  ]
+}
