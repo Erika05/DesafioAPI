@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using DesafioAPI.Helpers;
+using DesafioAPI.DBSteps;
 
 namespace DesafioAPI.Bases
 {
@@ -8,6 +9,7 @@ namespace DesafioAPI.Bases
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
+            TarefaDBSteps.DeleteTodasTarefas();
             ExtentReportHelpers.CreateReport();
         }
 

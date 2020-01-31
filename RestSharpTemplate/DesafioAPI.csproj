@@ -116,6 +116,7 @@
   <ItemGroup>
     <Compile Include="Bases\RequestBase.cs" />
     <Compile Include="Bases\TestBase.cs" />
+    <Compile Include="DBSteps\TarefaDBSteps.cs" />
     <Compile Include="DBSteps\ProjetoDBSteps .cs" />
     <Compile Include="Helpers\DBHelpers.cs" />
     <Compile Include="Helpers\ExtentReportHelpers.cs" />
@@ -135,7 +136,7 @@
     <Compile Include="Requests\Projeto\AtualizaProjetoRequests.cs" />
     <Compile Include="Requests\Projeto\DeleteProjetoRequests.cs" />
     <Compile Include="Requests\Tarefa\CadastroTarefaRequest.cs" />
-    <Compile Include="Requests\Tarefa\CadastroTarefaMinimalRequest.cs" />
+    <Compile Include="Requests\Tarefa\ConsultaTarefasAnexosRequest.cs" />
     <Compile Include="Requests\Tarefa\ConsultaTodasTarefasRequest.cs" />
     <Compile Include="Requests\Tarefa\ConsultaTarefasRequest.cs" />
     <Compile Include="Settings.cs" />
@@ -152,6 +153,7 @@
     </None>
     <None Include="Jsons\Projeto\AtualizaProjetoJson.json" />
     <None Include="Jsons\Projeto\CadastroProjetoJson.json" />
+    <None Include="Jsons\Tarefa\CadastroTarefaAnexoJson.json" />
     <None Include="Jsons\Tarefa\CadastroTarefaJson.json" />
     <None Include="Jsons\Tarefa\CadastroTarefaMinimalJson.json" />
     <None Include="packages.config" />
@@ -162,9 +164,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Queries\atualizaDataDoItemSolicitacaoParaAgora - Cópia .sql" />
     <Content Include="Queries\VerificaIdProjetoNome.sql" />
     <Content Include="Queries\VerificaIdProjetos.sql" />
+    <Content Include="Queries\DeleteTarefas.sql" />
     <Content Include="Queries\VerificaProjetoExiste.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

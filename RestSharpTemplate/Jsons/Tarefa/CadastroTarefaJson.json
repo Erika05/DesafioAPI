@@ -9,16 +9,16 @@
     "name": "$categoria"
   },
   "view_state": {
-    "name": "public"
+    "name": "$visibilidade"
   },
   "priority": {
-    "name": "normal"
+    "name": "$prioridade"
   },
   "severity": {
-    "name": "trivial"
+    "name": "$severidade"
   },
   "reproducibility": {
-    "name": "always"
+    "name": "$reprodutibilidade"
   },
   "sticky": false,
   "tags": [
