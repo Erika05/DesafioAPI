@@ -135,7 +135,9 @@
     <Compile Include="Requests\Projeto\ConsultaTodosProjetosRequest.cs" />
     <Compile Include="Requests\Projeto\AtualizaProjetoRequests.cs" />
     <Compile Include="Requests\Projeto\DeleteProjetoRequests.cs" />
+    <Compile Include="Requests\Tarefa\AtualizaTarefaRequest.cs" />
     <Compile Include="Requests\Tarefa\CadastroTarefaRequest.cs" />
+    <Compile Include="Requests\Tarefa\ConsultaTarefasProjetoRequest.cs" />
     <Compile Include="Requests\Tarefa\ConsultaTarefasAnexosRequest.cs" />
     <Compile Include="Requests\Tarefa\ConsultaTodasTarefasRequest.cs" />
     <Compile Include="Requests\Tarefa\ConsultaTarefasRequest.cs" />
@@ -144,6 +146,7 @@
     <Compile Include="Tests\Projeto\CadastroProjetoTests.cs" />
     <Compile Include="Tests\Projeto\ConsultaProjetoTests.cs" />
     <Compile Include="Tests\Projeto\DeleteProjetoTests.cs" />
+    <Compile Include="Tests\Tarefa\AtualizaTarefasTests.cs" />
     <Compile Include="Tests\Tarefa\CadastroTarefas.cs" />
     <Compile Include="Tests\Tarefa\ConsultaTarefasTests.cs" />
   </ItemGroup>
@@ -153,6 +156,7 @@
     </None>
     <None Include="Jsons\Projeto\AtualizaProjetoJson.json" />
     <None Include="Jsons\Projeto\CadastroProjetoJson.json" />
+    <None Include="Jsons\Tarefa\AtualizaTarefaJson.json" />
     <None Include="Jsons\Tarefa\CadastroTarefaAnexoJson.json" />
     <None Include="Jsons\Tarefa\CadastroTarefaJson.json" />
     <None Include="Jsons\Tarefa\CadastroTarefaMinimalJson.json" />

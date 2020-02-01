@@ -4,6 +4,8 @@ using RestSharp;
 using DesafioAPI.Requests.Tarefas;
 using DesafioAPI.DBSteps;
 using DesafioAPI.Requests.Projeto;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace DesafioAPI.Tests.Tarefas
 {
@@ -15,6 +17,7 @@ namespace DesafioAPI.Tests.Tarefas
         CadastroTarefaRequest cadastroTarefaRequest = new CadastroTarefaRequest();
         CadastroProjetoRequests cadastroProjetoRequests = new CadastroProjetoRequests();
         ConsultaTarefasAnexosRequest consultaTarefasAnexosRequest = new ConsultaTarefasAnexosRequest();
+        ConsultaTarefasProjetoRequest consultaTarefasProjetoRequest = new ConsultaTarefasProjetoRequest();
 
         [Test]
         public void ConsultarTarefa()
@@ -60,7 +63,7 @@ namespace DesafioAPI.Tests.Tarefas
         }
 
         [Test]
-        public void ConsultarTarefaArquivo()
+        public void ConsultarAnexosTarefa()
         {
             #region Parameters
             string resumo = "Tarefa consulta";
@@ -72,8 +75,9 @@ namespace DesafioAPI.Tests.Tarefas
             string anexo = "VGhpcyBpcyBhIFRFU1QuDQpUaGlzIGlzIGEgVEVTVC4NClRoaXMgaXMgYSBURVNULg0KVGhpcyBpcyBhIFRFU1QuDQpUaGlzIGlzIGEgVEVTVC4=";
             VerificaProjetoExiste(projeto);
             cadastroTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto, nomeAnexo, anexo);
-            string idTarefa = cadastroTarefaRequest.ExecuteRequest().Data["issue"]["id"];
-            string idAnexo = cadastroTarefaRequest.ExecuteRequest().Data["issue"]["attachments"][0]["id"];
+            IRestResponse<dynamic> responseCadastro = cadastroTarefaRequest.ExecuteRequest();
+            string idTarefa = responseCadastro.Data["issue"]["id"];
+            string idAnexo = responseCadastro.Data["issue"]["attachments"][0]["id"];
             #endregion
             consultaTarefasAnexosRequest.SetParameters(idTarefa, idAnexo);
             IRestResponse<dynamic> response = consultaTarefasAnexosRequest.ExecuteRequest();
@@ -84,11 +88,40 @@ namespace DesafioAPI.Tests.Tarefas
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
-                Assert.AreEqual(idTarefa, retornoId);
-                Assert.AreEqual(nomeAnexo, retornoAnexo);
+                Assert.AreEqual(idAnexo, retornoId);
+                Assert.AreEqual(nomeAnexo, retornoNomeAnexo);
                 Assert.AreEqual(anexo, retornoAnexo);
             });
         }
+
+        [Test]
+        public void ConsultarTarefasProjeto()
+        {
+            #region Parameters
+            string resumo = "Tarefa consulta";
+            string descricao = "descricao";
+            string categoria = "General";
+            string projeto = "projeto geral";
+            string statusCodeEsperado = "OK";
+            VerificaProjetoExiste(projeto);
+            cadastroTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
+            string idProjeto = cadastroTarefaRequest.ExecuteRequest().Data["issue"]["project"]["id"];
+            #endregion
+            consultaTarefasProjetoRequest.SetParameters(idProjeto);
+            IRestResponse<dynamic> response = consultaTarefasProjetoRequest.ExecuteRequest();
+            string retornoProjeto = response.Data["issues"][0]["project"]["name"];
+
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+                Assert.AreEqual(projeto, retornoProjeto);
+            });
+        }
+
+        //Consulta utilizando filtro cadastrado pelo usuário (Get issues matching filter)
+        //Consulta tarefas associadas a um usuário (Get issues assigned to me)
+        //Consulta tarefas criadas por um usuário (Get issues reported by me)
+        //Consulta tarefas monitoradaas por um usuário (Get unassigned issues)
 
         public void VerificaProjetoExiste(string nomeProjeto)
         {
