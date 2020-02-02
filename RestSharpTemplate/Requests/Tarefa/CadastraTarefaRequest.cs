@@ -25,7 +25,7 @@ namespace DesafioAPI.Requests.Tarefas
                                string reprodutibilidade,
                                string tag)
         {
-            jsonBody = File.ReadAllText(GeneralHelpers.ReturnProjectPath() + "Jsons/Tarefa/CadastroTarefaJson.json", Encoding.UTF8);
+            jsonBody = File.ReadAllText(GeneralHelpers.ReturnProjectPath() + "Jsons/Tarefa/CadastraTarefaJson.json", Encoding.UTF8);
             jsonBody = jsonBody.Replace("$resumo", resumo);
             jsonBody = jsonBody.Replace("$descricao", descricao);
             jsonBody = jsonBody.Replace("$informacao", informacao);
@@ -44,7 +44,7 @@ namespace DesafioAPI.Requests.Tarefas
                               string categoria,
                               string projeto)
         {
-            jsonBody = File.ReadAllText(GeneralHelpers.ReturnProjectPath() + "Jsons/Tarefa/CadastroTarefaMinimalJson.json", Encoding.UTF8);
+            jsonBody = File.ReadAllText(GeneralHelpers.ReturnProjectPath() + "Jsons/Tarefa/CadastraTarefaMinimalJson.json", Encoding.UTF8);
             jsonBody = jsonBody.Replace("$resumo", resumo);
             jsonBody = jsonBody.Replace("$descricao", descricao);
             jsonBody = jsonBody.Replace("$categoria", categoria);
@@ -58,7 +58,7 @@ namespace DesafioAPI.Requests.Tarefas
                               string nomeAnexo,
                               string anexo)
         {
-            jsonBody = File.ReadAllText(GeneralHelpers.ReturnProjectPath() + "Jsons/Tarefa/CadastroTarefaAnexoJson.json", Encoding.UTF8);
+            jsonBody = File.ReadAllText(GeneralHelpers.ReturnProjectPath() + "Jsons/Tarefa/CadastraTarefaAnexoJson.json", Encoding.UTF8);
             jsonBody = jsonBody.Replace("$resumo", resumo);
             jsonBody = jsonBody.Replace("$descricao", descricao);
             jsonBody = jsonBody.Replace("$categoria", categoria);

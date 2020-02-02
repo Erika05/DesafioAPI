@@ -18,7 +18,7 @@ namespace DesafioAPI.Requests.Tarefa
             method = Method.PATCH;
             headers.Add("Authorization", Properties.Settings.Default.TOKEN);
         }
-
+              
         public void SetParameters(string idTarefa)
         {
             parameters.Add("issue_id", idTarefa);
@@ -26,7 +26,15 @@ namespace DesafioAPI.Requests.Tarefa
 
         public void SetJsonBody(string status)
         {
+            jsonBody = File.ReadAllText(GeneralHelpers.ReturnProjectPath() + "Jsons/Tarefa/AtualizaTarefaMinimalJson.json", Encoding.UTF8);
+            jsonBody = jsonBody.Replace("$status", status);
+        }
+
+        public void SetJsonBody(string resumo, string prioridade, string status)
+        {
             jsonBody = File.ReadAllText(GeneralHelpers.ReturnProjectPath() + "Jsons/Tarefa/AtualizaTarefaJson.json", Encoding.UTF8);
+            jsonBody = jsonBody.Replace("$resumo", resumo);
+            jsonBody = jsonBody.Replace("$prioridade", prioridade);
             jsonBody = jsonBody.Replace("$status", status);
         }
 

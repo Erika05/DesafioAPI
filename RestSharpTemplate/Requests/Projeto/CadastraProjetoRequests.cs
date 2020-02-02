@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace DesafioAPI.Requests.Projeto
 {
-    public class CadastroProjetoRequests : RequestBase
+    public class CadastraProjetoRequests : RequestBase
     {
-        public CadastroProjetoRequests()
+        public CadastraProjetoRequests()
         {
             requestService = "/api/rest/projects/";
             method = Method.POST;
@@ -21,7 +21,7 @@ namespace DesafioAPI.Requests.Projeto
         public void SetJsonBody(string name,
                                string descricao)
         {
-            jsonBody = File.ReadAllText(GeneralHelpers.ReturnProjectPath() + "Jsons/Projeto/CadastroProjetoJson.json", Encoding.UTF8);
+            jsonBody = File.ReadAllText(GeneralHelpers.ReturnProjectPath() + "Jsons/Projeto/CadastraProjetoJson.json", Encoding.UTF8);
             jsonBody = jsonBody.Replace("$name", name);
             jsonBody = jsonBody.Replace("$descricao", descricao);
         }

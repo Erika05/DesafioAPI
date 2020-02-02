@@ -9,7 +9,7 @@ namespace DesafioAPI.Tests.Projeto
     [TestFixture]
     public class AtualizaProjetoTests : TestBase
     {
-        CadastroProjetoRequests cadastroProjetoRequests = new CadastroProjetoRequests();
+        CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
         AtualizaProjetoRequests atualizaProjetoRequests = new AtualizaProjetoRequests();
         DeleteProjetoRequests deleteProjetoRequests = new DeleteProjetoRequests();
 

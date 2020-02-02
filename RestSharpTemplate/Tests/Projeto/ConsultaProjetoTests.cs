@@ -10,7 +10,7 @@ namespace DesafioAPI.Tests.Projeto
     [TestFixture]
     public class ConsultaProjetoTests : TestBase
     {
-        CadastroProjetoRequests cadastroProjetoRequests = new CadastroProjetoRequests();
+        CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
         ConsultaProjetoRequests consultaProjetoRequests = new ConsultaProjetoRequests();
         ConsultaTodosProjetosRequest consultaTodosProjetosRequest = new ConsultaTodosProjetosRequest();
 

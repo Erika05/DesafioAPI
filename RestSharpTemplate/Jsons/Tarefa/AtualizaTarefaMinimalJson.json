@@ -1,0 +1,8 @@
+{
+  "handler": {
+    "name": "vboctor"
+  },
+  "status": {
+    "name": "$status"
+  }
+}

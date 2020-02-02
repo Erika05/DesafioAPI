@@ -15,7 +15,7 @@ namespace DesafioAPI.Tests.Tarefas
         ConsultaTodasTarefasRequest consultaTodasTarefasRequest = new ConsultaTodasTarefasRequest();
         ConsultaTarefasRequest consultaTarefasRequest = new ConsultaTarefasRequest();
         CadastroTarefaRequest cadastroTarefaRequest = new CadastroTarefaRequest();
-        CadastroProjetoRequests cadastroProjetoRequests = new CadastroProjetoRequests();
+        CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
         ConsultaTarefasAnexosRequest consultaTarefasAnexosRequest = new ConsultaTarefasAnexosRequest();
         ConsultaTarefasProjetoRequest consultaTarefasProjetoRequest = new ConsultaTarefasProjetoRequest();
 

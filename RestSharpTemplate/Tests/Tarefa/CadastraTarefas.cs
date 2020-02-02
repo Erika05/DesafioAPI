@@ -11,7 +11,7 @@ namespace DesafioAPI.Tests.Tarefas
     [TestFixture]
     public class CadastroTarefas : TestBase
     {
-        CadastroProjetoRequests cadastroProjetoRequests = new CadastroProjetoRequests();
+        CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
         CadastroTarefaRequest cadastroTarefaRequest = new CadastroTarefaRequest();
 
         [Test]

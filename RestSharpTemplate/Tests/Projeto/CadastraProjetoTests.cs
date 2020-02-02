@@ -7,9 +7,9 @@ using RestSharp;
 namespace DesafioAPI.Tests.Projeto
 {
     [TestFixture]
-    public class CadastroProjetoTests : TestBase
+    public class CadastraProjetoTests : TestBase
     {
-        CadastroProjetoRequests cadastroProjetoRequests = new CadastroProjetoRequests();
+        CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
         DeleteProjetoRequests deleteProjetoRequests = new DeleteProjetoRequests();
 
         [Test]

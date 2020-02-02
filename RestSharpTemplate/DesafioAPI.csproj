@@ -130,24 +130,30 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Requests\Projeto\CadastroProjetoRequests.cs" />
+    <Compile Include="Requests\Projeto\CadastraProjetoRequests.cs" />
     <Compile Include="Requests\Projeto\ConsultaProjetoRequests.cs" />
     <Compile Include="Requests\Projeto\ConsultaTodosProjetosRequest.cs" />
     <Compile Include="Requests\Projeto\AtualizaProjetoRequests.cs" />
     <Compile Include="Requests\Projeto\DeleteProjetoRequests.cs" />
+    <Compile Include="Requests\Tarefa\AdicionaAnexoTarefaRequest.cs" />
+    <Compile Include="Requests\Tarefa\AdicionaNotaTarefaRequest.cs" />
+    <Compile Include="Requests\Tarefa\DeletaTarefaRequest.cs" />
     <Compile Include="Requests\Tarefa\AtualizaTarefaRequest.cs" />
-    <Compile Include="Requests\Tarefa\CadastroTarefaRequest.cs" />
+    <Compile Include="Requests\Tarefa\CadastraTarefaRequest.cs" />
     <Compile Include="Requests\Tarefa\ConsultaTarefasProjetoRequest.cs" />
-    <Compile Include="Requests\Tarefa\ConsultaTarefasAnexosRequest.cs" />
+    <Compile Include="Requests\Tarefa\ConsultaAnexosTarefaRequest.cs" />
     <Compile Include="Requests\Tarefa\ConsultaTodasTarefasRequest.cs" />
     <Compile Include="Requests\Tarefa\ConsultaTarefasRequest.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Tests\Projeto\AtualizaProjetoTests.cs" />
-    <Compile Include="Tests\Projeto\CadastroProjetoTests.cs" />
+    <Compile Include="Tests\Projeto\CadastraProjetoTests.cs" />
     <Compile Include="Tests\Projeto\ConsultaProjetoTests.cs" />
     <Compile Include="Tests\Projeto\DeleteProjetoTests.cs" />
+    <Compile Include="Tests\Tarefa\AdicionaNotaTarefasTests.cs" />
+    <Compile Include="Tests\Tarefa\AdicionaAnexoTarefasTests.cs" />
+    <Compile Include="Tests\Tarefa\DeletaTarefasTests.cs" />
     <Compile Include="Tests\Tarefa\AtualizaTarefasTests.cs" />
-    <Compile Include="Tests\Tarefa\CadastroTarefas.cs" />
+    <Compile Include="Tests\Tarefa\CadastraTarefas.cs" />
     <Compile Include="Tests\Tarefa\ConsultaTarefasTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -155,11 +161,14 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Jsons\Projeto\AtualizaProjetoJson.json" />
-    <None Include="Jsons\Projeto\CadastroProjetoJson.json" />
+    <None Include="Jsons\Projeto\CadastraProjetoJson.json" />
+    <None Include="Jsons\Tarefa\AdicionaNotaTarefaJson.json" />
     <None Include="Jsons\Tarefa\AtualizaTarefaJson.json" />
-    <None Include="Jsons\Tarefa\CadastroTarefaAnexoJson.json" />
-    <None Include="Jsons\Tarefa\CadastroTarefaJson.json" />
-    <None Include="Jsons\Tarefa\CadastroTarefaMinimalJson.json" />
+    <None Include="Jsons\Tarefa\AtualizaTarefaMinimalJson.json" />
+    <None Include="Jsons\Tarefa\AdicionaAnexoTarefaJson.json" />
+    <None Include="Jsons\Tarefa\CadastraTarefaAnexoJson.json" />
+    <None Include="Jsons\Tarefa\CadastraTarefaJson.json" />
+    <None Include="Jsons\Tarefa\CadastraTarefaMinimalJson.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
