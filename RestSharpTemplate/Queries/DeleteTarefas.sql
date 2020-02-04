@@ -1,3 +1,5 @@
 TRUNCATE mantis_bug_history_table;
 TRUNCATE  mantis_bug_table;
 TRUNCATE  mantis_bug_text_table;
+TRUNCATE mantis_bug_file_table;
+TRUNCATE mantis_bug_monitor_table;

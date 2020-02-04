@@ -1,0 +1,15 @@
+{
+  "text": "$nota",
+  "view_state": {
+  	"name": "$status"
+  },
+  "time_tracking": {
+    "duration": "$duracao"
+  },
+  "files": [
+  	{
+  		"name": "$nomeAnexo",
+  		"content": "$anexo"
+  	}  	
+  ]
+}
