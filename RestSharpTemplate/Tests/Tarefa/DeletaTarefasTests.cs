@@ -34,8 +34,7 @@ namespace DesafioAPI.Tests.Tarefas
             
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
-                Assert.AreEqual(0, ProjetoDBSteps.VerificaNotaTarefaExiste(idTarefa));
+                Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());                
 
             });
         }        

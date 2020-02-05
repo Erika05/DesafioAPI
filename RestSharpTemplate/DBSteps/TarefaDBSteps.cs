@@ -5,27 +5,12 @@ using System.Text;
 
 namespace DesafioAPI.DBSteps
 {
-    public class ProjetoDBSteps
+    public class TarefaDBSteps
     {
-        public static int VerificaProjetoExiste(string nomeProjeto)
+        public static void DeleteTodasTarefas()
         {
-            string query = File.ReadAllText(GeneralHelpers.ReturnProjectPath() + "Queries/VerificaProjetoExiste.sql", Encoding.UTF8).Replace("$nomeProjeto", nomeProjeto);
-
-            return Int32.Parse(DBHelpers.RetornaDadosQuery(query)[0]);
-        }
-
-        public static string RetornaIDProjetoNome(string nomeProjeto)
-        {
-            string query = File.ReadAllText(GeneralHelpers.ReturnProjectPath() + "Queries/VerificaIdProjetoNome.sql", Encoding.UTF8).Replace("$nomeProjeto", nomeProjeto);
-
-            return DBHelpers.RetornaDadosQuery(query)[0];
-        }
-
-        public static string RetornaIDProjeto()
-        {
-            string query = File.ReadAllText(GeneralHelpers.ReturnProjectPath() + "Queries/VerificaIdProjetos.sql", Encoding.UTF8);
-
-            return DBHelpers.RetornaDadosQuery(query)[0];
+            string query = File.ReadAllText(GeneralHelpers.ReturnProjectPath() + "Queries/DeleteTarefas.sql", Encoding.UTF8);
+            DBHelpers.ExecuteQuery(query);
         }
 
         public static int VerificaNotaTarefaExiste(string idNota)

@@ -116,8 +116,8 @@
   <ItemGroup>
     <Compile Include="Bases\RequestBase.cs" />
     <Compile Include="Bases\TestBase.cs" />
+    <Compile Include="DBSteps\ProjetoDBSteps.cs" />
     <Compile Include="DBSteps\TarefaDBSteps.cs" />
-    <Compile Include="DBSteps\ProjetoDBSteps .cs" />
     <Compile Include="Helpers\DBHelpers.cs" />
     <Compile Include="Helpers\ExtentReportHelpers.cs" />
     <Compile Include="Helpers\GeneralHelpers.cs" />
