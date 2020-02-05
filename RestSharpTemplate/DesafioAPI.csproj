@@ -136,6 +136,9 @@
     <Compile Include="Requests\Projeto\AtualizaProjetoRequests.cs" />
     <Compile Include="Requests\Projeto\DeleteProjetoRequests.cs" />
     <Compile Include="Requests\Tarefa\AdicionaAnexoTarefaRequest.cs" />
+    <Compile Include="Requests\Tarefa\DeletaTagCopiaTarefaRequest.cs" />
+    <Compile Include="Requests\Tarefa\AdicionaTagCopiaTarefaRequest.cs" />
+    <Compile Include="Requests\Tarefa\AdicionaMonitoramentoTarefaRequest.cs" />
     <Compile Include="Requests\Tarefa\DeletaNotaTarefaRequest.cs" />
     <Compile Include="Requests\Tarefa\AdicionaNotaTarefaRequest.cs" />
     <Compile Include="Requests\Tarefa\DeletaTarefaRequest.cs" />
@@ -150,6 +153,9 @@
     <Compile Include="Tests\Projeto\CadastraProjetoTests.cs" />
     <Compile Include="Tests\Projeto\ConsultaProjetoTests.cs" />
     <Compile Include="Tests\Projeto\DeleteProjetoTests.cs" />
+    <Compile Include="Tests\Tarefa\DeletaTagCopiaTarefasTests.cs" />
+    <Compile Include="Tests\Tarefa\AdicionaTagCopiaTarefasTests.cs" />
+    <Compile Include="Tests\Tarefa\AdicionaMonitoramentoTarefasTests.cs" />
     <Compile Include="Tests\Tarefa\DeletaNotaTarefasTests.cs" />
     <Compile Include="Tests\Tarefa\AdicionaNotaTarefasTests.cs" />
     <Compile Include="Tests\Tarefa\AdicionaAnexoTarefasTests.cs" />
@@ -164,6 +170,8 @@
     </None>
     <None Include="Jsons\Projeto\AtualizaProjetoJson.json" />
     <None Include="Jsons\Projeto\CadastraProjetoJson.json" />
+    <None Include="Jsons\Tarefa\AdicionaTagCopiaTarefaJson.json" />
+    <None Include="Jsons\Tarefa\AdicionaMonitoramentoUsuarioTarefaJson.json" />
     <None Include="Jsons\Tarefa\DeletaNotaTarefaJson.json" />
     <None Include="Jsons\Tarefa\AdicionaNotaComAnexoTarefaJson.json" />
     <None Include="Jsons\Tarefa\AdicionaNotaComTempoTarefaJson.json" />
@@ -182,6 +190,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Queries\VerificaNotaTarefaExiste.sql" />
     <Content Include="Queries\VerificaIdProjetoNome.sql" />
     <Content Include="Queries\VerificaIdProjetos.sql" />
     <Content Include="Queries\DeleteTarefas.sql" />

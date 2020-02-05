@@ -27,5 +27,12 @@ namespace DesafioAPI.DBSteps
 
             return DBHelpers.RetornaDadosQuery(query)[0];
         }
+
+        public static int VerificaNotaTarefaExiste(string idNota)
+        {
+            string query = File.ReadAllText(GeneralHelpers.ReturnProjectPath() + "Queries/VerificaNotaTarefaExiste.sql", Encoding.UTF8).Replace("$idNota", idNota);
+
+            return Int32.Parse(DBHelpers.RetornaDadosQuery(query)[0]);
+        }
     }
 }
