@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace DesafioAPI.Requests.Projeto
 {
-    public class DeleteProjetoRequests : RequestBase
+    public class DeletaProjetoRequests : RequestBase
     {
-        public DeleteProjetoRequests()
+        public DeletaProjetoRequests()
         {
             requestService = "/api/rest/projects/{project_id}";
             method = Method.DELETE;

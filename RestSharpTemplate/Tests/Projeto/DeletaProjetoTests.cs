@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 namespace DesafioAPI.Tests.Projeto
 {
     [TestFixture]
-    public class DeleteProjetoTests : TestBase
+    public class DeletaProjetoTests : TestBase
     {
-        DeleteProjetoRequests deleteProjetoRequests = new DeleteProjetoRequests();
+        DeletaProjetoRequests deletaProjetoRequests = new DeletaProjetoRequests();
         CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
 
         [Test]
@@ -25,11 +25,12 @@ namespace DesafioAPI.Tests.Projeto
             string statusCodeEsperado = "OK";
             #endregion
             VerificaProjetoExiste(nomeProjeto);
-            deleteProjetoRequests.SetParameters(ProjetoDBSteps.RetornaIDProjetoNome(nomeProjeto));
-            IRestResponse<dynamic> response = deleteProjetoRequests.ExecuteRequest();
+            deletaProjetoRequests.SetParameters(ProjetoDBSteps.RetornaIDProjetoNome(nomeProjeto));
+            IRestResponse<dynamic> response = deletaProjetoRequests.ExecuteRequest();
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+                Assert.AreEqual(0, ProjetoDBSteps.VerificaProjetoExiste(nomeProjeto));               
             });
         }
         public void VerificaProjetoExiste(string nomeProjeto)

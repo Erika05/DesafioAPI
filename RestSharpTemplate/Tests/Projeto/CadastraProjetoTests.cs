@@ -10,7 +10,7 @@ namespace DesafioAPI.Tests.Projeto
     public class CadastraProjetoTests : TestBase
     {
         CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
-        DeleteProjetoRequests deleteProjetoRequests = new DeleteProjetoRequests();
+        DeletaProjetoRequests deleteProjetoRequests = new DeletaProjetoRequests();
 
         [Test]
         public void CadastrarProjetoSucesso()

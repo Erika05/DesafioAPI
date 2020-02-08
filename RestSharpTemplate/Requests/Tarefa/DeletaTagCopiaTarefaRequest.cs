@@ -11,7 +11,7 @@ namespace DesafioAPI.Requests.Tarefas
         public DeletaTagCopiaTarefaRequest()
         {
             requestService = "/api/rest/issues/{issue_id}/relationships/{relationship_id}";
-            method = Method.POST;
+            method = Method.DELETE;
             headers.Add("Authorization", Properties.Settings.Default.TOKEN);
         }
 

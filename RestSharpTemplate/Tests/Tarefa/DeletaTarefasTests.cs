@@ -13,7 +13,7 @@ namespace DesafioAPI.Tests.Tarefas
     public class DeletaTarefasTests : TestBase
     {
         CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
-        CadastroTarefaRequest cadastroTarefaRequest = new CadastroTarefaRequest();
+        CadastroTarefaRequest cadastroTarefaRequest = new CadastroTarefaRequest();       
         DeletaTarefaRequest deletaTarefaRequest = new DeletaTarefaRequest();
 
        [Test]
@@ -30,11 +30,13 @@ namespace DesafioAPI.Tests.Tarefas
             cadastroTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
             string idTarefa = cadastroTarefaRequest.ExecuteRequest().Data["issue"]["id"];
             deletaTarefaRequest.SetParameters(idTarefa);
+
             IRestResponse<dynamic> response = deletaTarefaRequest.ExecuteRequest();
-            
+
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());                
+                Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+                Assert.AreEqual(0, TarefaDBSteps.VerificaTarefaExiste(idTarefa));
 
             });
         }        

@@ -12,6 +12,7 @@ namespace DesafioAPI.Tests.Tarefas
     {
         CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
         CadastroTarefaRequest cadastroTarefaRequest = new CadastroTarefaRequest();
+        AdicionaTagCopiaTarefaRequest adicionaTagCopiaTarefaRequest = new AdicionaTagCopiaTarefaRequest();
         DeletaTagCopiaTarefaRequest deletaTagCopiaTarefaRequest = new DeletaTagCopiaTarefaRequest();
 
         [Test]
@@ -23,20 +24,26 @@ namespace DesafioAPI.Tests.Tarefas
             string projeto = "projeto geral";
             string categoria = "General";
             #endregion           
-            string statusCodeEsperado = "Created";
+            string statusCodeEsperado = "OK";
+            VerificaProjetoExiste(projeto);
             cadastroTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
             string idTarefa = cadastroTarefaRequest.ExecuteRequest().Data["issue"]["id"];
-            string idRarefaRelacionada = cadastroTarefaRequest.ExecuteRequest().Data["issue"]["id"];
+            string idTarefaRelacionada = cadastroTarefaRequest.ExecuteRequest().Data["issue"]["id"];
 
-            deletaTagCopiaTarefaRequest.SetParameters(idTarefa, idRarefaRelacionada);
+            adicionaTagCopiaTarefaRequest.SetParameters(idTarefa);
+            adicionaTagCopiaTarefaRequest.SetJsonBody(idTarefaRelacionada);
+            IRestResponse<dynamic> responseAddCopiaTarefa = adicionaTagCopiaTarefaRequest.ExecuteRequest();
+
+            string retornoIdTarefaRelacionada = responseAddCopiaTarefa.Data["issue"]["relationships"][0]["id"];
+            
+            deletaTagCopiaTarefaRequest.SetParameters(idTarefa, retornoIdTarefaRelacionada);
             IRestResponse<dynamic> response = deletaTagCopiaTarefaRequest.ExecuteRequest();
 
-           string retornoIdTarefaRelacionada = response.Data["issue"]["relationships"][0]["issue"]["id"];
 
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
-                Assert.AreEqual(idRarefaRelacionada, retornoIdTarefaRelacionada);
+                Assert.AreEqual(0, TarefaDBSteps.VerificaCopiaTarefaExiste(retornoIdTarefaRelacionada));
             });
         }        
 

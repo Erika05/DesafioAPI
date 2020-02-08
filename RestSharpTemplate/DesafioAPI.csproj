@@ -134,7 +134,7 @@
     <Compile Include="Requests\Projeto\ConsultaProjetoRequests.cs" />
     <Compile Include="Requests\Projeto\ConsultaTodosProjetosRequest.cs" />
     <Compile Include="Requests\Projeto\AtualizaProjetoRequests.cs" />
-    <Compile Include="Requests\Projeto\DeleteProjetoRequests.cs" />
+    <Compile Include="Requests\Projeto\DeletaProjetoRequests.cs" />
     <Compile Include="Requests\Tarefa\AdicionaAnexoTarefaRequest.cs" />
     <Compile Include="Requests\Tarefa\DeletaTagCopiaTarefaRequest.cs" />
     <Compile Include="Requests\Tarefa\AdicionaTagCopiaTarefaRequest.cs" />
@@ -152,7 +152,7 @@
     <Compile Include="Tests\Projeto\AtualizaProjetoTests.cs" />
     <Compile Include="Tests\Projeto\CadastraProjetoTests.cs" />
     <Compile Include="Tests\Projeto\ConsultaProjetoTests.cs" />
-    <Compile Include="Tests\Projeto\DeleteProjetoTests.cs" />
+    <Compile Include="Tests\Projeto\DeletaProjetoTests.cs" />
     <Compile Include="Tests\Tarefa\DeletaTagCopiaTarefasTests.cs" />
     <Compile Include="Tests\Tarefa\AdicionaTagCopiaTarefasTests.cs" />
     <Compile Include="Tests\Tarefa\AdicionaMonitoramentoTarefasTests.cs" />
@@ -190,11 +190,13 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Queries\VerificaNotaTarefaExiste.sql" />
-    <Content Include="Queries\VerificaIdProjetoNome.sql" />
-    <Content Include="Queries\VerificaIdProjetos.sql" />
-    <Content Include="Queries\DeleteTarefas.sql" />
-    <Content Include="Queries\VerificaProjetoExiste.sql" />
+    <Content Include="Queries\Tarefa\VerificaTarefaExiste.sql" />
+    <Content Include="Queries\Tarefa\VerificaTagCopiaTarefaExiste.sql" />
+    <Content Include="Queries\Tarefa\VerificaNotaTarefaExiste.sql" />
+    <Content Include="Queries\Projeto\VerificaIdProjetoNome.sql" />
+    <Content Include="Queries\Projeto\VerificaIdProjetos.sql" />
+    <Content Include="Queries\Tarefa\DeleteTarefas.sql" />
+    <Content Include="Queries\Projeto\VerificaProjetoExiste.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

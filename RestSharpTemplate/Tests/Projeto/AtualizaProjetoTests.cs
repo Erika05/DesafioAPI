@@ -11,7 +11,7 @@ namespace DesafioAPI.Tests.Projeto
     {
         CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
         AtualizaProjetoRequests atualizaProjetoRequests = new AtualizaProjetoRequests();
-        DeleteProjetoRequests deleteProjetoRequests = new DeleteProjetoRequests();
+        DeletaProjetoRequests deleteProjetoRequests = new DeletaProjetoRequests();
 
         [Test]
         public void AtualizarProjeto()

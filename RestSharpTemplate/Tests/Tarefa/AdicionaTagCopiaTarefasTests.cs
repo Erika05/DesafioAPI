@@ -22,14 +22,15 @@ namespace DesafioAPI.Tests.Tarefas
             string descricao = "Descricao tag tarefa";
             string projeto = "projeto geral";
             string categoria = "General";
-            #endregion           
+            #endregion      
+            VerificaProjetoExiste(projeto);
             string statusCodeEsperado = "Created";
             cadastroTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
             string idTarefa = cadastroTarefaRequest.ExecuteRequest().Data["issue"]["id"];
-            string idRarefaRelacionada = cadastroTarefaRequest.ExecuteRequest().Data["issue"]["id"];
+            string idTarefaRelacionada = cadastroTarefaRequest.ExecuteRequest().Data["issue"]["id"];
 
             adicionaTagCopiaTarefaRequest.SetParameters(idTarefa);
-            adicionaTagCopiaTarefaRequest.SetJsonBody(idRarefaRelacionada);
+            adicionaTagCopiaTarefaRequest.SetJsonBody(idTarefaRelacionada);
             IRestResponse<dynamic> response = adicionaTagCopiaTarefaRequest.ExecuteRequest();
 
            string retornoIdTarefaRelacionada = response.Data["issue"]["relationships"][0]["issue"]["id"];
@@ -37,7 +38,7 @@ namespace DesafioAPI.Tests.Tarefas
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
-                Assert.AreEqual(idRarefaRelacionada, retornoIdTarefaRelacionada);
+                Assert.AreEqual(idTarefaRelacionada, retornoIdTarefaRelacionada);
             });
         }        
 
