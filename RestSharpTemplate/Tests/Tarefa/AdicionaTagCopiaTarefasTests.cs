@@ -11,7 +11,7 @@ namespace DesafioAPI.Tests.Tarefas
     public class AdicionaTagCopiaTarefasTests : TestBase
     {
         CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
-        CadastroTarefaRequest cadastroTarefaRequest = new CadastroTarefaRequest();
+        CadastraTarefaRequest cadastraTarefaRequest = new CadastraTarefaRequest();
         AdicionaTagCopiaTarefaRequest adicionaTagCopiaTarefaRequest = new AdicionaTagCopiaTarefaRequest();
 
         [Test]
@@ -25,9 +25,9 @@ namespace DesafioAPI.Tests.Tarefas
             #endregion      
             VerificaProjetoExiste(projeto);
             string statusCodeEsperado = "Created";
-            cadastroTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
-            string idTarefa = cadastroTarefaRequest.ExecuteRequest().Data["issue"]["id"];
-            string idTarefaRelacionada = cadastroTarefaRequest.ExecuteRequest().Data["issue"]["id"];
+            cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
+            string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
+            string idTarefaRelacionada = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
 
             adicionaTagCopiaTarefaRequest.SetParameters(idTarefa);
             adicionaTagCopiaTarefaRequest.SetJsonBody(idTarefaRelacionada);

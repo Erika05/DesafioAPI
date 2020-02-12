@@ -11,7 +11,7 @@ namespace DesafioAPI.Tests.Tarefas
     public class AdicionaNotaTarefasTests : TestBase
     {
         CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
-        CadastroTarefaRequest cadastroTarefaRequest = new CadastroTarefaRequest();
+        CadastraTarefaRequest cadastraTarefaRequest = new CadastraTarefaRequest();
         AdicionaNotaTarefaRequest adicionaNotaTarefaRequest = new AdicionaNotaTarefaRequest();
 
         [Test]
@@ -29,8 +29,8 @@ namespace DesafioAPI.Tests.Tarefas
             string statusNota = "private";
             string statusCodeEsperado = "Created";
             #endregion
-            cadastroTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
-            string idTarefa = cadastroTarefaRequest.ExecuteRequest().Data["issue"]["id"];
+            cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
+            string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
             adicionaNotaTarefaRequest.SetParameters(idTarefa);
             adicionaNotaTarefaRequest.SetJsonBody(nota, statusNota);
             IRestResponse<dynamic> response = adicionaNotaTarefaRequest.ExecuteRequest();
@@ -62,8 +62,8 @@ namespace DesafioAPI.Tests.Tarefas
             string duracao = "00:00:15";
             string statusCodeEsperado = "Created";
             #endregion
-            cadastroTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
-            string idTarefa = cadastroTarefaRequest.ExecuteRequest().Data["issue"]["id"];
+            cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
+            string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
             adicionaNotaTarefaRequest.SetParameters(idTarefa);
             adicionaNotaTarefaRequest.SetJsonBody(nota, statusNota, duracao);
             IRestResponse<dynamic> response = adicionaNotaTarefaRequest.ExecuteRequest();
@@ -97,8 +97,8 @@ namespace DesafioAPI.Tests.Tarefas
             string anexo = "VGhpcyBpcyBhIFRFU1QuDQpUaGlzIGlzIGEgVEVTVC4NClRoaXMgaXMgYSBURVNULg0KVGhpcyBpcyBhIFRFU1QuDQpUaGlzIGlzIGEgVEVTVC4=";
             string statusCodeEsperado = "Created";
             #endregion
-            cadastroTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
-            string idTarefa = cadastroTarefaRequest.ExecuteRequest().Data["issue"]["id"];
+            cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
+            string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
             adicionaNotaTarefaRequest.SetParameters(idTarefa);
             adicionaNotaTarefaRequest.SetJsonBody(nota, statusNota, duracao, nomeAnexo, anexo);
             IRestResponse<dynamic> response = adicionaNotaTarefaRequest.ExecuteRequest();

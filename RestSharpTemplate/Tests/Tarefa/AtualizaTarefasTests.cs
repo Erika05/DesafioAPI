@@ -13,7 +13,7 @@ namespace DesafioAPI.Tests.Tarefas
     public class AtualizaTarefasTests : TestBase
     {
         CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
-        CadastroTarefaRequest cadastroTarefaRequest = new CadastroTarefaRequest();
+        CadastraTarefaRequest cadastraTarefaRequest = new CadastraTarefaRequest();
         AtualizaTarefaRequest atualizaTarefaRequest = new AtualizaTarefaRequest();
 
        [Test]
@@ -30,8 +30,8 @@ namespace DesafioAPI.Tests.Tarefas
             string statusCodeEsperado = "OK";
             #endregion
             VerificaProjetoExiste(projeto);
-            cadastroTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
-            string idTarefa = cadastroTarefaRequest.ExecuteRequest().Data["issue"]["id"];
+            cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
+            string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
          
             atualizaTarefaRequest.SetParameters(idTarefa);
             atualizaTarefaRequest.SetJsonBody(statusTarefa);
@@ -69,8 +69,8 @@ namespace DesafioAPI.Tests.Tarefas
             string atualizacaoStatusTarefa = "resolved";
             string statusCodeEsperado = "OK";            
             #endregion
-            cadastroTarefaRequest.SetJsonBody(resumo, descricao, informacao, projeto, categoria, visibilidade, prioridade, severidade, reprodutibilidade, tag);
-            string idTarefa = cadastroTarefaRequest.ExecuteRequest().Data["issue"]["id"];
+            cadastraTarefaRequest.SetJsonBody(resumo, descricao, informacao, projeto, categoria, visibilidade, prioridade, severidade, reprodutibilidade, tag);
+            string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
             atualizaTarefaRequest.SetParameters(idTarefa);
             atualizaTarefaRequest.SetJsonBody(atualizacaoResumo, atualizaoPrioridade, atualizacaoStatusTarefa);
             IRestResponse<dynamic> response = atualizaTarefaRequest.ExecuteRequest();

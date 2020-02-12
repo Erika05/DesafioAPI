@@ -13,7 +13,7 @@ namespace DesafioAPI.Tests.Tarefas
     public class DeletaTarefasTests : TestBase
     {
         CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
-        CadastroTarefaRequest cadastroTarefaRequest = new CadastroTarefaRequest();       
+        CadastraTarefaRequest cadastraTarefaRequest = new CadastraTarefaRequest();       
         DeletaTarefaRequest deletaTarefaRequest = new DeletaTarefaRequest();
 
        [Test]
@@ -27,8 +27,8 @@ namespace DesafioAPI.Tests.Tarefas
             string statusCodeEsperado = "NoContent";
             #endregion
             VerificaProjetoExiste(projeto);
-            cadastroTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
-            string idTarefa = cadastroTarefaRequest.ExecuteRequest().Data["issue"]["id"];
+            cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
+            string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
             deletaTarefaRequest.SetParameters(idTarefa);
 
             IRestResponse<dynamic> response = deletaTarefaRequest.ExecuteRequest();

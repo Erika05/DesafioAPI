@@ -11,7 +11,7 @@ namespace DesafioAPI.Tests.Tarefas
     public class DeletaNotaTarefasTests : TestBase
     {
         CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
-        CadastroTarefaRequest cadastroTarefaRequest = new CadastroTarefaRequest();
+        CadastraTarefaRequest cadastraTarefaRequest = new CadastraTarefaRequest();
         AdicionaNotaTarefaRequest adicionaNotaTarefaRequest = new AdicionaNotaTarefaRequest();
         DeletaNotaTarefaRequest deletaNotaTarefaRequest = new DeletaNotaTarefaRequest();
 
@@ -30,8 +30,8 @@ namespace DesafioAPI.Tests.Tarefas
             string statusNota = "private";
             string statusCodeEsperado = "OK";
             #endregion
-            cadastroTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
-            string idTarefa = cadastroTarefaRequest.ExecuteRequest().Data["issue"]["id"];
+            cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
+            string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
             adicionaNotaTarefaRequest.SetParameters(idTarefa);
             adicionaNotaTarefaRequest.SetJsonBody(nota, statusNota);
             string idNota = adicionaNotaTarefaRequest.ExecuteRequest().Data["note"]["id"];

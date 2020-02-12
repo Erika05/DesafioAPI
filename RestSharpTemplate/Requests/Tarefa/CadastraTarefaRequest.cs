@@ -6,9 +6,9 @@ using System.Text;
 
 namespace DesafioAPI.Requests.Tarefas
 {
-    public class CadastroTarefaRequest : RequestBase
+    public class CadastraTarefaRequest : RequestBase
     {
-        public CadastroTarefaRequest()
+        public CadastraTarefaRequest()
         {
             requestService = "/api/rest/issues";
             method = Method.POST;

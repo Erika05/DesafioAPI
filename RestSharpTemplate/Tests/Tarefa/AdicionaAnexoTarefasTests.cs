@@ -12,7 +12,7 @@ namespace DesafioAPI.Tests.Tarefas
     public class AdicionaAnexoTarefasTests : TestBase
     {
         CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
-        CadastroTarefaRequest cadastroTarefaRequest = new CadastroTarefaRequest();
+        CadastraTarefaRequest cadastraTarefaRequest = new CadastraTarefaRequest();
         AdicionaAnexoTarefaRequest adicionaAnexoTarefaRequest = new AdicionaAnexoTarefaRequest();
 
         [Test]
@@ -30,8 +30,8 @@ namespace DesafioAPI.Tests.Tarefas
             string anexo = "VGhpcyBpcyBhIFRFU1QuDQpUaGlzIGlzIGEgVEVTVC4NClRoaXMgaXMgYSBURVNULg0KVGhpcyBpcyBhIFRFU1QuDQpUaGlzIGlzIGEgVEVTVC4=";
             string statusCodeEsperado = "Created";
             #endregion
-            cadastroTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
-            string idTarefa = cadastroTarefaRequest.ExecuteRequest().Data["issue"]["id"];
+            cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
+            string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
             adicionaAnexoTarefaRequest.SetParameters(idTarefa);
             adicionaAnexoTarefaRequest.SetJsonBody(nomeAnexo, anexo);
             IRestResponse<dynamic> response = adicionaAnexoTarefaRequest.ExecuteRequest();

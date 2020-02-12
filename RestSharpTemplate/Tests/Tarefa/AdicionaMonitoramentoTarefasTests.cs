@@ -11,7 +11,7 @@ namespace DesafioAPI.Tests.Tarefas
     public class AdicionaMonitoramentoTarefasTests : TestBase
     {
         CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
-        CadastroTarefaRequest cadastroTarefaRequest = new CadastroTarefaRequest();
+        CadastraTarefaRequest cadastraTarefaRequest = new CadastraTarefaRequest();
         AdicionaMonitoramentoTarefaRequest adicionaMonitoramentoTarefaRequest = new AdicionaMonitoramentoTarefaRequest();
 
         [Test]
@@ -26,8 +26,8 @@ namespace DesafioAPI.Tests.Tarefas
             #endregion           
             string statusCodeEsperado = "Created";
             string idMonitoramento = "1";
-            cadastroTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
-            string idTarefa = cadastroTarefaRequest.ExecuteRequest().Data["issue"]["id"];
+            cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
+            string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
             adicionaMonitoramentoTarefaRequest.SetParameters(idTarefa);            
             IRestResponse<dynamic> response = adicionaMonitoramentoTarefaRequest.ExecuteRequest();
 
@@ -54,8 +54,8 @@ namespace DesafioAPI.Tests.Tarefas
             string userName = "administrator";
             string userRealName = "administrator";
             string idMonitoramento = "1";
-            cadastroTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
-            string idTarefa = cadastroTarefaRequest.ExecuteRequest().Data["issue"]["id"];
+            cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
+            string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
             adicionaMonitoramentoTarefaRequest.SetParameters(idTarefa);
             adicionaMonitoramentoTarefaRequest.SetJsonBody(userName, userRealName);
             IRestResponse<dynamic> response = adicionaMonitoramentoTarefaRequest.ExecuteRequest();
