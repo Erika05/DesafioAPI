@@ -19,7 +19,7 @@ namespace DesafioAPI.Tests.Tarefas
         {
             //Criar tag 
             #region Parameters Cadastro Tarefa
-            string resumo = "Tarefa adicionar nota";
+            string resumo = "Tarefa adicionar nota tarefa";
             string descricao = "Descricao tarefa nota";
             string projeto = "projeto geral";
             string categoria = "General";
@@ -29,6 +29,7 @@ namespace DesafioAPI.Tests.Tarefas
             string statusNota = "private";
             string statusCodeEsperado = "Created";
             #endregion
+            VerificaProjetoExiste(projeto);
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
             string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
             adicionaNotaTarefaRequest.SetParameters(idTarefa);
@@ -51,7 +52,7 @@ namespace DesafioAPI.Tests.Tarefas
         {
             //Criar tag 
             #region Parameters Cadastro Tarefa
-            string resumo = "Tarefa adicionar nota com duracao";
+            string resumo = "Tarefa adicionar nota com duracao tarefa";
             string descricao = "Descricao tarefa nota com duracao";
             string projeto = "projeto geral";
             string categoria = "General";
@@ -62,6 +63,7 @@ namespace DesafioAPI.Tests.Tarefas
             string duracao = "00:00:15";
             string statusCodeEsperado = "Created";
             #endregion
+            VerificaProjetoExiste(projeto);
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
             string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
             adicionaNotaTarefaRequest.SetParameters(idTarefa);
@@ -84,7 +86,7 @@ namespace DesafioAPI.Tests.Tarefas
         {
             //Criar tag 
             #region Parameters Cadastro Tarefa
-            string resumo = "Tarefa adicionar nota  com anexo";
+            string resumo = "Tarefa adicionar nota  com anexo tarefa";
             string descricao = "Descricao tarefa nota com anexo";
             string projeto = "projeto geral";
             string categoria = "General";
@@ -97,6 +99,7 @@ namespace DesafioAPI.Tests.Tarefas
             string anexo = "VGhpcyBpcyBhIFRFU1QuDQpUaGlzIGlzIGEgVEVTVC4NClRoaXMgaXMgYSBURVNULg0KVGhpcyBpcyBhIFRFU1QuDQpUaGlzIGlzIGEgVEVTVC4=";
             string statusCodeEsperado = "Created";
             #endregion
+            VerificaProjetoExiste(projeto);
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
             string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
             adicionaNotaTarefaRequest.SetParameters(idTarefa);

@@ -19,11 +19,12 @@ namespace DesafioAPI.Tests.Tarefas
         {
             //Criar tag 
             #region Parameters Cadastro Tarefa
-            string resumo = "Tarefa adicionar monitoramento nota";
-            string descricao = "Descricao tarefa monitoramento nota";
+            string resumo = "Tarefa adicionar monitoramento tarefa";
+            string descricao = "Descricao tarefa monitoramento";
             string projeto = "projeto geral";
             string categoria = "General";
             #endregion           
+            VerificaProjetoExiste(projeto);
             string statusCodeEsperado = "Created";
             string idMonitoramento = "1";
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
@@ -45,11 +46,12 @@ namespace DesafioAPI.Tests.Tarefas
         {
             //Criar tag 
             #region Parameters Cadastro Tarefa
-            string resumo = "Tarefa adicionar nota com duracao";
-            string descricao = "Descricao tarefa nota com duracao";
+            string resumo = "Tarefa adicionar monitoramento usuário tarefa";
+            string descricao = "Descricao tarefa monitoramente usuário tarefa";
             string projeto = "projeto geral";
             string categoria = "General";
             #endregion
+            VerificaProjetoExiste(projeto);
             string statusCodeEsperado = "Created";
             string userName = "administrator";
             string userRealName = "administrator";

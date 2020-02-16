@@ -21,7 +21,7 @@ namespace DesafioAPI.Tests.Tarefas
         {
             #region Parameters Cadastro Tarefa
             string resumo = "Tarefa Delete";
-            string descricao = "Descricao tarefa";
+            string descricao = "Descricao tarefa delete";
             string categoria = "General";
             string projeto = "projeto geral";
             string statusCodeEsperado = "NoContent";

@@ -19,8 +19,8 @@ namespace DesafioAPI.Tests.Tarefas
         public void DeletarTagCopiaTarefa()
         {
             #region Parameters Cadastro Tarefa
-            string resumo = "Tarefa tag tarefas";
-            string descricao = "Descricao tag tarefa";
+            string resumo = "Deletar copia tag tarefas";
+            string descricao = "Descricao copia tag tarefa";
             string projeto = "projeto geral";
             string categoria = "General";
             #endregion           

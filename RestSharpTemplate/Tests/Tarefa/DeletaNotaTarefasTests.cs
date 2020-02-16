@@ -30,6 +30,7 @@ namespace DesafioAPI.Tests.Tarefas
             string statusNota = "private";
             string statusCodeEsperado = "OK";
             #endregion
+            VerificaProjetoExiste(projeto);
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
             string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
             adicionaNotaTarefaRequest.SetParameters(idTarefa);

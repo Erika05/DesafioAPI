@@ -4,6 +4,8 @@ using RestSharp;
 using DesafioAPI.DBSteps;
 using DesafioAPI.Requests.Projeto;
 using DesafioAPI.Requests.Tarefas;
+using System.Collections.Generic;
+using DesafioAPI.Requests.Usuario;
 
 namespace DesafioAPI.Tests.Usuario
 {
@@ -12,35 +14,29 @@ namespace DesafioAPI.Tests.Usuario
     {
         CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
         CadastraUsuarioRequest cadastraUsuarioRequest = new CadastraUsuarioRequest();
+       
+        string idUsuario = null;
 
         [Test]
         public void DeletarUsuario()
         {
             #region Parameters Cadastro Tarefa
-            string nome = "nome user";
+            string nomeUsuario = "nome user";
             string nomeReal = "nome real user";
             string email = "erika@gmail.com";
             string senha = "administrator";
             string projeto = "projeto geral";
-            string statusCodeEsperado = "Created";
+            string statusCodeEsperado = "NoContent";
             #endregion
             VerificaProjetoExiste(projeto);
-            cadastraUsuarioRequest.SetJsonBody(nome, senha, nomeReal, email);
-
-            IRestResponse<dynamic> response = cadastraUsuarioRequest.ExecuteRequest();
-
-            string retornoUserName = response.Data["user"][0]["name"];
-            string retornoRealName = response.Data["user"][0]["real_name"];
-            string retornoEmail = response.Data["user"][0]["email"];
-            string retornoProjeto = response.Data["user"][0]["projects"][0]["name"];
+            VerificaUsuarioExiste(nomeUsuario, senha, nomeReal, email);
+            DeletaUsuarioRequest deletaUsuarioRequest = new DeletaUsuarioRequest(idUsuario);
+            IRestResponse<dynamic> response = deletaUsuarioRequest.ExecuteRequest();
 
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
-                Assert.AreEqual(nome, retornoUserName);
-                Assert.AreEqual(nomeReal, retornoRealName);
-                Assert.AreEqual(email, retornoEmail);
-                Assert.AreEqual(projeto, retornoProjeto);
+                Assert.AreEqual(string.Empty, UsuarioDBSteps.VerificaUsuarioExiste(nomeUsuario));
             });
         }
 
@@ -50,6 +46,22 @@ namespace DesafioAPI.Tests.Usuario
             {
                 cadastroProjetoRequests.SetJsonBody(nomeProjeto, "");
                 cadastroProjetoRequests.ExecuteRequest();
+            }
+        }
+
+        public void VerificaUsuarioExiste(string nomeUsuario, string senha, string nomeReal, string email)
+        {
+            List<string> dadosUsuario = UsuarioDBSteps.VerificaUsuarioExiste(nomeUsuario);
+            if (dadosUsuario.Count.Equals(0))
+            {
+                cadastraUsuarioRequest.SetJsonBody(nomeUsuario, senha, nomeReal, email);
+                IRestResponse<dynamic> response = cadastraUsuarioRequest.ExecuteRequest();
+                idUsuario = response.Data["user"]["id"];
+            }
+            else
+            {
+
+                idUsuario = dadosUsuario[0];
             }
         }
     }

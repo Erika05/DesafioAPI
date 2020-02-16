@@ -1,1 +1,1 @@
-DELETE FROM mantis_project_table WHERE NAME='$nomeProjeto'
+TRUNCATE mantis_project_table;

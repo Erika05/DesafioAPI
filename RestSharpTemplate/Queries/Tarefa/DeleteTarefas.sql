@@ -7,3 +7,5 @@ TRUNCATE mantis_bug_tag_table;
 TRUNCATE mantis_bugnote_table;
 TRUNCATE mantis_bugnote_text_table;
 TRUNCATE mantis_tag_table;
+TRUNCATE mantis_bug_monitor_table;
+TRUNCATE mantis_bug_revision_table;

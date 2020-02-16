@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\NUnit3TestAdapter.3.15.1\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.15.1\build\net35\NUnit3TestAdapter.props')" />
+  <Import Project="..\packages\NUnit3TestAdapter.3.16.1\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.16.1\build\net35\NUnit3TestAdapter.props')" />
   <Import Project="..\packages\NUnit.3.12.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -75,8 +75,8 @@
     <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
       <HintPath>..\packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
     </Reference>
-    <Reference Include="RestSharp, Version=106.6.10.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestSharp.106.6.10\lib\net452\RestSharp.dll</HintPath>
+    <Reference Include="RestSharp, Version=106.0.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.10.1\lib\net452\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="SharpCompress, Version=0.24.0.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpCompress.0.24.0\lib\net45\SharpCompress.dll</HintPath>
@@ -150,6 +150,7 @@
     <Compile Include="Requests\Tarefa\ConsultaTodasTarefasRequest.cs" />
     <Compile Include="Requests\Tarefa\ConsultaTarefasRequest.cs" />
     <Compile Include="Requests\Usuario\CadastraUsuarioRequest.cs" />
+    <Compile Include="Requests\Usuario\DeletaUsuarioRequest.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Tests\Projeto\AtualizaProjetoTests.cs" />
     <Compile Include="Tests\Projeto\CadastraProjetoTests.cs" />
@@ -165,8 +166,8 @@
     <Compile Include="Tests\Tarefa\AtualizaTarefasTests.cs" />
     <Compile Include="Tests\Tarefa\CadastraTarefas.cs" />
     <Compile Include="Tests\Tarefa\ConsultaTarefasTests.cs" />
-    <Compile Include="Tests\Usuario\DeletaUsuariosTests.cs" />
     <Compile Include="Tests\Usuario\CadastraUsuariosTests.cs" />
+    <Compile Include="Tests\Usuario\DeletaUsuariosTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -204,6 +205,7 @@
     <Content Include="Queries\Tarefa\DeleteTarefas.sql" />
     <Content Include="Queries\Projeto\VerificaProjetoExiste.sql" />
     <Content Include="Queries\Usuario\DeletaUsuario.sql" />
+    <Content Include="Queries\Usuario\VerificaIdUsuarioPeloNome.sql" />
     <Content Include="Queries\Usuario\VerificaUsuarioExiste.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -212,6 +214,6 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.12.0\build\NUnit.props'))" />
-    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.15.1\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.15.1\build\net35\NUnit3TestAdapter.props'))" />
+    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.16.1\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.16.1\build\net35\NUnit3TestAdapter.props'))" />
   </Target>
 </Project>

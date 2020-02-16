@@ -21,7 +21,7 @@ namespace DesafioAPI.Tests.Tarefas
         {
             #region Parameters Cadastro Tarefa
             string resumo = "Nova Tarefa Minimal";
-            string descricao = "Descricao nova tarefa";
+            string descricao = "Descricao nova tarefa minimal";
             string categoria = "General";
             string projeto = "projeto geral";
             #endregion
@@ -67,8 +67,9 @@ namespace DesafioAPI.Tests.Tarefas
             string atualizacaoResumo = "Tarefa completa atualizada";
             string atualizaoPrioridade = "high";
             string atualizacaoStatusTarefa = "resolved";
-            string statusCodeEsperado = "OK";            
+            string statusCodeEsperado = "OK";
             #endregion
+            VerificaProjetoExiste(projeto);
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, informacao, projeto, categoria, visibilidade, prioridade, severidade, reprodutibilidade, tag);
             string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
             atualizaTarefaRequest.SetParameters(idTarefa);

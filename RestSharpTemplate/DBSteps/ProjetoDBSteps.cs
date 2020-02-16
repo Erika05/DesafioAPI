@@ -28,9 +28,9 @@ namespace DesafioAPI.DBSteps
             return DBHelpers.RetornaDadosQuery(query)[0];
         }
 
-        public static void DeletaProjetos(string nomeProjeto)
+        public static void DeletaProjetos()
         {
-            string query = File.ReadAllText(GeneralHelpers.ReturnProjectPath() + "Queries/Projeto/DeletaProjetos.sql", Encoding.UTF8).Replace("$nomeProjeto", nomeProjeto);
+            string query = File.ReadAllText(GeneralHelpers.ReturnProjectPath() + "Queries/Projeto/DeletaProjetos.sql", Encoding.UTF8);
 
             DBHelpers.ExecuteQuery(query);
         }

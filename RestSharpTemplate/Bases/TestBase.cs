@@ -9,14 +9,15 @@ namespace DesafioAPI.Bases
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            ProjetoDBSteps.DeletaProjetos("projeto geral");
-          // TarefaDBSteps.DeleteTodasTarefas();
+            ProjetoDBSteps.DeletaProjetos();
+            TarefaDBSteps.DeleteTodasTarefas();
             ExtentReportHelpers.CreateReport();
         }
 
         [SetUp]
         public void SetUp()
         {
+            TarefaDBSteps.DeleteTodasTarefas();
             ExtentReportHelpers.AddTest();
         }
 

@@ -18,7 +18,7 @@ namespace DesafioAPI.Tests.Tarefas
         public void AdicionarTagCopiaTarefa()
         {
             #region Parameters Cadastro Tarefa
-            string resumo = "Tarefa tag tarefas";
+            string resumo = "Tarefa tag copia tarefas";
             string descricao = "Descricao tag tarefa";
             string projeto = "projeto geral";
             string categoria = "General";

@@ -9,7 +9,7 @@ namespace DesafioAPI.Tests.Projeto
     [TestFixture]
     public class CadastraProjetoTests : TestBase
     {
-        CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
+        CadastraProjetoRequests cadastraProjetoRequests = new CadastraProjetoRequests();
         DeletaProjetoRequests deleteProjetoRequests = new DeletaProjetoRequests();
 
         [Test]
@@ -21,8 +21,8 @@ namespace DesafioAPI.Tests.Projeto
             string statusCodeEsperado = "Created";
             #endregion
             VerificaProjetoExiste(name);
-            cadastroProjetoRequests.SetJsonBody(name, descricao);
-            IRestResponse<dynamic> response = cadastroProjetoRequests.ExecuteRequest();
+            cadastraProjetoRequests.SetJsonBody(name, descricao);
+            IRestResponse<dynamic> response = cadastraProjetoRequests.ExecuteRequest();
             string retornoNomeProjetc = response.Data["project"]["name"];
             string retornoDescricaoProjetc = response.Data["project"]["description"];
 

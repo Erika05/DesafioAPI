@@ -66,8 +66,8 @@ namespace DesafioAPI.Tests.Tarefas
         public void ConsultarAnexosTarefa()
         {
             #region Parameters
-            string resumo = "Tarefa consulta";
-            string descricao = "descricao";
+            string resumo = "Tarefa consulta anexo";
+            string descricao = "descricao tarefa consult anexo";
             string categoria = "General";
             string projeto = "projeto geral";
             string statusCodeEsperado = "OK";
@@ -98,8 +98,8 @@ namespace DesafioAPI.Tests.Tarefas
         public void ConsultarTarefasProjeto()
         {
             #region Parameters
-            string resumo = "Tarefa consulta";
-            string descricao = "descricao";
+            string resumo = "Tarefa consulta projeto";
+            string descricao = "descricao consulta tarefas projeto";
             string categoria = "General";
             string projeto = "projeto geral";
             string statusCodeEsperado = "OK";

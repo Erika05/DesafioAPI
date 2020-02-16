@@ -18,8 +18,8 @@ namespace DesafioAPI.Tests.Tarefas
         public void CadastrarTarefaMinimal()
         {
             #region Parameters
-            string resumo = "This is a test issue";
-            string descricao = "This is a test description";
+            string resumo = "Tarefa minima";
+            string descricao = "tarefa minimal";
             string categoria = "General";
             string projeto = "projeto geral";
             string statusCodeEsperado = "Created";
@@ -59,6 +59,7 @@ namespace DesafioAPI.Tests.Tarefas
              string tag = "e";
             string statusCodeEsperado = "Created";
             #endregion
+            VerificaProjetoExiste(projeto);
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, informacao, projeto, categoria, visibilidade, prioridade, severidade, reprodutibilidade, tag);
             IRestResponse<dynamic> response = cadastraTarefaRequest.ExecuteRequest();
             string retornoSummary = response.Data["issue"]["summary"];
