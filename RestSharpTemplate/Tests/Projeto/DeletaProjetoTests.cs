@@ -3,11 +3,6 @@ using DesafioAPI.DBSteps;
 using DesafioAPI.Requests.Projeto;
 using NUnit.Framework;
 using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DesafioAPI.Tests.Projeto
 {
@@ -15,7 +10,7 @@ namespace DesafioAPI.Tests.Projeto
     public class DeletaProjetoTests : TestBase
     {
         DeletaProjetoRequests deletaProjetoRequests = new DeletaProjetoRequests();
-        CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
+        HelpersProjetos helpersProjetos = new HelpersProjetos();
 
         [Test]
         public void DeletarProjeto()
@@ -24,22 +19,14 @@ namespace DesafioAPI.Tests.Projeto
             string nomeProjeto = "projeto delete";
             string statusCodeEsperado = "OK";
             #endregion
-            VerificaProjetoExiste(nomeProjeto);
-            deletaProjetoRequests.SetParameters(ProjetoDBSteps.RetornaIDProjetoNome(nomeProjeto));
+            string idProjeto = helpersProjetos.PreparaBaseCadastradoProjeto(nomeProjeto);
+            deletaProjetoRequests.SetParameters(idProjeto);
             IRestResponse<dynamic> response = deletaProjetoRequests.ExecuteRequest();
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
                 Assert.AreEqual(0, ProjetoDBSteps.VerificaProjetoExiste(nomeProjeto));               
             });
-        }
-        public void VerificaProjetoExiste(string nomeProjeto)
-        {
-            if (ProjetoDBSteps.VerificaProjetoExiste(nomeProjeto).Equals(0))
-            {
-                cadastroProjetoRequests.SetJsonBody(nomeProjeto, "");
-                cadastroProjetoRequests.ExecuteRequest();
-            }            
         }
     }
 }

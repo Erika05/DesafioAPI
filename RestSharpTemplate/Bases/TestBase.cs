@@ -17,7 +17,7 @@ namespace DesafioAPI.Bases
         [SetUp]
         public void SetUp()
         {
-            TarefaDBSteps.DeleteTodasTarefas();
+           // TarefaDBSteps.DeleteTodasTarefas();
             ExtentReportHelpers.AddTest();
         }
 

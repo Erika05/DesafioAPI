@@ -2,6 +2,7 @@
 using DesafioAPI.DBSteps;
 using DesafioAPI.Requests.Projeto;
 using DesafioAPI.Requests.Tarefas;
+using DesafioAPI.Tests.Projeto;
 using NUnit.Framework;
 using RestSharp;
 
@@ -10,7 +11,7 @@ namespace DesafioAPI.Tests.Tarefas
     [TestFixture]
     public class AdicionaNotaTarefasTests : TestBase
     {
-        CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
+        HelpersProjetos helpersProjetos = new HelpersProjetos();
         CadastraTarefaRequest cadastraTarefaRequest = new CadastraTarefaRequest();
         AdicionaNotaTarefaRequest adicionaNotaTarefaRequest = new AdicionaNotaTarefaRequest();
 
@@ -29,7 +30,7 @@ namespace DesafioAPI.Tests.Tarefas
             string statusNota = "private";
             string statusCodeEsperado = "Created";
             #endregion
-            VerificaProjetoExiste(projeto);
+            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
             string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
             adicionaNotaTarefaRequest.SetParameters(idTarefa);
@@ -63,7 +64,7 @@ namespace DesafioAPI.Tests.Tarefas
             string duracao = "00:00:15";
             string statusCodeEsperado = "Created";
             #endregion
-            VerificaProjetoExiste(projeto);
+            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
             string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
             adicionaNotaTarefaRequest.SetParameters(idTarefa);
@@ -99,7 +100,7 @@ namespace DesafioAPI.Tests.Tarefas
             string anexo = "VGhpcyBpcyBhIFRFU1QuDQpUaGlzIGlzIGEgVEVTVC4NClRoaXMgaXMgYSBURVNULg0KVGhpcyBpcyBhIFRFU1QuDQpUaGlzIGlzIGEgVEVTVC4=";
             string statusCodeEsperado = "Created";
             #endregion
-            VerificaProjetoExiste(projeto);
+            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
             string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
             adicionaNotaTarefaRequest.SetParameters(idTarefa);
@@ -117,15 +118,6 @@ namespace DesafioAPI.Tests.Tarefas
                 Assert.AreEqual(statusNota, retornoSatatusNota);
                 Assert.AreEqual(nomeAnexo, retornoNomeAnexo);
             });
-        }
-
-        public void VerificaProjetoExiste(string nomeProjeto)
-        {
-            if (ProjetoDBSteps.VerificaProjetoExiste(nomeProjeto).Equals(0))
-            {
-                cadastroProjetoRequests.SetJsonBody(nomeProjeto, "");
-                cadastroProjetoRequests.ExecuteRequest();
-            }
         }
     }
 }

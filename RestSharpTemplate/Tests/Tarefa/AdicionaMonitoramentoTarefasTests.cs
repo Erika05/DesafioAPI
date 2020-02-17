@@ -2,6 +2,7 @@
 using DesafioAPI.DBSteps;
 using DesafioAPI.Requests.Projeto;
 using DesafioAPI.Requests.Tarefas;
+using DesafioAPI.Tests.Projeto;
 using NUnit.Framework;
 using RestSharp;
 
@@ -10,9 +11,9 @@ namespace DesafioAPI.Tests.Tarefas
     [TestFixture]
     public class AdicionaMonitoramentoTarefasTests : TestBase
     {
-        CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
         CadastraTarefaRequest cadastraTarefaRequest = new CadastraTarefaRequest();
         AdicionaMonitoramentoTarefaRequest adicionaMonitoramentoTarefaRequest = new AdicionaMonitoramentoTarefaRequest();
+        HelpersProjetos helpersProjetos = new HelpersProjetos();
 
         [Test]
         public void AdicionarMonitoramentoTarefa()
@@ -23,8 +24,8 @@ namespace DesafioAPI.Tests.Tarefas
             string descricao = "Descricao tarefa monitoramento";
             string projeto = "projeto geral";
             string categoria = "General";
-            #endregion           
-            VerificaProjetoExiste(projeto);
+            #endregion
+            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
             string statusCodeEsperado = "Created";
             string idMonitoramento = "1";
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
@@ -51,7 +52,7 @@ namespace DesafioAPI.Tests.Tarefas
             string projeto = "projeto geral";
             string categoria = "General";
             #endregion
-            VerificaProjetoExiste(projeto);
+            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
             string statusCodeEsperado = "Created";
             string userName = "administrator";
             string userRealName = "administrator";
@@ -71,15 +72,6 @@ namespace DesafioAPI.Tests.Tarefas
                 Assert.AreEqual(idMonitoramento, retornoIdMonitoramento);
                 Assert.AreEqual(userRealName, retornoUserMonitoramento);
             });
-        }        
-
-        public void VerificaProjetoExiste(string nomeProjeto)
-        {
-            if (ProjetoDBSteps.VerificaProjetoExiste(nomeProjeto).Equals(0))
-            {
-                cadastroProjetoRequests.SetJsonBody(nomeProjeto, "");
-                cadastroProjetoRequests.ExecuteRequest();
-            }
-        }
+        }     
     }
 }

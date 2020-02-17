@@ -2,6 +2,7 @@
 using DesafioAPI.DBSteps;
 using DesafioAPI.Requests.Projeto;
 using DesafioAPI.Requests.Tarefas;
+using DesafioAPI.Tests.Projeto;
 using NUnit.Framework;
 using RestSharp;
 using System.Threading;
@@ -11,9 +12,9 @@ namespace DesafioAPI.Tests.Tarefas
     [TestFixture]
     public class AdicionaAnexoTarefasTests : TestBase
     {
-        CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
         CadastraTarefaRequest cadastraTarefaRequest = new CadastraTarefaRequest();
         AdicionaAnexoTarefaRequest adicionaAnexoTarefaRequest = new AdicionaAnexoTarefaRequest();
+        HelpersProjetos helpersProjetos = new HelpersProjetos();
 
         [Test]
         public void AdicionarAnexoTarefa()
@@ -30,7 +31,7 @@ namespace DesafioAPI.Tests.Tarefas
             string anexo = "VGhpcyBpcyBhIFRFU1QuDQpUaGlzIGlzIGEgVEVTVC4NClRoaXMgaXMgYSBURVNULg0KVGhpcyBpcyBhIFRFU1QuDQpUaGlzIGlzIGEgVEVTVC4=";
             string statusCodeEsperado = "Created";
             #endregion
-            VerificaProjetoExiste(projeto);
+            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
             string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
             adicionaAnexoTarefaRequest.SetParameters(idTarefa);
@@ -41,15 +42,6 @@ namespace DesafioAPI.Tests.Tarefas
             {
                 Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
             });
-        }
-        
-        public void VerificaProjetoExiste(string nomeProjeto)
-        {
-            if (ProjetoDBSteps.VerificaProjetoExiste(nomeProjeto).Equals(0))
-            {
-                cadastroProjetoRequests.SetJsonBody(nomeProjeto, "");
-                cadastroProjetoRequests.ExecuteRequest();
-            }
         }
     }
 }

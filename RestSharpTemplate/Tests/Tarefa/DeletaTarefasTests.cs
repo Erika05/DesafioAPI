@@ -3,6 +3,7 @@ using DesafioAPI.DBSteps;
 using DesafioAPI.Requests.Projeto;
 using DesafioAPI.Requests.Tarefa;
 using DesafioAPI.Requests.Tarefas;
+using DesafioAPI.Tests.Projeto;
 using NUnit.Framework;
 using RestSharp;
 using System.Threading;
@@ -12,7 +13,7 @@ namespace DesafioAPI.Tests.Tarefas
     [TestFixture]
     public class DeletaTarefasTests : TestBase
     {
-        CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
+        HelpersProjetos helpersProjetos = new HelpersProjetos();
         CadastraTarefaRequest cadastraTarefaRequest = new CadastraTarefaRequest();       
         DeletaTarefaRequest deletaTarefaRequest = new DeletaTarefaRequest();
 
@@ -26,7 +27,7 @@ namespace DesafioAPI.Tests.Tarefas
             string projeto = "projeto geral";
             string statusCodeEsperado = "NoContent";
             #endregion
-            VerificaProjetoExiste(projeto);
+            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
             string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
             deletaTarefaRequest.SetParameters(idTarefa);
@@ -39,15 +40,6 @@ namespace DesafioAPI.Tests.Tarefas
                 Assert.AreEqual(0, TarefaDBSteps.VerificaTarefaExiste(idTarefa));
 
             });
-        }        
-
-        public void VerificaProjetoExiste(string nomeProjeto)
-        {
-            if (ProjetoDBSteps.VerificaProjetoExiste(nomeProjeto).Equals(0))
-            {
-                cadastroProjetoRequests.SetJsonBody(nomeProjeto, "");
-                cadastroProjetoRequests.ExecuteRequest();
-            }
-        }
+        }       
     }
 }

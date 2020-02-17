@@ -2,17 +2,17 @@
 using NUnit.Framework;
 using RestSharp;
 using DesafioAPI.DBSteps;
-using DesafioAPI.Requests.Projeto;
 using DesafioAPI.Requests.Tarefas;
-using System.Collections.Generic;
+using DesafioAPI.Tests.Projeto;
 
 namespace DesafioAPI.Tests.Usuario
 {
     [TestFixture]
     public class CadastraUsuariosTests : TestBase
     {
-        CadastraProjetoRequests cadastraProjetoRequests = new CadastraProjetoRequests();
         CadastraUsuarioRequest cadastraUsuarioRequest = new CadastraUsuarioRequest();
+        HelpersProjetos helpersProjetos = new HelpersProjetos();
+        HelpersUsuarios helpersUsuarios = new HelpersUsuarios();
 
         [Test]
         public void CadastrarUsuario()
@@ -25,8 +25,8 @@ namespace DesafioAPI.Tests.Usuario
             string projeto = "projeto geral";
             string statusCodeEsperado = "Created";
             #endregion
-            VerificaProjetoExiste(projeto);
-            VerificaUsuarioExiste(nome);
+            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
+            helpersUsuarios.PreparaBaseDeletadoUsuario(nome);
 
             cadastraUsuarioRequest.SetJsonBody(nome, senha, nomeReal, email);
             IRestResponse<dynamic> response = cadastraUsuarioRequest.ExecuteRequest();
@@ -44,23 +44,6 @@ namespace DesafioAPI.Tests.Usuario
                 Assert.AreEqual(email, retornoEmail);
                 Assert.AreEqual(projeto, retornoProjeto);
             });
-        }
-
-        public void VerificaProjetoExiste(string nomeProjeto)
-        {
-            if (ProjetoDBSteps.VerificaProjetoExiste(nomeProjeto).Equals(0))
-            {
-                cadastraProjetoRequests.SetJsonBody(nomeProjeto, "");
-                cadastraProjetoRequests.ExecuteRequest();
-            }
-        }
-
-        public void VerificaUsuarioExiste(string nomeUsuario)
-        {
-            if (!UsuarioDBSteps.VerificaUsuarioExiste(nomeUsuario).Count.Equals(0))
-            {
-                UsuarioDBSteps.DeletaUsuario(nomeUsuario);
-            }
         }
     }
 }

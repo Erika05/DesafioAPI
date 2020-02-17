@@ -3,6 +3,7 @@ using DesafioAPI.DBSteps;
 using DesafioAPI.Requests.Projeto;
 using DesafioAPI.Requests.Tarefa;
 using DesafioAPI.Requests.Tarefas;
+using DesafioAPI.Tests.Projeto;
 using NUnit.Framework;
 using RestSharp;
 using System.Threading;
@@ -12,7 +13,7 @@ namespace DesafioAPI.Tests.Tarefas
     [TestFixture]
     public class AtualizaTarefasTests : TestBase
     {
-        CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
+        HelpersProjetos helpersProjetos = new HelpersProjetos();
         CadastraTarefaRequest cadastraTarefaRequest = new CadastraTarefaRequest();
         AtualizaTarefaRequest atualizaTarefaRequest = new AtualizaTarefaRequest();
 
@@ -29,7 +30,7 @@ namespace DesafioAPI.Tests.Tarefas
             string statusTarefa = "resolved";
             string statusCodeEsperado = "OK";
             #endregion
-            VerificaProjetoExiste(projeto);
+            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
             string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
          
@@ -69,7 +70,7 @@ namespace DesafioAPI.Tests.Tarefas
             string atualizacaoStatusTarefa = "resolved";
             string statusCodeEsperado = "OK";
             #endregion
-            VerificaProjetoExiste(projeto);
+            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, informacao, projeto, categoria, visibilidade, prioridade, severidade, reprodutibilidade, tag);
             string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
             atualizaTarefaRequest.SetParameters(idTarefa);
@@ -87,16 +88,6 @@ namespace DesafioAPI.Tests.Tarefas
                 Assert.AreEqual(atualizaoPrioridade, retornoPrioridade);
                 Assert.AreEqual(atualizacaoStatusTarefa, retornoStatusTarefa);
             });
-        }
-
-
-        public void VerificaProjetoExiste(string nomeProjeto)
-        {
-            if (ProjetoDBSteps.VerificaProjetoExiste(nomeProjeto).Equals(0))
-            {
-                cadastroProjetoRequests.SetJsonBody(nomeProjeto, "");
-                cadastroProjetoRequests.ExecuteRequest();
-            }
         }
     }
 }

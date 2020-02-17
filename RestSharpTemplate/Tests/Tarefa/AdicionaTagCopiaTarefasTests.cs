@@ -2,6 +2,7 @@
 using DesafioAPI.DBSteps;
 using DesafioAPI.Requests.Projeto;
 using DesafioAPI.Requests.Tarefas;
+using DesafioAPI.Tests.Projeto;
 using NUnit.Framework;
 using RestSharp;
 
@@ -10,7 +11,7 @@ namespace DesafioAPI.Tests.Tarefas
     [TestFixture]
     public class AdicionaTagCopiaTarefasTests : TestBase
     {
-        CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
+        HelpersProjetos helpersProjetos = new HelpersProjetos(); 
         CadastraTarefaRequest cadastraTarefaRequest = new CadastraTarefaRequest();
         AdicionaTagCopiaTarefaRequest adicionaTagCopiaTarefaRequest = new AdicionaTagCopiaTarefaRequest();
 
@@ -22,8 +23,8 @@ namespace DesafioAPI.Tests.Tarefas
             string descricao = "Descricao tag tarefa";
             string projeto = "projeto geral";
             string categoria = "General";
-            #endregion      
-            VerificaProjetoExiste(projeto);
+            #endregion
+            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
             string statusCodeEsperado = "Created";
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
             string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
@@ -40,15 +41,6 @@ namespace DesafioAPI.Tests.Tarefas
                 Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
                 Assert.AreEqual(idTarefaRelacionada, retornoIdTarefaRelacionada);
             });
-        }        
-
-        public void VerificaProjetoExiste(string nomeProjeto)
-        {
-            if (ProjetoDBSteps.VerificaProjetoExiste(nomeProjeto).Equals(0))
-            {
-                cadastroProjetoRequests.SetJsonBody(nomeProjeto, "");
-                cadastroProjetoRequests.ExecuteRequest();
-            }
-        }
+        } 
     }
 }

@@ -156,6 +156,7 @@
     <Compile Include="Tests\Projeto\CadastraProjetoTests.cs" />
     <Compile Include="Tests\Projeto\ConsultaProjetoTests.cs" />
     <Compile Include="Tests\Projeto\DeletaProjetoTests.cs" />
+    <Compile Include="Tests\Projeto\HelpersProjetos.cs" />
     <Compile Include="Tests\Tarefa\DeletaTagCopiaTarefasTests.cs" />
     <Compile Include="Tests\Tarefa\AdicionaTagCopiaTarefasTests.cs" />
     <Compile Include="Tests\Tarefa\AdicionaMonitoramentoTarefasTests.cs" />
@@ -168,6 +169,7 @@
     <Compile Include="Tests\Tarefa\ConsultaTarefasTests.cs" />
     <Compile Include="Tests\Usuario\CadastraUsuariosTests.cs" />
     <Compile Include="Tests\Usuario\DeletaUsuariosTests.cs" />
+    <Compile Include="Tests\Usuario\HelpersUsuarios.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -194,16 +196,18 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="helpersProjetos\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Queries\Projeto\DeletaProjetos.sql" />
+    <Content Include="Queries\Projeto\VerificaProjetoExiste.sql" />
     <Content Include="Queries\Tarefa\VerificaTarefaExiste.sql" />
     <Content Include="Queries\Tarefa\VerificaTagCopiaTarefaExiste.sql" />
     <Content Include="Queries\Tarefa\VerificaNotaTarefaExiste.sql" />
-    <Content Include="Queries\Projeto\VerificaIdProjetoNome.sql" />
-    <Content Include="Queries\Projeto\VerificaIdProjetos.sql" />
+    <Content Include="Queries\Projeto\VerificaProjetoPeloId.sql" />
     <Content Include="Queries\Tarefa\DeleteTarefas.sql" />
-    <Content Include="Queries\Projeto\VerificaProjetoExiste.sql" />
+    <Content Include="Queries\Projeto\VerificaDadosProjeto.sql" />
     <Content Include="Queries\Usuario\DeletaUsuario.sql" />
     <Content Include="Queries\Usuario\VerificaIdUsuarioPeloNome.sql" />
     <Content Include="Queries\Usuario\VerificaUsuarioExiste.sql" />

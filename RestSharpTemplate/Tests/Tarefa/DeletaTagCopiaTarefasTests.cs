@@ -2,6 +2,7 @@
 using DesafioAPI.DBSteps;
 using DesafioAPI.Requests.Projeto;
 using DesafioAPI.Requests.Tarefas;
+using DesafioAPI.Tests.Projeto;
 using NUnit.Framework;
 using RestSharp;
 
@@ -10,7 +11,7 @@ namespace DesafioAPI.Tests.Tarefas
     [TestFixture]
     public class DeletaTagCopiaTarefasTests : TestBase
     {
-        CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
+        HelpersProjetos helpersProjetos = new HelpersProjetos();
         CadastraTarefaRequest cadastraTarefaRequest = new CadastraTarefaRequest();
         AdicionaTagCopiaTarefaRequest adicionaTagCopiaTarefaRequest = new AdicionaTagCopiaTarefaRequest();
         DeletaTagCopiaTarefaRequest deletaTagCopiaTarefaRequest = new DeletaTagCopiaTarefaRequest();
@@ -25,7 +26,7 @@ namespace DesafioAPI.Tests.Tarefas
             string categoria = "General";
             #endregion           
             string statusCodeEsperado = "OK";
-            VerificaProjetoExiste(projeto);
+            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
             string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
             string idTarefaRelacionada = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
@@ -45,15 +46,6 @@ namespace DesafioAPI.Tests.Tarefas
                 Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
                 Assert.AreEqual(0, TarefaDBSteps.VerificaCopiaTarefaExiste(retornoIdTarefaRelacionada));
             });
-        }        
-
-        public void VerificaProjetoExiste(string nomeProjeto)
-        {
-            if (ProjetoDBSteps.VerificaProjetoExiste(nomeProjeto).Equals(0))
-            {
-                cadastroProjetoRequests.SetJsonBody(nomeProjeto, "");
-                cadastroProjetoRequests.ExecuteRequest();
-            }
-        }
+        } 
     }
 }

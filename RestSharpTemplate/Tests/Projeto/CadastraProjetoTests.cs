@@ -10,18 +10,18 @@ namespace DesafioAPI.Tests.Projeto
     public class CadastraProjetoTests : TestBase
     {
         CadastraProjetoRequests cadastraProjetoRequests = new CadastraProjetoRequests();
-        DeletaProjetoRequests deleteProjetoRequests = new DeletaProjetoRequests();
+        HelpersProjetos helpersProjetos = new HelpersProjetos();
 
         [Test]
         public void CadastrarProjetoSucesso()
         {
             #region Parameters 
-            string name = "perojet teste";
+            string nomeProjeto = "projeto teste";
             string descricao = "projeto teste";
             string statusCodeEsperado = "Created";
             #endregion
-            VerificaProjetoExiste(name);
-            cadastraProjetoRequests.SetJsonBody(name, descricao);
+            helpersProjetos.PreparaBaseDeletadoProjeto(nomeProjeto);
+            cadastraProjetoRequests.SetJsonBody(nomeProjeto, descricao);
             IRestResponse<dynamic> response = cadastraProjetoRequests.ExecuteRequest();
             string retornoNomeProjetc = response.Data["project"]["name"];
             string retornoDescricaoProjetc = response.Data["project"]["description"];
@@ -29,34 +29,46 @@ namespace DesafioAPI.Tests.Projeto
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
-                Assert.AreEqual(name, retornoNomeProjetc);
+                Assert.AreEqual(nomeProjeto, retornoNomeProjetc);
                 Assert.AreEqual(descricao, retornoDescricaoProjetc);
+                Assert.AreEqual(1, ProjetoDBSteps.VerificaProjetoExiste(nomeProjeto));
             });
         }
 
-        //[Test]
-        //public void ProjetoJaCadastrado()
-        //{
-        //    #region Parameters 
-        //    string name = "projeto geral 1";
-        //    string descricao = "Call to undefined method RestFault::getMessage() in ";
-        //    string statusCodeEsperado = "OK";
-        //    #endregion
-        //    cadastroProjetoRequests.SetJsonBody(name, descricao);
-        //    IRestResponse<dynamic> response = cadastroProjetoRequests.ExecuteRequest();
-        //    Assert.Multiple(() =>
-        //    {
-        //        Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
-
-        //    });
-        //}
-        public void VerificaProjetoExiste(string nomeProjeto)
+        [Test]
+        public void ProjetoJaCadastrado()
         {
-            if (ProjetoDBSteps.VerificaProjetoExiste(nomeProjeto).Equals(1))
+            #region parameters 
+            string nomeProjeto = "projeto ja cadastrado";
+            string descricaoErro = "call to undefined method restfault::getmessage() in ";
+            string statuscodeesperado = "OK";
+            #endregion
+            helpersProjetos.PreparaBaseCadastradoProjeto(nomeProjeto);
+            cadastraProjetoRequests.SetJsonBody(nomeProjeto, descricaoErro);
+            IRestResponse<dynamic> response = cadastraProjetoRequests.ExecuteRequest();
+            string body = response.Content;
+            Assert.Multiple(() =>
             {
-                deleteProjetoRequests.SetParameters(ProjetoDBSteps.RetornaIDProjetoNome(nomeProjeto));
-                deleteProjetoRequests.ExecuteRequest();
-            }
+                Assert.AreEqual(statuscodeesperado, response.StatusCode.ToString());
+                Assert.That(true, descricaoErro, response.Content);
+                Assert.AreEqual(1, ProjetoDBSteps.VerificaProjetoExiste(nomeProjeto));
+            });
+        }
+
+        [Test]
+        public void NomeProjetoNaoInformado()
+        {
+            #region Parameters 
+            string descricaoErro = "call to undefined method restfault::getmessage() in ";
+            string statusCodeEsperado = "OK";
+            #endregion
+            cadastraProjetoRequests.SetJsonBody("", "");
+            IRestResponse<dynamic> response = cadastraProjetoRequests.ExecuteRequest();
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+                Assert.That(true, descricaoErro, response.Content);
+            });
         }
     }
 }

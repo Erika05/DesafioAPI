@@ -9,9 +9,8 @@ namespace DesafioAPI.Tests.Projeto
     [TestFixture]
     public class AtualizaProjetoTests : TestBase
     {
-        CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
         AtualizaProjetoRequests atualizaProjetoRequests = new AtualizaProjetoRequests();
-        DeletaProjetoRequests deleteProjetoRequests = new DeletaProjetoRequests();
+        HelpersProjetos helpersProjetos = new HelpersProjetos();
 
         [Test]
         public void AtualizarProjeto()
@@ -21,8 +20,8 @@ namespace DesafioAPI.Tests.Projeto
             string statusCodeEsperado = "OK";
             string nomeProjetoNovo = "projeto novo";
             #endregion
-            VerificaProjetoExiste(nomeProjetoEdicao, nomeProjetoNovo);
-            string idProjeto = ProjetoDBSteps.RetornaIDProjetoNome(nomeProjetoEdicao);
+           string idProjeto = helpersProjetos.PreparaBaseCadastradoProjeto(nomeProjetoEdicao);
+            helpersProjetos.PreparaBaseDeletadoProjeto(nomeProjetoNovo);
             atualizaProjetoRequests.SetParameters(idProjeto);
             atualizaProjetoRequests.SetJsonBody(nomeProjetoNovo, idProjeto);
             IRestResponse<dynamic> response = atualizaProjetoRequests.ExecuteRequest();
@@ -31,24 +30,11 @@ namespace DesafioAPI.Tests.Projeto
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
-                Assert.AreEqual(nomeProjetoNovo, retornoNomeProjetc);               
+                Assert.AreEqual(nomeProjetoNovo, retornoNomeProjetc);
                 Assert.AreEqual(idProjeto, retornoIdProjetc);
+                Assert.AreEqual(0, ProjetoDBSteps.VerificaProjetoExiste(nomeProjetoEdicao));
+                Assert.AreEqual(1, ProjetoDBSteps.VerificaProjetoExiste(nomeProjetoNovo));
             });
-        }
-
-        public void VerificaProjetoExiste(string nomeProjetoEdicao, string nomeProjetoNovo)
-        {
-            if (ProjetoDBSteps.VerificaProjetoExiste(nomeProjetoEdicao).Equals(0))
-            {
-                cadastroProjetoRequests.SetJsonBody(nomeProjetoEdicao, "desc");
-                cadastroProjetoRequests.ExecuteRequest();
-            }
-
-            if (ProjetoDBSteps.VerificaProjetoExiste(nomeProjetoNovo).Equals(1))
-            {
-                deleteProjetoRequests.SetParameters(ProjetoDBSteps.RetornaIDProjetoNome(nomeProjetoNovo));
-                deleteProjetoRequests.ExecuteRequest();
-            }
         }
     }
 }

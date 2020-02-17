@@ -6,6 +6,7 @@ using DesafioAPI.DBSteps;
 using DesafioAPI.Requests.Projeto;
 using System.Collections;
 using System.Collections.Generic;
+using DesafioAPI.Tests.Projeto;
 
 namespace DesafioAPI.Tests.Tarefas
 {
@@ -15,9 +16,9 @@ namespace DesafioAPI.Tests.Tarefas
         ConsultaTodasTarefasRequest consultaTodasTarefasRequest = new ConsultaTodasTarefasRequest();
         ConsultaTarefasRequest consultaTarefasRequest = new ConsultaTarefasRequest();
         CadastraTarefaRequest cadastraTarefaRequest = new CadastraTarefaRequest();
-        CadastraProjetoRequests cadastroProjetoRequests = new CadastraProjetoRequests();
         ConsultaTarefasAnexosRequest consultaTarefasAnexosRequest = new ConsultaTarefasAnexosRequest();
         ConsultaTarefasProjetoRequest consultaTarefasProjetoRequest = new ConsultaTarefasProjetoRequest();
+        HelpersProjetos helpersProjetos = new HelpersProjetos();
 
         [Test]
         public void ConsultarTarefa()
@@ -28,7 +29,7 @@ namespace DesafioAPI.Tests.Tarefas
             string categoria = "General";
             string projeto = "projeto geral";            
             string statusCodeEsperado = "OK";
-            VerificaProjetoExiste(projeto);
+            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
             string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
             #endregion
@@ -73,7 +74,7 @@ namespace DesafioAPI.Tests.Tarefas
             string statusCodeEsperado = "OK";
             string nomeAnexo = "test.txt";
             string anexo = "VGhpcyBpcyBhIFRFU1QuDQpUaGlzIGlzIGEgVEVTVC4NClRoaXMgaXMgYSBURVNULg0KVGhpcyBpcyBhIFRFU1QuDQpUaGlzIGlzIGEgVEVTVC4=";
-            VerificaProjetoExiste(projeto);
+            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto, nomeAnexo, anexo);
             IRestResponse<dynamic> responseCadastro = cadastraTarefaRequest.ExecuteRequest();
             string idTarefa = responseCadastro.Data["issue"]["id"];
@@ -103,7 +104,7 @@ namespace DesafioAPI.Tests.Tarefas
             string categoria = "General";
             string projeto = "projeto geral";
             string statusCodeEsperado = "OK";
-            VerificaProjetoExiste(projeto);
+            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
             string idProjeto = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["project"]["id"];
             #endregion
@@ -123,13 +124,5 @@ namespace DesafioAPI.Tests.Tarefas
         //Consulta tarefas criadas por um usuário (Get issues reported by me)
         //Consulta tarefas monitoradaas por um usuário (Get unassigned issues)
 
-        public void VerificaProjetoExiste(string nomeProjeto)
-        {
-            if (ProjetoDBSteps.VerificaProjetoExiste(nomeProjeto).Equals(0))
-            {
-                cadastroProjetoRequests.SetJsonBody(nomeProjeto, "");
-                cadastroProjetoRequests.ExecuteRequest();
-            }
-        }
     }
 }
