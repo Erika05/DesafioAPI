@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 namespace DesafioAPI.Helpers
 {
     public class GeneralHelpers
-    {       
+    {
         public static string FormatJson(string str)
         {
             string INDENT_STRING = "    ";
@@ -86,22 +87,35 @@ namespace DesafioAPI.Helpers
             return new Uri(actualPath).LocalPath;
         }
 
-        public static bool VerificaSeStringEstaContidaNaLista(List<string> lista, string p_string)
+        public static IEnumerable ReturnCSVData(string csvPath)
         {
-            foreach (string item in lista)
+            using (StreamReader sr = new StreamReader(csvPath, System.Text.Encoding.GetEncoding(1252)))
             {
-                if (item.Equals(p_string))
+                string line;
+                while ((line = sr.ReadLine()) != null)
                 {
-                    return true;
+                    ArrayList result = new ArrayList();
+                    result.AddRange(line.Split(';'));
+                    yield return result;
                 }
             }
-            return false;
         }
+            public static bool VerificaSeStringEstaContidaNaLista(List<string> lista, string p_string)
+            {
+                foreach (string item in lista)
+                {
+                    if (item.Equals(p_string))
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
 
-        public static int RetornaNumeroDeObjetosDoJson(JArray json)
-        {
-            return json.Count;
-        }
+            public static int RetornaNumeroDeObjetosDoJson(JArray json)
+            {
+                return json.Count;
+            }
 
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static string GetMethodNameByLevel(int level)

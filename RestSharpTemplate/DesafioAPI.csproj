@@ -195,10 +195,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="TestData\Tarefas\CriarTarefasMinimalData.csv" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="helpersProjetos\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Queries\Projeto\DeletaProjetos.sql" />
     <Content Include="Queries\Projeto\VerificaProjetoExiste.sql" />

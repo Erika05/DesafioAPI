@@ -1,11 +1,12 @@
 ﻿using DesafioAPI.Bases;
 using DesafioAPI.DBSteps;
+using DesafioAPI.Helpers;
 using DesafioAPI.Requests.Projeto;
 using DesafioAPI.Requests.Tarefas;
 using DesafioAPI.Tests.Projeto;
 using NUnit.Framework;
 using RestSharp;
-
+using System.Collections;
 
 namespace DesafioAPI.Tests.Tarefas
 {
@@ -15,8 +16,15 @@ namespace DesafioAPI.Tests.Tarefas
         CadastraTarefaRequest cadastraTarefaRequest = new CadastraTarefaRequest();
         HelpersProjetos helpersProjetos = new HelpersProjetos();
 
-        [Test]
-        public void CadastrarTarefaMinimal()
+        #region Data Driven 
+        public static IEnumerable CriarTarefa()
+        {
+            return GeneralHelpers.ReturnCSVData(GeneralHelpers.ReturnProjectPath() + "TestData/Tarefas/CriarTarefasMinimalData.csv");
+        }
+        #endregion
+
+        [Test, TestCaseSource("CriarTarefa")]
+        public void CadastrarTarefaMinimal(ArrayList testData)
         {
             #region Parameters
             string resumo = "Tarefa minima";
