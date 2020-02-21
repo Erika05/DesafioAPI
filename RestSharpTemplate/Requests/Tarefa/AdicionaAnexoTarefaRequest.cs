@@ -20,13 +20,13 @@ namespace DesafioAPI.Requests.Tarefas
             parameters.Add("issue_id", idTarefa);
         }
 
-        public void SetJsonBody(string nota,
-                              string status)
+        public void SetJsonBody(string nomeAnexo,
+                              string anexo)
         {
             jsonBody = File.ReadAllText(GeneralHelpers.ReturnProjectPath() + "Jsons/Tarefa/AdicionaAnexoTarefaJson.json", Encoding.UTF8);
          
-            jsonBody = jsonBody.Replace("$nomeAnexo", nota);
-            jsonBody = jsonBody.Replace("$anexo", status);
+            jsonBody = jsonBody.Replace("$nomeAnexo", nomeAnexo);
+            jsonBody = jsonBody.Replace("$anexo", anexo);
         }
     }
 }

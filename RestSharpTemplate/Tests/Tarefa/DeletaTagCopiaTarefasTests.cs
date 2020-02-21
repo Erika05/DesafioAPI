@@ -46,6 +46,7 @@ namespace DesafioAPI.Tests.Tarefas
                 Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
                 Assert.AreEqual(0, TarefaDBSteps.VerificaCopiaTarefaExiste(retornoIdTarefaRelacionada));
             });
-        } 
+        }
+      
     }
 }

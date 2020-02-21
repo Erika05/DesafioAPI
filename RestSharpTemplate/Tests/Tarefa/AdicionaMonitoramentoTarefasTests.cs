@@ -1,6 +1,4 @@
 ﻿using DesafioAPI.Bases;
-using DesafioAPI.DBSteps;
-using DesafioAPI.Requests.Projeto;
 using DesafioAPI.Requests.Tarefas;
 using DesafioAPI.Tests.Projeto;
 using NUnit.Framework;
@@ -30,10 +28,10 @@ namespace DesafioAPI.Tests.Tarefas
             string idMonitoramento = "1";
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
             string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
-            adicionaMonitoramentoTarefaRequest.SetParameters(idTarefa);            
+            adicionaMonitoramentoTarefaRequest.SetParameters(idTarefa);
             IRestResponse<dynamic> response = adicionaMonitoramentoTarefaRequest.ExecuteRequest();
 
-           string retornoIdMonitoramento = response.Data["issues"][0]["monitors"][0]["id"];
+            string retornoIdMonitoramento = response.Data["issues"][0]["monitors"][0]["id"];
 
             Assert.Multiple(() =>
             {
@@ -72,6 +70,34 @@ namespace DesafioAPI.Tests.Tarefas
                 Assert.AreEqual(idMonitoramento, retornoIdMonitoramento);
                 Assert.AreEqual(userRealName, retornoUserMonitoramento);
             });
-        }     
+        }
+
+        [Test]
+        public void UsuarioMonitoramentoNaoEncontrado()
+        {
+            //Criar tag 
+            #region Parameters Cadastro Tarefa
+            string resumo = "Tarefa adicionar monitoramento usuário tarefa";
+            string descricao = "Descricao tarefa monitoramente usuário tarefa";
+            string projeto = "projeto geral";
+            string categoria = "General";
+            #endregion
+            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
+            string statusCodeEsperado = "NotFound";
+            string userName = "x";
+            string descricaoErro = "not foundd";
+            cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
+            string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
+            adicionaMonitoramentoTarefaRequest.SetParameters(idTarefa);
+            adicionaMonitoramentoTarefaRequest.SetJsonBody(userName, userName);
+            IRestResponse<dynamic> response = adicionaMonitoramentoTarefaRequest.ExecuteRequest();
+            string retornoMensagemErro = response.Data["message"];
+
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+                Assert.That(true, descricaoErro, retornoMensagemErro);
+            });
+        }
     }
 }

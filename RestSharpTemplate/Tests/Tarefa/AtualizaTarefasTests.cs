@@ -89,5 +89,40 @@ namespace DesafioAPI.Tests.Tarefas
                 Assert.AreEqual(atualizacaoStatusTarefa, retornoStatusTarefa);
             });
         }
+
+        [Test]
+        public void AtualizarTarefaResumoNaoInformado()
+        {
+            #region Parameters Cadastro Tarefa
+            string resumo = "Nova Tarefa";
+            string descricao = "Descricao nova tarefa";
+            string informacao = "informacao";
+            string projeto = "projeto geral";
+            string categoria = "General";
+            string visibilidade = "private";
+            string prioridade = "high";
+            string severidade = "trivial";
+            string reprodutibilidade = "sometimes";
+            string tag = "e";
+            #endregion
+            #region Atualizar Tarefa
+            string atualizaoPrioridade = "high";
+            string atualizacaoStatusTarefa = "resolved";
+            string statusCodeEsperado = "OK";
+            string descricaoErro = "call to undefined method restfault::getmessage() in ";
+            #endregion
+            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
+            cadastraTarefaRequest.SetJsonBody(resumo, descricao, informacao, projeto, categoria, visibilidade, prioridade, severidade, reprodutibilidade, tag);
+            string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
+            atualizaTarefaRequest.SetParameters(idTarefa);
+            atualizaTarefaRequest.SetJsonBody("", atualizaoPrioridade, atualizacaoStatusTarefa);
+            IRestResponse<dynamic> response = atualizaTarefaRequest.ExecuteRequest();
+
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+                Assert.That(true, descricaoErro, response.Content);
+            });
+        }
     }
 }

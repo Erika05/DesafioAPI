@@ -119,6 +119,25 @@ namespace DesafioAPI.Tests.Tarefas
             });
         }
 
+        [Test]
+        public void TarefaNaoEncontrada()
+        {
+            #region Parameters
+            string statusCodeEsperado = "NotFound";
+            string descricaoErro = "not foundd";
+            #endregion
+            consultaTarefasRequest.SetParameters("0");
+            IRestResponse<dynamic> response = consultaTarefasRequest.ExecuteRequest();
+            string retornoMensagemErro = response.Data["message"];
+
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+                Assert.That(true, descricaoErro, retornoMensagemErro);
+            });
+        }
+
+
         //Consulta utilizando filtro cadastrado pelo usuário (Get issues matching filter)
         //Consulta tarefas associadas a um usuário (Get issues assigned to me)
         //Consulta tarefas criadas por um usuário (Get issues reported by me)

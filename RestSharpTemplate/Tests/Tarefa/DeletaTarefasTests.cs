@@ -40,6 +40,25 @@ namespace DesafioAPI.Tests.Tarefas
                 Assert.AreEqual(0, TarefaDBSteps.VerificaTarefaExiste(idTarefa));
 
             });
-        }       
+        }
+
+        [Test]
+        public void DeletarTarefaNaoEncontrada()
+        {
+            #region Parametros
+            string tarefaInexistente = "78978678988";
+            string statusCodeEsperado = "NotFound";
+            string descricaoErro = "not foundd";
+            #endregion
+            deletaTarefaRequest.SetParameters(tarefaInexistente);
+            IRestResponse<dynamic> response = deletaTarefaRequest.ExecuteRequest();
+            string retornoMensagemErro = response.Data["message"];
+
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+                Assert.That(true, descricaoErro, retornoMensagemErro);
+            });
+        }
     }
 }

@@ -120,5 +120,67 @@ namespace DesafioAPI.Tests.Tarefas
                 Assert.AreEqual(nomeAnexo, retornoNomeAnexo);
             });
         }
+
+        [Test]
+        public void ResumoTarefaNaoInformado()
+        {
+            #region Parameters
+            string descricao = "descricao";
+            string categoria = "General";
+            string projeto = "projeto geral";
+            string statusCodeEsperado = "BadRequest";
+            string descricaoErro = "Summary not specified";
+            #endregion
+            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
+            cadastraTarefaRequest.SetJsonBody("", descricao, categoria, projeto);
+            IRestResponse<dynamic> response = cadastraTarefaRequest.ExecuteRequest();
+            string retornoMensagemErro = response.Data["message"];
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(statusCodeEsperado, statusCodeEsperado);
+                Assert.AreEqual(descricaoErro, retornoMensagemErro);
+            });
+        }
+
+        [Test]
+        public void DescricaoTarefaNaoInformado()
+        {
+            #region Parameters
+            string resumo = "resumo";
+            string descricao = "descricao";
+            string categoria = "General";
+            string statusCodeEsperado = "BadRequest";
+            string descricaoErro = "Project not specified";
+            #endregion
+            cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, "");
+            IRestResponse<dynamic> response = cadastraTarefaRequest.ExecuteRequest();
+            string retornoMensagemErro = response.Data["message"];
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(statusCodeEsperado, statusCodeEsperado);
+                Assert.AreEqual(descricaoErro, retornoMensagemErro);
+            });
+        }
+
+        [Test]
+        public void ProjetoTarefaNaoInformado()
+        {
+            #region Parameters
+            string resumo = "resumo";
+            string categoria = "General";
+            string projeto = "projeto geral";
+            string statusCodeEsperado = "BadRequest";
+            string descricaoErro = "Description not specified";
+            #endregion
+            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
+            cadastraTarefaRequest.SetJsonBody(resumo, "", categoria, projeto);
+            IRestResponse<dynamic> response = cadastraTarefaRequest.ExecuteRequest();
+            string retornoMensagemErro = response.Data["message"];
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(statusCodeEsperado, statusCodeEsperado);
+                Assert.AreEqual(descricaoErro, retornoMensagemErro);
+            });
+        }
     }
 }

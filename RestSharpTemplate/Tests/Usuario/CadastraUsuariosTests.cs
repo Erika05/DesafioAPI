@@ -45,5 +45,78 @@ namespace DesafioAPI.Tests.Usuario
                 Assert.AreEqual(projeto, retornoProjeto);
             });
         }
+
+        [Test]
+        public void NomeUsuarioNaoInformado()
+        {
+            #region Parameters Cadastro Tarefa
+            string nomeReal = "nome real";
+            string email = "erika@gmail.com";
+            string senha = "administrator";
+            string projeto = "projeto geral";
+            string statusCodeEsperado = "BadRequest";
+            string descricaoErro = "Invalid username";
+            #endregion
+            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
+            cadastraUsuarioRequest.SetJsonBody("", senha, nomeReal, email);
+            IRestResponse<dynamic> response = cadastraUsuarioRequest.ExecuteRequest();
+            string retornoMensagemErro = response.Data["message"];
+
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+                Assert.That(true, descricaoErro, retornoMensagemErro);
+            });
+        }
+
+        [Test]
+        public void UsuarioJaCadastrado()
+        {
+            #region Parameters Cadastro Tarefa
+            string nome = "nome user";
+            string nomeReal = "nome real";
+            string email = "erika@gmail.com";
+            string senha = "administrator";
+            string projeto = "projeto geral";
+            string statusCodeEsperado = "BadRequest";
+            string descricaoErro = "Username '"+ nome + "' already used.";
+            #endregion
+            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
+            string idUsuario = helpersUsuarios.PreparaBaseCadastradoUsuario(nome, senha, nomeReal, email);
+            cadastraUsuarioRequest.SetJsonBody(nome, senha, nomeReal, email);
+            IRestResponse<dynamic> response = cadastraUsuarioRequest.ExecuteRequest();
+            string retornoMensagemErro = response.Data["message"];
+
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+                Assert.AreEqual(descricaoErro, retornoMensagemErro);
+            });
+        }
+
+        [Test]
+        public void EmailJaCadastrado()
+        {
+            #region Parameters Cadastro Tarefa
+            string nome = "nome user";
+            string nomeReal = "nome real";
+            string email = "erika@gmail.com";
+            string senha = "administrator";
+            string projeto = "projeto geral";
+            string statusCodeEsperado = "BadRequest";
+            string descricaoErro = "Email '" + email + "' already used.";
+            #endregion
+            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
+            string idUsuario = helpersUsuarios.PreparaBaseCadastradoUsuario(nome, senha, nomeReal, email);
+            cadastraUsuarioRequest.SetJsonBody("erika", senha, nomeReal, email);
+            IRestResponse<dynamic> response = cadastraUsuarioRequest.ExecuteRequest();
+            string retornoMensagemErro = response.Data["message"];
+
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+                Assert.AreEqual(descricaoErro, retornoMensagemErro);
+            });
+        }
     }
 }

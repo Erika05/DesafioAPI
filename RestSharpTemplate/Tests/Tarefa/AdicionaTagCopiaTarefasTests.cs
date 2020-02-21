@@ -41,6 +41,23 @@ namespace DesafioAPI.Tests.Tarefas
                 Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
                 Assert.AreEqual(idTarefaRelacionada, retornoIdTarefaRelacionada);
             });
-        } 
+        }
+
+        [Test]
+        public void TagCopiaTarefaNaoEncontrada()
+        {
+            string statusCodeEsperado = "NotFound";
+            string descricaoErro = "not foundd";
+            adicionaTagCopiaTarefaRequest.SetParameters("0");
+            adicionaTagCopiaTarefaRequest.SetJsonBody("01");
+            IRestResponse<dynamic> response = adicionaTagCopiaTarefaRequest.ExecuteRequest();
+            string retornoMensagemErro = response.Data["message"];
+
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+                Assert.That(true, descricaoErro, retornoMensagemErro);
+            });
+        }
     }
 }

@@ -49,6 +49,36 @@ namespace DesafioAPI.Tests.Tarefas
         }
 
         [Test]
+        public void NotaTarefaNaoinformada()
+        {
+            //Criar tag 
+            #region Parameters Cadastro Tarefa
+            string resumo = "Tarefa adicionar nota tarefa";
+            string descricao = "Descricao tarefa nota";
+            string projeto = "projeto geral";
+            string categoria = "General";
+            #endregion
+            #region Adiciona nota Tarefa
+            string statusNota = "private";
+            string statusCodeEsperado = "BadRequest";
+            string descricaoErro = "Issue note not specified.";
+            #endregion
+            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
+            cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
+            string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
+            adicionaNotaTarefaRequest.SetParameters(idTarefa);
+            adicionaNotaTarefaRequest.SetJsonBody("", statusNota);
+            IRestResponse<dynamic> response = adicionaNotaTarefaRequest.ExecuteRequest();
+            string retornoMensagemErro = response.Data["message"];
+
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+                Assert.AreEqual(descricaoErro, retornoMensagemErro);
+            });
+        }
+
+        [Test]
         public void AdicionarNotaComTempoTarefa()
         {
             //Criar tag 

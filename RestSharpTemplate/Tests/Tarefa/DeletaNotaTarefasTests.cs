@@ -48,5 +48,36 @@ namespace DesafioAPI.Tests.Tarefas
                 Assert.AreEqual(0, TarefaDBSteps.VerificaNotaTarefaExiste(idNota));
             });
         }
+
+        [Test]
+        public void NotaTarefaNaoEncontrada()
+        {
+            #region Parameters Cadastro Tarefa
+            string resumo = "Tarefa deletar nota";
+            string descricao = "Descricao deletar nota tarefa";
+            string projeto = "projeto geral";
+            string categoria = "General";
+            #endregion
+            #region Adiciona nota Tarefa
+            string notaInexistente = "78978678988";
+            string statusCodeEsperado = "NotFound";
+            string descricaoErro = "not foundd";
+            #endregion
+            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
+            cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
+            string idTarefa = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["id"];
+            adicionaNotaTarefaRequest.SetParameters(idTarefa);
+            deletaNotaTarefaRequest.SetParameters(idTarefa, notaInexistente);
+            deletaNotaTarefaRequest.SetJsonBody(notaInexistente, "");
+
+            IRestResponse<dynamic> response = deletaNotaTarefaRequest.ExecuteRequest();
+            string retornoMensagemErro = response.Data["message"];
+
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+                Assert.That(true, descricaoErro, retornoMensagemErro);
+            });
+        }
     }
 }
