@@ -48,7 +48,7 @@ namespace DesafioAPI.Tests.Tarefas
         {
             string statusCodeEsperado = "NotFound";
             string descricaoErro = "not foundd";
-            adicionaTagCopiaTarefaRequest.SetParameters("0");
+            adicionaTagCopiaTarefaRequest.SetParameters("45645656756");
             adicionaTagCopiaTarefaRequest.SetJsonBody("01");
             IRestResponse<dynamic> response = adicionaTagCopiaTarefaRequest.ExecuteRequest();
             string retornoMensagemErro = response.Data["message"];

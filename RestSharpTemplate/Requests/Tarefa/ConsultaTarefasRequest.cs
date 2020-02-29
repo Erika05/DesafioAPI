@@ -19,6 +19,7 @@ namespace DesafioAPI.Requests.Tarefas
 
         public void SetParameters(string idTarefa)
         {
+            parameters.Clear();
             parameters.Add("issue_id", idTarefa);
         }
     }

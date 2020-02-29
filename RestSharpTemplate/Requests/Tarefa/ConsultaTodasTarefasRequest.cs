@@ -19,6 +19,7 @@ namespace DesafioAPI.Requests.Tarefas
 
         public void SetParameters(string pageSize, string page)
         {
+            parameters.Clear();
             parameters.Add("page_size", pageSize);
             parameters.Add("page", page);
         }

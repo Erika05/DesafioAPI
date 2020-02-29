@@ -53,8 +53,8 @@ namespace DesafioAPI.Tests.Tarefas
         public void NotaTarefaNaoEncontrada()
         {
             #region Parameters Cadastro Tarefa
-            string resumo = "Tarefa deletar nota";
-            string descricao = "Descricao deletar nota tarefa";
+            string resumo = "Tarefa deletar nota teste teste";
+            string descricao = "Descricao deletar nota tarefa testes";
             string projeto = "projeto geral";
             string categoria = "General";
             #endregion

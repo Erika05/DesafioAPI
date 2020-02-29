@@ -14,6 +14,7 @@ namespace DesafioAPI.Requests.Projeto
 
         public void SetParameters(string idProjeto)
         {
+            parameters.Clear();
             parameters.Add("project_id", idProjeto);
         }
     }
