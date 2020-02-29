@@ -7,6 +7,7 @@ using DesafioAPI.Tests.Projeto;
 using NUnit.Framework;
 using RestSharp;
 using System.Collections;
+using System.Text.RegularExpressions;
 
 namespace DesafioAPI.Tests.Tarefas
 {
@@ -71,6 +72,7 @@ namespace DesafioAPI.Tests.Tarefas
             helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, informacao, projeto, categoria, visibilidade, prioridade, severidade, reprodutibilidade, tag);
             IRestResponse<dynamic> response = cadastraTarefaRequest.ExecuteRequest();
+            
             string retornoSummary = response.Data["issue"]["summary"];
             string retornoDescription = response.Data["issue"]["description"];
             string retornoInformation = response.Data["issue"]["additional_information"];
@@ -84,7 +86,7 @@ namespace DesafioAPI.Tests.Tarefas
 
             Assert.Multiple(() =>
            {
-                Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+               Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
                Assert.AreEqual(resumo, retornoSummary);
                Assert.AreEqual(descricao, descricao);
                Assert.AreEqual(informacao, retornoInformation);
