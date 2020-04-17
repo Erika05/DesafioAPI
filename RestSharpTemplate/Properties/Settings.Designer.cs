@@ -38,15 +38,31 @@ namespace DesafioAPI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso")]
-        public string URL {
+        public string URLMANTIS
+        {
             get {
-                return ((string)(this["URL"]));
+                return ((string)(this["URLMANTIS"]));
             }
             set {
-                this["URL"] = value;
+                this["URLMANTIS"] = value;
             }
         }
-        
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso")]
+        public string URLSPOTIFY
+        {
+            get
+            {
+                return ((string)(this["URLSPOTIFY"]));
+            }
+            set
+            {
+                this["URLSPOTIFY"] = value;
+            }
+        }
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("eyJhbGciOiJSUzI1NiIsImtpZCI6IjZCN0FDQzUyMDMwNUJGREI0RjcyNTJEQUVCMjE3N0NDMDkxRkFBR" +

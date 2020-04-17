@@ -9,7 +9,8 @@ namespace DesafioAPI.Bases
         #region Parameters
         protected string jsonBody = null;
 
-        protected string url = Properties.Settings.Default.URL;
+        protected string urlMantis = Properties.Settings.Default.URLMANTIS;
+        protected string urlSpotify = Properties.Settings.Default.URLSPOTIFY;
 
         protected string requestService = null;
 
@@ -18,7 +19,9 @@ namespace DesafioAPI.Bases
         protected bool httpBasicAuthenticator = false;
 
         protected bool ntlmAuthenticator = false;
-        
+
+        protected bool apiSpotfy = false;
+
         protected IDictionary<string, string> headers = new Dictionary<string, string>()
         {
             //Dicionário de headeres deve ser iniciado com os headers comuns a todos os métodos da API
@@ -38,9 +41,23 @@ namespace DesafioAPI.Bases
         #region Actions
         public IRestResponse<dynamic> ExecuteRequest()
         {
-            IRestResponse<dynamic> response = RestSharpHelpers.ExecuteRequest(url, requestService, method, headers, cookies, parameters, parameterTypeIsUrlSegment, jsonBody, httpBasicAuthenticator, ntlmAuthenticator);
+            IRestResponse<dynamic> response;
 
-            ExtentReportHelpers.AddTestInfo(url, requestService, method.ToString(), headers, cookies, parameters, jsonBody, httpBasicAuthenticator, ntlmAuthenticator, response);
+            if (apiSpotfy) {
+                // IRestResponse<dynamic> 
+                response = RestSharpHelpers.ExecuteRequest(urlSpotify, requestService, method, headers, cookies, parameters, parameterTypeIsUrlSegment, jsonBody, httpBasicAuthenticator, ntlmAuthenticator);
+
+                ExtentReportHelpers.AddTestInfo(urlSpotify, requestService, method.ToString(), headers, cookies, parameters, jsonBody, httpBasicAuthenticator, ntlmAuthenticator, response);
+
+            }
+            else
+            {
+               // IRestResponse<dynamic> 
+                
+                response = RestSharpHelpers.ExecuteRequest(urlMantis, requestService, method, headers, cookies, parameters, parameterTypeIsUrlSegment, jsonBody, httpBasicAuthenticator, ntlmAuthenticator);
+
+                ExtentReportHelpers.AddTestInfo(urlMantis, requestService, method.ToString(), headers, cookies, parameters, jsonBody, httpBasicAuthenticator, ntlmAuthenticator, response);
+            }
 
             return response;
         }

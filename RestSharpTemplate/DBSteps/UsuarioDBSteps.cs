@@ -15,9 +15,9 @@ namespace DesafioAPI.DBSteps
             return DBHelpers.RetornaDadosQuery(query);
         }
 
-        public static void DeletaUsuario(string nomeUsuario)
+        public static void DeletaUsuario(string nomeUsuario, string email)
         {
-            string query = File.ReadAllText(GeneralHelpers.ReturnProjectPath() + "Queries/Usuario/DeletaUsuario.sql", Encoding.UTF8).Replace("$nomeUsuario", nomeUsuario);
+            string query = File.ReadAllText(GeneralHelpers.ReturnProjectPath() + "Queries/Usuario/DeletaUsuario.sql", Encoding.UTF8).Replace("$nomeUsuario", nomeUsuario).Replace("$email", email);
 
             DBHelpers.ExecuteQuery(query);
         }
