@@ -1,0 +1,10 @@
+{
+  "users": [
+    {
+      "name": "$userName"
+    },
+    {
+      "name_or_realname": "$userRealname"
+    }
+  ]
+}

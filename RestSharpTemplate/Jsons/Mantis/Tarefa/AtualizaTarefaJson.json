@@ -1,0 +1,9 @@
+{
+  "summary": "$resumo",
+  "priority": {
+    "name": "$prioridade"
+  },
+  "status": {
+    "name": "$status"
+  }
+}

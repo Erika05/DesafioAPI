@@ -151,6 +151,7 @@
     <Compile Include="Requests\Mantis\Tarefa\ConsultaTarefasRequest.cs" />
     <Compile Include="Requests\Mantis\Usuario\CadastraUsuarioRequest.cs" />
     <Compile Include="Requests\Mantis\Usuario\DeletaUsuarioRequest.cs" />
+    <Compile Include="Requests\Spotify\PlayList\ConsultaArtistaResquests.cs" />
     <Compile Include="Requests\Spotify\PlayList\ConsultaPlayListRequests.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Tests\Mantis\Projeto\AtualizaProjetoTests.cs" />
