@@ -57,9 +57,10 @@ namespace DesafioAPI.Helpers
             TEST.Log(Status.Pass, GeneralHelpers.GetMethodNameByLevel(methodLevel) + " || " + text);
         }
 
-        public static void AddTestInfo(string url, string requestService, string method, IDictionary<string, string> headers, IDictionary<string, string> cookies, IDictionary<string, string> parameters, string jsonBody, bool httpBasicAuthenticator, bool ntlmAuthenticator, IRestResponse<dynamic> response)
+        public static void AddTestInfo(string url, string requestService, string method, IDictionary<string, string> headers, IDictionary<string, string> parametrosBody, IDictionary<string, string> cookies, IDictionary<string, string> parameters, string jsonBody, bool httpBasicAuthenticator, bool ntlmAuthenticator, IRestResponse<dynamic> response)
         {
             string allHeaders = null;
+            string allParametrosBody = null;
             string allCookies = null;
             string allParameters = null;
             string allResponseHeaders = null;
@@ -72,6 +73,11 @@ namespace DesafioAPI.Helpers
             foreach (var header in headers)
             {
                 allHeaders = allHeaders + "\n" + "<i>" + header.Key + "</i>" + " = " + header.Value;
+            }
+
+            foreach (var parametroBody in parametrosBody)
+            {
+                allParametrosBody = allParametrosBody + "\n" + "<i>" + parametroBody.Key + "</i>" + " = " + parametroBody.Value;
             }
 
             foreach (var cookie in cookies)

@@ -1,16 +1,21 @@
 ﻿using DesafioAPI.Bases;
 using RestSharp;
+using System;
+using System.Text;
 
 namespace DesafioAPI.Requests.Spotify.PlayList
 {
     public class ConsultaPlayLisRequest : RequestBase
     {
-        public ConsultaPlayLisRequest()
+        public ConsultaPlayLisRequest(string accessToken)
         {
+            headers.Clear();
+            headers.Add("Authorization", "Bearer " + accessToken);
             requestService = "/me/playlists";
             method = Method.GET;
-            headers.Add("Authorization", "Bearer BQAGIK1AVSCJoYSYka0ywpAAzcjZjVRB_3obgmyPMDopT0xappvl9xKo6wlPyJ9OsdkMyORk2sWUh1ykCPUeQyo-tyN042DM3J2_fdkLDx_23qYNKff4E5fitqCo9VJkHtSZRnisA-a0puxrXFYCh0zDVxvCtTsJ-uj-rsHp6mbQ3fLb1QeavIPcwyIZmYqkWV-s9nfIpvuoF9DXPACSXxHch4wZOHSE22fxogS7KmgpKfdjdDsM98kYuzw7i12o9J5xeUJisMHvHAtjihD3o2AJvc2xAyhGr0keHQ");
+            //headers.Add("Authorization", "Bearer " + acessToken);
             apiSpotfy = true;
+
         }
     }
 }

@@ -17,7 +17,8 @@ namespace DesafioAPI.Helpers
         public static IRestResponse<dynamic> ExecuteRequest(string url,
                                                             string requestService,
                                                             Method method, 
-                                                            IDictionary<string, string> headers, 
+                                                            IDictionary<string, string> headers,
+                                                            IDictionary<string, string> parametrosBody,
                                                             IDictionary<string, string> cookies, 
                                                             IDictionary<string, string> parameters,
                                                             bool parameterTypeIsUrlSegment,
@@ -30,6 +31,11 @@ namespace DesafioAPI.Helpers
             foreach(var header in headers)
             {
                 request.AddParameter(header.Key, header.Value, ParameterType.HttpHeader);
+            }
+
+            foreach (var parametroBody in parametrosBody)
+            {
+                request.AddParameter(parametroBody.Key, parametroBody.Value, ParameterType.GetOrPost);
             }
 
             foreach (var cookie in cookies)

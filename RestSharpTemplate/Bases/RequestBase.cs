@@ -10,7 +10,10 @@ namespace DesafioAPI.Bases
         protected string jsonBody = null;
 
         protected string urlMantis = Properties.Settings.Default.URLMANTIS;
+
         protected string urlSpotify = Properties.Settings.Default.URLSPOTIFY;
+
+        protected string urlGerarTokenSpotify = Properties.Settings.Default.URLGERARTOKENSPOTIFY;
 
         protected string requestService = null;
 
@@ -22,12 +25,20 @@ namespace DesafioAPI.Bases
 
         protected bool apiSpotfy = false;
 
+        protected bool apiGerarTokenSpotfy = false;
+
         protected IDictionary<string, string> headers = new Dictionary<string, string>()
         {
             //Dicionário de headeres deve ser iniciado com os headers comuns a todos os métodos da API
-            {"Content-Type", "application/json"},
+            
+            { "Content-Type", "application/json"},     
         };
-               
+
+        protected IDictionary<string, string> parametrosBody = new Dictionary<string, string>()
+        {
+            
+        };
+
         protected IDictionary<string, string> cookies = new Dictionary<string, string>()
         {
             //Dicionário de cookies deve ser iniciado com os headers comuns à todas os métodos da API
@@ -44,19 +55,22 @@ namespace DesafioAPI.Bases
             IRestResponse<dynamic> response;
 
             if (apiSpotfy) {
-                // IRestResponse<dynamic> 
-                response = RestSharpHelpers.ExecuteRequest(urlSpotify, requestService, method, headers, cookies, parameters, parameterTypeIsUrlSegment, jsonBody, httpBasicAuthenticator, ntlmAuthenticator);
+                response = RestSharpHelpers.ExecuteRequest(urlSpotify, requestService, method, headers, parametrosBody, cookies, parameters, parameterTypeIsUrlSegment, jsonBody, httpBasicAuthenticator, ntlmAuthenticator);
 
-                ExtentReportHelpers.AddTestInfo(urlSpotify, requestService, method.ToString(), headers, cookies, parameters, jsonBody, httpBasicAuthenticator, ntlmAuthenticator, response);
+                ExtentReportHelpers.AddTestInfo(urlSpotify, requestService, method.ToString(), headers, parametrosBody, cookies, parameters, jsonBody, httpBasicAuthenticator, ntlmAuthenticator, response);
 
             }
-            else
+            else if(apiGerarTokenSpotfy)
             {
-               // IRestResponse<dynamic> 
-                
-                response = RestSharpHelpers.ExecuteRequest(urlMantis, requestService, method, headers, cookies, parameters, parameterTypeIsUrlSegment, jsonBody, httpBasicAuthenticator, ntlmAuthenticator);
+                response = RestSharpHelpers.ExecuteRequest(urlGerarTokenSpotify, requestService, method, headers, parametrosBody, cookies, parameters, parameterTypeIsUrlSegment, jsonBody, httpBasicAuthenticator, ntlmAuthenticator);
 
-                ExtentReportHelpers.AddTestInfo(urlMantis, requestService, method.ToString(), headers, cookies, parameters, jsonBody, httpBasicAuthenticator, ntlmAuthenticator, response);
+                ExtentReportHelpers.AddTestInfo(urlGerarTokenSpotify, requestService, method.ToString(), headers, parametrosBody, cookies, parameters, jsonBody, httpBasicAuthenticator, ntlmAuthenticator, response);
+            }
+            else
+            {                
+                response = RestSharpHelpers.ExecuteRequest(urlMantis, requestService, method, headers, parametrosBody, cookies, parameters, parameterTypeIsUrlSegment, jsonBody, httpBasicAuthenticator, ntlmAuthenticator);
+
+                ExtentReportHelpers.AddTestInfo(urlMantis, requestService, method.ToString(), headers, parametrosBody, cookies, parameters, jsonBody, httpBasicAuthenticator, ntlmAuthenticator, response);
             }
 
             return response;

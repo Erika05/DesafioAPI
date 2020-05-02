@@ -89,7 +89,8 @@ namespace DesafioAPI.Tests.Tarefas
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
-                Assert.AreEqual(idAnexo, retornoId);
+                //Assert.AreEqual(idAnexo, retornoId);
+                Assert.AreEqual(idAnexo, response.Data["files"][0]["id"]);
                 Assert.AreEqual(nomeAnexo, retornoNomeAnexo);
                 Assert.AreEqual(anexo, retornoAnexo);
             });
