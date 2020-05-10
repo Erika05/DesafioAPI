@@ -11,7 +11,7 @@ namespace DesafioAPI.Requests.Spotify.PlayList
 
         public GerarTokenRequests(string client_credentials)
         {          
-            // httpBasicAuthenticator = true;
+            httpBasicAuthenticator = true;
             apiGerarTokenSpotfy = true;
             method = Method.POST;
             headers.Add("Authorization", "Basic " + client_credentials);
