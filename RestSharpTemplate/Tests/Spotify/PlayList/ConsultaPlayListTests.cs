@@ -14,16 +14,12 @@ namespace DesafioAPI.Tests.Spotify.PlayList
     public class ConsultaPlayListTests : TestBase
     {
         public static string accessToken;
+        HelpersSpotify helpersSpotify = new HelpersSpotify();
 
         [OneTimeSetUp]
         public void Login()
         {
-            string client_credentials = Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Format("{0}:{1}", Properties.Settings.Default.AUTHENTICATOR_USER, Properties.Settings.Default.AUTHENTICATOR_PASSWORD)));
-            string refresh_token = "AQC86RkjqfXwUCHcwF2hVWrzankEXqm7FGc6NdOdFBRgf3zhg49ZVwJDEcHXHL83tK1eUyVNWhbPKUBmGfwQ0PqmSqP2I77x3gNaeFxTu9dzHtk_W9DgPvfu7M4lZsqgM4Y";
-            GerarTokenRequests gerarTokenRequests = new GerarTokenRequests(client_credentials);
-            gerarTokenRequests.SetParameters(refresh_token);
-            IRestResponse<dynamic> response = gerarTokenRequests.ExecuteRequest();
-            accessToken = response.Data["access_token"];
+            accessToken = helpersSpotify.AutenticacaoSpotify();
         }
 
         [Test]

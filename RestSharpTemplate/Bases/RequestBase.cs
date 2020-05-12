@@ -27,6 +27,8 @@ namespace DesafioAPI.Bases
 
         protected bool apiGerarTokenSpotfy = false;
 
+        //protected string accessToken;
+
         protected IDictionary<string, string> headers = new Dictionary<string, string>()
         {
             //Dicionário de headeres deve ser iniciado com os headers comuns a todos os métodos da API

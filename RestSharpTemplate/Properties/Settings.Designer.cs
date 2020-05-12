@@ -66,6 +66,21 @@ namespace DesafioAPI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso")]
+        public string REFRESH_TOKEN
+        {
+            get
+            {
+                return ((string)(this["REFRESH_TOKEN"]));
+            }
+            set
+            {
+                this["REFRESH_TOKEN"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso")]
         public string URLGERARTOKENSPOTIFY
         {
             get

@@ -59,8 +59,9 @@ namespace DesafioAPI.Helpers
 
             if (jsonBody!=null)
             {
-                JObject jsonObject = JsonConvert.DeserializeObject<JObject>(jsonBody);
-                request.AddJsonBody(jsonObject);
+            //    JObject jsonObject = JsonConvert.DeserializeObject<JObject>(jsonBody);
+            //    request.AddJsonBody(jsonObject);
+                request.AddJsonBody(jsonBody);
             }
             
             RestClient client = new RestClient(url);

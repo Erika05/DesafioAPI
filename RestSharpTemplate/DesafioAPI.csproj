@@ -152,6 +152,9 @@
     <Compile Include="Requests\Mantis\Usuario\CadastraUsuarioRequest.cs" />
     <Compile Include="Requests\Mantis\Usuario\DeletaUsuarioRequest.cs" />
     <Compile Include="Requests\Spotify\GerarToken\GerarTokenRequests.cs" />
+    <Compile Include="Requests\Spotify\Musica\CadastrarMusicaRequests.cs" />
+    <Compile Include="Requests\Spotify\Musica\ConsultarMusicaRequests.cs" />
+    <Compile Include="Requests\Spotify\Musica\DeletarMusicaRequests.cs" />
     <Compile Include="Requests\Spotify\PlayList\ConsultaArtistaResquests.cs" />
     <Compile Include="Requests\Spotify\PlayList\ConsultaPlayListRequests.cs" />
     <Compile Include="Settings.cs" />
@@ -173,6 +176,8 @@
     <Compile Include="Tests\Mantis\Usuario\CadastraUsuariosTests.cs" />
     <Compile Include="Tests\Mantis\Usuario\DeletaUsuariosTests.cs" />
     <Compile Include="Tests\Mantis\Usuario\HelpersUsuarios.cs" />
+    <Compile Include="Tests\Spotify\HelpersSpotify.cs" />
+    <Compile Include="Tests\Spotify\Musica\MusicaTests.cs" />
     <Compile Include="Tests\Spotify\PlayList\ConsultaPlayListTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -194,6 +199,8 @@
     <None Include="Jsons\Mantis\Tarefa\CadastraTarefaJson.json" />
     <None Include="Jsons\Mantis\Tarefa\CadastraTarefaMinimalJson.json" />
     <None Include="Jsons\Mantis\Usuario\CadastraUsuarioJson.json" />
+    <None Include="Jsons\Spotify\Musica\DeletaMusicaJson.json" />
+    <None Include="Jsons\Spotify\Musica\CadastraMusicaJson.json" />
     <None Include="Jsons\Spotify\PlayList\CadastraPlayListJson.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
