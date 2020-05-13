@@ -72,5 +72,22 @@ namespace DesafioAPI.Tests.Spotify.Musica
             });
         }
 
+        [Test]
+        public void ReordenaMusica()
+        {
+            ReordenaMusicaRequests reordenaMusicaRequests = new ReordenaMusicaRequests("1QafloWDNYF88IOFcwDakG", accessToken);
+            #region Parameters           
+            string idMusica = "spotify:track:6wfK1R6FoLpmUA9lk5ll4T";
+            string statusCodeEsperado = "OK";
+            #endregion
+            reordenaMusicaRequests.SetJsonBody(idMusica);
+            IRestResponse response = reordenaMusicaRequests.ExecuteRequest();
+
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+            });
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 {
-  {
-    "uris": [
-      "$idMusica"
-    ]
-  }
+  "tracks": [
+    {
+      "uri": "spotify:track:6wfK1R6FoLpmUA9lk5ll4T"
+    }
+  ]
+}

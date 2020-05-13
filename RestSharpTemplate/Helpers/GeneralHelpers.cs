@@ -100,22 +100,22 @@ namespace DesafioAPI.Helpers
                 }
             }
         }
-            public static bool VerificaSeStringEstaContidaNaLista(List<string> lista, string p_string)
+        public static bool VerificaSeStringEstaContidaNaLista(List<string> lista, string p_string)
+        {
+            foreach (string item in lista)
             {
-                foreach (string item in lista)
+                if (item.Equals(p_string))
                 {
-                    if (item.Equals(p_string))
-                    {
-                        return true;
-                    }
+                    return true;
                 }
-                return false;
             }
+            return false;
+        }
 
-            public static int RetornaNumeroDeObjetosDoJson(JArray json)
-            {
-                return json.Count;
-            }
+        public static int RetornaNumeroDeObjetosDoJson(JArray json)
+        {
+            return json.Count;
+        }
 
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static string GetMethodNameByLevel(int level)
@@ -123,6 +123,18 @@ namespace DesafioAPI.Helpers
             StackTrace st = new StackTrace();
             StackFrame sf = st.GetFrame(level);
             return sf.GetMethod().Name;
+        }
+
+        public static bool IsAJsonArray(string json)
+        {
+            if (json.StartsWith("["))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 

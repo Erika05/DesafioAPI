@@ -8,21 +8,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesafioAPI.Requests.Spotify
+namespace DesafioAPI.Requests.Spotify.Musica
 {
-    public class CadastrarMusicaRequests : RequestBase
+    public class ReordenaMusicaRequests : RequestBase
     {
-        public CadastrarMusicaRequests(string idPlayList, string accessToken)
+        public ReordenaMusicaRequests(string idPlayList, string accessToken)
         {
-            requestService = "/playlists/" + idPlayList + "/tracks";
-            method = Method.POST;
+            requestService = "/playlists/" + idPlayList  + "/tracks";
+            method = Method.PUT;
             headers.Add("Authorization", "Bearer " + accessToken);
             apiSpotfy = true;
         }
 
         public void SetJsonBody(string idMusica)
         {
-            jsonBody = File.ReadAllText(GeneralHelpers.ReturnProjectPath() + "Jsons/Spotify/Musica/ReordenaMusicaJson.json", Encoding.UTF8);
+            jsonBody = File.ReadAllText(GeneralHelpers.ReturnProjectPath() + "Jsons/Spotify/Musica/CadastraMusicaJson.json", Encoding.UTF8);
             jsonBody.Replace("$idMusica", idMusica);
         }
     }

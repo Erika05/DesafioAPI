@@ -14,7 +14,7 @@ namespace DesafioAPI.Requests.Spotify.Musica
     {
         public DeletarMusicaRequests(string idPlayList, string accessToken)
         {
-            requestService = "/playlists/{idPlayList}/tracks";
+            requestService = "/playlists/" + idPlayList + "/tracks";
             method = Method.DELETE;
             headers.Add("Authorization", "Bearer " + accessToken);
             apiSpotfy = true;

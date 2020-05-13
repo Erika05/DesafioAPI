@@ -57,13 +57,19 @@ namespace DesafioAPI.Helpers
 
             request.JsonSerializer = new JsonSerializer();
 
-            if (jsonBody!=null)
+            if (jsonBody != null)
             {
-            //    JObject jsonObject = JsonConvert.DeserializeObject<JObject>(jsonBody);
-            //    request.AddJsonBody(jsonObject);
-                request.AddJsonBody(jsonBody);
+                if (GeneralHelpers.IsAJsonArray(jsonBody))
+                {
+                    request.AddJsonBody(new JArray(jsonBody));
+                }
+                else
+                {
+                    request.AddJsonBody(JsonConvert.DeserializeObject<JObject>(jsonBody));
+                }
             }
-            
+
+
             RestClient client = new RestClient(url);
             
             if (httpBasicAuthenticator)
