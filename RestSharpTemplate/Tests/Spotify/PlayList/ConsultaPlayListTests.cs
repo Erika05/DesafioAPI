@@ -1,4 +1,5 @@
 ﻿using DesafioAPI.Bases;
+using DesafioAPI.Helpers;
 using DesafioAPI.Requests.Spotify.PlayList;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
@@ -35,22 +36,10 @@ namespace DesafioAPI.Tests.Spotify.PlayList
             Assert.Multiple(() =>
                 {
                     Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
-                    Assert.IsTrue(VerificaPlayList(listaMusica, nomePlayList));
+                    Assert.IsTrue(GeneralHelpers.VerificaSeStringEstaContidaNaLista(listaMusica, nomePlayList));
                 });
         }
-
-        public bool VerificaPlayList(List<string> list, string nomePlayList)
-        {
-            for (int i = 0; i < list.Count; i++)
-            {
-                if (list[i].Equals(nomePlayList))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
+        
         public List<string> ObterListaResponse(IRestResponse response)
         {
             var jsonString = response.Content;

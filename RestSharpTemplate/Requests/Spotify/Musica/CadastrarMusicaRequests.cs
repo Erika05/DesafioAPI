@@ -22,7 +22,7 @@ namespace DesafioAPI.Requests.Spotify
 
         public void SetJsonBody(string idMusica)
         {
-            jsonBody = File.ReadAllText(GeneralHelpers.ReturnProjectPath() + "Jsons/Spotify/Musica/ReordenaMusicaJson.json", Encoding.UTF8);
+            jsonBody = File.ReadAllText(GeneralHelpers.ReturnProjectPath() + "Jsons/Spotify/Musica/CadastraMusicaJson.json", Encoding.UTF8);
             jsonBody.Replace("$idMusica", idMusica);
         }
     }
