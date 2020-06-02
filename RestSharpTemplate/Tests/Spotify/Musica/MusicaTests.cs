@@ -1,4 +1,5 @@
 ﻿using DesafioAPI.Bases;
+using DesafioAPI.Helpers;
 using DesafioAPI.Requests.Spotify;
 using DesafioAPI.Requests.Spotify.Musica;
 using Newtonsoft.Json.Linq;
@@ -29,16 +30,23 @@ namespace DesafioAPI.Tests.Spotify.Musica
         public void CadastrarMusica()
         {
             CadastrarMusicaRequests cadastrarMusicaRequests = new CadastrarMusicaRequests("1QafloWDNYF88IOFcwDakG", accessToken);
-            #region Parameters           
+            #region Parameters  
+            string nomeMusica = "Please Mister Postman - Remastered 2009";
             string idMusica = "spotify:track:6wfK1R6FoLpmUA9lk5ll4T";
             string statusCodeEsperado = "Created";
             #endregion
             cadastrarMusicaRequests.SetJsonBody(idMusica);
             IRestResponse response = cadastrarMusicaRequests.ExecuteRequest();
 
+            ConsultarMusicaRequests consultarMusicaRequests = new ConsultarMusicaRequests("1QafloWDNYF88IOFcwDakG", accessToken);
+            IRestResponse responseMusica = consultarMusicaRequests.ExecuteRequest();
+            List<string> listaMusica = ObterListaResponse(responseMusica);
+
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+                Assert.IsTrue(GeneralHelpers.VerificaSeStringEstaContidaNaLista(listaMusica, nomeMusica));
+                Assert.AreEqual(1, listaMusica.Count);
             });
         }
 
@@ -47,14 +55,25 @@ namespace DesafioAPI.Tests.Spotify.Musica
         {
             ConsultarMusicaRequests consultarMusicaRequests = new ConsultarMusicaRequests("1QafloWDNYF88IOFcwDakG", accessToken);
             #region Parameters           
-            string nomeMusica = "Dubwoofer Subste";
+            string nomeMusica = "Please Mister Postman - Remastered 2009";
             string statusCodeEsperado = "OK";
             #endregion
+
+            CadastrarMusicaRequests cadastrarMusicaRequests = new CadastrarMusicaRequests("1QafloWDNYF88IOFcwDakG", accessToken);
+            #region Parameters  
+          //  string nomeMusica = "Please Mister Postman - Remastered 2009";
+            string idMusica = "spotify:track:6wfK1R6FoLpmUA9lk5ll4T";
+            #endregion
+            cadastrarMusicaRequests.SetJsonBody(idMusica);
+            IRestResponse responseCadastro = cadastrarMusicaRequests.ExecuteRequest();
+
+
             IRestResponse response = consultarMusicaRequests.ExecuteRequest();
             List<string> listaMusica = ObterListaResponse(response);
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+                Assert.IsTrue(GeneralHelpers.VerificaSeStringEstaContidaNaLista(listaMusica, nomeMusica));
             });
         }
 
@@ -63,34 +82,51 @@ namespace DesafioAPI.Tests.Spotify.Musica
         {
             DeletarMusicaRequests deletarMusicaRequests = new DeletarMusicaRequests("1QafloWDNYF88IOFcwDakG", accessToken);
             #region Parameters           
+            string nomeMusica = "Please Mister Postman - Remastered 2009";
             string idMusica = "spotify:track:6wfK1R6FoLpmUA9lk5ll4T";
             string statusCodeEsperado = "OK";
             #endregion
+
+            CadastrarMusicaRequests cadastrarMusicaRequests = new CadastrarMusicaRequests("1QafloWDNYF88IOFcwDakG", accessToken);
+            //#region Parameters  
+            //string nomeMusica = "Please Mister Postman - Remastered 2009";
+            //string idMusica = "spotify:track:6wfK1R6FoLpmUA9lk5ll4T";
+            //#endregion
+            cadastrarMusicaRequests.SetJsonBody(idMusica);
+            IRestResponse responseCadastro = cadastrarMusicaRequests.ExecuteRequest();
+
+
             deletarMusicaRequests.SetJsonBody(idMusica);
             IRestResponse response = deletarMusicaRequests.ExecuteRequest();
 
-            Assert.Multiple(() =>
-            {
-                Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
-            });
-        }
-
-        [Test]
-        public void ReordenaMusica()
-        {
-            ReordenaMusicaRequests reordenaMusicaRequests = new ReordenaMusicaRequests("1QafloWDNYF88IOFcwDakG", accessToken);
-            #region Parameters           
-            string idMusica = "spotify:track:6wfK1R6FoLpmUA9lk5ll4T";
-            string statusCodeEsperado = "Created";
-            #endregion
-            reordenaMusicaRequests.SetJsonBody(idMusica);
-            IRestResponse response = reordenaMusicaRequests.ExecuteRequest();
+            ConsultarMusicaRequests consultarMusicaRequests = new ConsultarMusicaRequests("1QafloWDNYF88IOFcwDakG", accessToken);
+            IRestResponse responseMusica = consultarMusicaRequests.ExecuteRequest();
+            List<string> listaMusica = ObterListaResponse(responseMusica);
 
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+                Assert.IsFalse(GeneralHelpers.VerificaSeStringEstaContidaNaLista(listaMusica, nomeMusica));
+                Assert.AreEqual(0, listaMusica.Count);
             });
         }
+
+        //[Test]
+        //public void ReordenaMusica()
+        //{
+        //    ReordenaMusicaRequests reordenaMusicaRequests = new ReordenaMusicaRequests("1QafloWDNYF88IOFcwDakG", accessToken);
+        //    #region Parameters           
+        //    string idMusica = "spotify:track:6wfK1R6FoLpmUA9lk5ll4T";
+        //    string statusCodeEsperado = "Created";
+        //    #endregion
+        //    reordenaMusicaRequests.SetJsonBody(idMusica);
+        //    IRestResponse response = reordenaMusicaRequests.ExecuteRequest();
+
+        //    Assert.Multiple(() =>
+        //    {
+        //        Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+        //    });
+        //}
 
         public List<string> ObterListaResponse(IRestResponse response)
         {

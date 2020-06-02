@@ -39,7 +39,24 @@ namespace DesafioAPI.Tests.Spotify.PlayList
                     Assert.IsTrue(GeneralHelpers.VerificaSeStringEstaContidaNaLista(listaMusica, nomePlayList));
                 });
         }
-        
+
+        [Test]
+        public void PlayListNaoEncontrada()
+        {
+            ConsultaPlayLisRequest consultaPlayListRequests = new ConsultaPlayLisRequest(accessToken);
+            #region Parameters           
+            string nomePlayList = "Teste";
+            string statusCodeEsperado = "OK";
+            #endregion
+            IRestResponse response = consultaPlayListRequests.ExecuteRequest();
+            List<string> listaMusica = ObterListaResponse(response);
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+                Assert.IsFalse(GeneralHelpers.VerificaSeStringEstaContidaNaLista(listaMusica, nomePlayList));
+            });
+        }
+
         public List<string> ObterListaResponse(IRestResponse response)
         {
             var jsonString = response.Content;
@@ -55,6 +72,6 @@ namespace DesafioAPI.Tests.Spotify.PlayList
                 listaResponse.Add(itemProperties.FirstOrDefault(x => x.Name == "name").Value.ToString());
             }
             return listaResponse;
-        }        
+        }
     }
 }
