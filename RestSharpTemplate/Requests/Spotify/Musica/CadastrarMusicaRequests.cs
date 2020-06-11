@@ -12,12 +12,11 @@ using System.Threading.Tasks;
 namespace DesafioAPI.Requests.Spotify
 {
     public class CadastrarMusicaRequests : RequestBase
-    {
-        HelpersSpotify helpersSpotify = new HelpersSpotify();
+    {        HelpersSpotify helpersSpotify = new HelpersSpotify();
 
         public CadastrarMusicaRequests(string idPlayList)
         {
-            accessToken = helpersSpotify.AutenticacaoSpotify();
+            accessToken = HelpersSpotify.AutenticacaoSpotify();
             requestService = "/playlists/" + idPlayList + "/tracks";
             method = Method.POST;
             headers.Add("Authorization", "Bearer " + accessToken);

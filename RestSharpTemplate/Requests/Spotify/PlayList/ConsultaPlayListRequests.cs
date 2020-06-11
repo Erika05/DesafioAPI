@@ -8,11 +8,9 @@ namespace DesafioAPI.Requests.Spotify.PlayList
 {
     public class ConsultaPlayLisRequest : RequestBase
     {
-        HelpersSpotify helpersSpotify = new HelpersSpotify();
-
         public ConsultaPlayLisRequest()
         {
-            accessToken = helpersSpotify.AutenticacaoSpotify();
+            accessToken = HelpersSpotify.AutenticacaoSpotify();
             headers.Clear();
             headers.Add("Authorization", "Bearer " + accessToken);
             requestService = "/me/playlists";

@@ -2,6 +2,7 @@
 using DesafioAPI.Helpers;
 using DesafioAPI.Requests.Spotify;
 using DesafioAPI.Requests.Spotify.Musica;
+using DesafioAPI.Requests.Spotify.PlayList;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using RestSharp;
@@ -17,6 +18,8 @@ namespace DesafioAPI.Tests.Spotify.Musica
     [TestFixture]
     public class MusicaTests : TestBase
     {
+        ConsultaPlayLisRequest consultaPlayListRequests = new ConsultaPlayLisRequest();
+
         [Test]
         public void CadastrarMusica()
         {
@@ -26,12 +29,16 @@ namespace DesafioAPI.Tests.Spotify.Musica
             string idMusica = "spotify:track:6wfK1R6FoLpmUA9lk5ll4T";
             string statusCodeEsperado = "Created";
             #endregion
+
+         // List<string> list = HelpersSpotify.ObterListaResponse(consultaPlayListRequests.ExecuteRequest());
+            //string idPlayList =
+
             cadastrarMusicaRequests.SetJsonBody(idMusica);
             IRestResponse response = cadastrarMusicaRequests.ExecuteRequest();
 
             ConsultarMusicaRequests consultarMusicaRequests = new ConsultarMusicaRequests("1QafloWDNYF88IOFcwDakG");
             IRestResponse responseMusica = consultarMusicaRequests.ExecuteRequest();
-            List<string> listaMusica = ObterListaResponse(responseMusica);
+            List<string> listaMusica = HelpersSpotify.ObterListaMusica(responseMusica);
 
             Assert.Multiple(() =>
             {
@@ -60,7 +67,7 @@ namespace DesafioAPI.Tests.Spotify.Musica
 
 
             IRestResponse response = consultarMusicaRequests.ExecuteRequest();
-            List<string> listaMusica = ObterListaResponse(response);
+            List<string> listaMusica = HelpersSpotify.ObterListaMusica(response);
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
@@ -92,7 +99,7 @@ namespace DesafioAPI.Tests.Spotify.Musica
 
             ConsultarMusicaRequests consultarMusicaRequests = new ConsultarMusicaRequests("1QafloWDNYF88IOFcwDakG");
             IRestResponse responseMusica = consultarMusicaRequests.ExecuteRequest();
-            List<string> listaMusica = ObterListaResponse(responseMusica);
+            List<string> listaMusica = HelpersSpotify.ObterListaMusica(responseMusica);
 
             Assert.Multiple(() =>
             {
@@ -118,28 +125,5 @@ namespace DesafioAPI.Tests.Spotify.Musica
         //        Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
         //    });
         //}
-
-        public List<string> ObterListaResponse(IRestResponse response)
-        {
-            var jsonString = response.Content;
-
-            var twitterObject = JToken.Parse(jsonString);
-            var trendsArray = twitterObject.Children<JProperty>().FirstOrDefault(x => x.Name == "items").Value;
-
-            List<string> listaResponse = new List<string>();
-            //// List<string> tracks = new List<string>();
-
-            foreach (var item in trendsArray.Children())
-            {
-                var itemProperties = item.Children<JProperty>();
-                // tracks.Add(itemProperties.FirstOrDefault(x => x.Name == "track").Value.ToString());
-                var tracks = itemProperties.FirstOrDefault(x => x.Name == "track").Value;
-                var itemTracks = tracks.Children<JProperty>();
-                listaResponse.Add(itemTracks.FirstOrDefault(x => x.Name == "name").Value.ToString());
-
-            }
-
-            return listaResponse;
-        }
     }
 }

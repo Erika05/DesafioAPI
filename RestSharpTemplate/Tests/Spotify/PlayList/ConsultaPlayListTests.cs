@@ -1,7 +1,6 @@
 ﻿using DesafioAPI.Bases;
 using DesafioAPI.Helpers;
 using DesafioAPI.Requests.Spotify.PlayList;
-using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using RestSharp;
 using System;
@@ -25,7 +24,7 @@ namespace DesafioAPI.Tests.Spotify.PlayList
             string statusCodeEsperado = "OK";
             #endregion
             IRestResponse response = consultaPlayListRequests.ExecuteRequest();
-            List<string> listaMusica = ObterListaResponse(response);
+            List<string> listaMusica = HelpersSpotify.ObterListaResponse(response);
             Assert.Multiple(() =>
                 {
                     Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
@@ -41,7 +40,7 @@ namespace DesafioAPI.Tests.Spotify.PlayList
             string statusCodeEsperado = "OK";
             #endregion
             IRestResponse response = consultaPlayListRequests.ExecuteRequest();
-            List<string> listaMusica = ObterListaResponse(response);
+            List<string> listaMusica = HelpersSpotify.ObterListaResponse(response);
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
@@ -49,21 +48,21 @@ namespace DesafioAPI.Tests.Spotify.PlayList
             });
         }
 
-        public List<string> ObterListaResponse(IRestResponse response)
-        {
-            var jsonString = response.Content;
+        //public List<string> ObterListaResponse(IRestResponse response)
+        //{
+        //    var jsonString = response.Content;
 
-            var twitterObject = JToken.Parse(jsonString);
-            var trendsArray = twitterObject.Children<JProperty>().FirstOrDefault(x => x.Name == "items").Value;
+        //    var twitterObject = JToken.Parse(jsonString);
+        //    var trendsArray = twitterObject.Children<JProperty>().FirstOrDefault(x => x.Name == "items").Value;
 
-            List<string> listaResponse = new List<string>();
+        //    List<string> listaResponse = new List<string>();
 
-            foreach (var item in trendsArray.Children())
-            {
-                var itemProperties = item.Children<JProperty>();
-                listaResponse.Add(itemProperties.FirstOrDefault(x => x.Name == "name").Value.ToString());
-            }
-            return listaResponse;
-        }
+        //    foreach (var item in trendsArray.Children())
+        //    {
+        //        var itemProperties = item.Children<JProperty>();
+        //        listaResponse.Add(itemProperties.FirstOrDefault(x => x.Name == "name").Value.ToString());
+        //    }
+        //    return listaResponse;
+        //}
     }
 }
