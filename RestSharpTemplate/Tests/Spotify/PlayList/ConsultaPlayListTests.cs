@@ -15,19 +15,11 @@ namespace DesafioAPI.Tests.Spotify.PlayList
     // [Parallelizable(ParallelScope.Self)]
     public class ConsultaPlayListTests : TestBase
     {
-        public static string accessToken;
-        HelpersSpotify helpersSpotify = new HelpersSpotify();
+        ConsultaPlayLisRequest consultaPlayListRequests = new ConsultaPlayLisRequest();
 
-        [OneTimeSetUp]
-        public void Login()
-        {
-            accessToken = helpersSpotify.AutenticacaoSpotify();
-        }
-
-        [Test] //[Parallelizable]
+        [Test]
         public void ConsultarPlayList()
-        {
-            ConsultaPlayLisRequest consultaPlayListRequests = new ConsultaPlayLisRequest(accessToken);
+        {            
             #region Parameters           
             string nomePlayList = "Teste Postman";
             string statusCodeEsperado = "OK";
@@ -44,7 +36,6 @@ namespace DesafioAPI.Tests.Spotify.PlayList
         [Test]
         public void PlayListNaoEncontrada()
         {
-            ConsultaPlayLisRequest consultaPlayListRequests = new ConsultaPlayLisRequest(accessToken);
             #region Parameters           
             string nomePlayList = "Teste";
             string statusCodeEsperado = "OK";

@@ -27,6 +27,8 @@ namespace DesafioAPI.Bases
 
         protected bool apiGerarTokenSpotfy = false;
 
+        protected string accessToken = null;
+
         //protected string accessToken;
 
         protected IDictionary<string, string> headers = new Dictionary<string, string>()
@@ -66,7 +68,7 @@ namespace DesafioAPI.Bases
             {
                 response = RestSharpHelpers.ExecuteRequest(urlGerarTokenSpotify, requestService, method, headers, parametrosBody, cookies, parameters, parameterTypeIsUrlSegment, jsonBody, httpBasicAuthenticator, ntlmAuthenticator);
 
-               // ExtentReportHelpers.AddTestInfo(urlGerarTokenSpotify, requestService, method.ToString(), headers, parametrosBody, cookies, parameters, jsonBody, httpBasicAuthenticator, ntlmAuthenticator, response);
+                ExtentReportHelpers.AddTestInfo(urlGerarTokenSpotify, requestService, method.ToString(), headers, parametrosBody, cookies, parameters, jsonBody, httpBasicAuthenticator, ntlmAuthenticator, response);
             }
             else
             {                

@@ -13,19 +13,10 @@ namespace DesafioAPI.Tests.Spotify.Artista
     [TestFixture]
     public class ArtistaTests : TestBase
     {
-        public static string accessToken;
-        HelpersSpotify helpersSpotify = new HelpersSpotify();
-
-        [OneTimeSetUp]
-        public void Login()
-        {
-            accessToken = helpersSpotify.AutenticacaoSpotify();
-        }
-
         [Test]
         public void ConsultarArtista()
         {
-            ConsultaArtistaResquests consultaArtistaResquests = new ConsultaArtistaResquests("6wfK1R6FoLpmUA9lk5ll4T", accessToken);
+            ConsultaArtistaResquests consultaArtistaResquests = new ConsultaArtistaResquests("6wfK1R6FoLpmUA9lk5ll4T");
             #region Parameters           
             string statusCodeEsperado = "OK";
             string nomeArtista = "The Beatles";

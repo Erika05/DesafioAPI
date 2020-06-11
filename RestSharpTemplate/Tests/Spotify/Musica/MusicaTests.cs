@@ -17,19 +17,10 @@ namespace DesafioAPI.Tests.Spotify.Musica
     [TestFixture]
     public class MusicaTests : TestBase
     {
-        public static string accessToken;
-        HelpersSpotify helpersSpotify = new HelpersSpotify();
-
-        [OneTimeSetUp]
-        public void Login()
-        {
-            accessToken = helpersSpotify.AutenticacaoSpotify();
-        }
-
         [Test]
         public void CadastrarMusica()
         {
-            CadastrarMusicaRequests cadastrarMusicaRequests = new CadastrarMusicaRequests("1QafloWDNYF88IOFcwDakG", accessToken);
+            CadastrarMusicaRequests cadastrarMusicaRequests = new CadastrarMusicaRequests("1QafloWDNYF88IOFcwDakG");
             #region Parameters  
             string nomeMusica = "Please Mister Postman - Remastered 2009";
             string idMusica = "spotify:track:6wfK1R6FoLpmUA9lk5ll4T";
@@ -38,7 +29,7 @@ namespace DesafioAPI.Tests.Spotify.Musica
             cadastrarMusicaRequests.SetJsonBody(idMusica);
             IRestResponse response = cadastrarMusicaRequests.ExecuteRequest();
 
-            ConsultarMusicaRequests consultarMusicaRequests = new ConsultarMusicaRequests("1QafloWDNYF88IOFcwDakG", accessToken);
+            ConsultarMusicaRequests consultarMusicaRequests = new ConsultarMusicaRequests("1QafloWDNYF88IOFcwDakG");
             IRestResponse responseMusica = consultarMusicaRequests.ExecuteRequest();
             List<string> listaMusica = ObterListaResponse(responseMusica);
 
@@ -53,13 +44,13 @@ namespace DesafioAPI.Tests.Spotify.Musica
         [Test]
         public void ConsultarMusica()
         {
-            ConsultarMusicaRequests consultarMusicaRequests = new ConsultarMusicaRequests("1QafloWDNYF88IOFcwDakG", accessToken);
+            ConsultarMusicaRequests consultarMusicaRequests = new ConsultarMusicaRequests("1QafloWDNYF88IOFcwDakG");
             #region Parameters           
             string nomeMusica = "Please Mister Postman - Remastered 2009";
             string statusCodeEsperado = "OK";
             #endregion
 
-            CadastrarMusicaRequests cadastrarMusicaRequests = new CadastrarMusicaRequests("1QafloWDNYF88IOFcwDakG", accessToken);
+            CadastrarMusicaRequests cadastrarMusicaRequests = new CadastrarMusicaRequests("1QafloWDNYF88IOFcwDakG");
             #region Parameters  
           //  string nomeMusica = "Please Mister Postman - Remastered 2009";
             string idMusica = "spotify:track:6wfK1R6FoLpmUA9lk5ll4T";
@@ -80,14 +71,14 @@ namespace DesafioAPI.Tests.Spotify.Musica
         [Test]
         public void DeletarMusica()
         {
-            DeletarMusicaRequests deletarMusicaRequests = new DeletarMusicaRequests("1QafloWDNYF88IOFcwDakG", accessToken);
+            DeletarMusicaRequests deletarMusicaRequests = new DeletarMusicaRequests("1QafloWDNYF88IOFcwDakG");
             #region Parameters           
             string nomeMusica = "Please Mister Postman - Remastered 2009";
             string idMusica = "spotify:track:6wfK1R6FoLpmUA9lk5ll4T";
             string statusCodeEsperado = "OK";
             #endregion
 
-            CadastrarMusicaRequests cadastrarMusicaRequests = new CadastrarMusicaRequests("1QafloWDNYF88IOFcwDakG", accessToken);
+            CadastrarMusicaRequests cadastrarMusicaRequests = new CadastrarMusicaRequests("1QafloWDNYF88IOFcwDakG");
             //#region Parameters  
             //string nomeMusica = "Please Mister Postman - Remastered 2009";
             //string idMusica = "spotify:track:6wfK1R6FoLpmUA9lk5ll4T";
@@ -99,7 +90,7 @@ namespace DesafioAPI.Tests.Spotify.Musica
             deletarMusicaRequests.SetJsonBody(idMusica);
             IRestResponse response = deletarMusicaRequests.ExecuteRequest();
 
-            ConsultarMusicaRequests consultarMusicaRequests = new ConsultarMusicaRequests("1QafloWDNYF88IOFcwDakG", accessToken);
+            ConsultarMusicaRequests consultarMusicaRequests = new ConsultarMusicaRequests("1QafloWDNYF88IOFcwDakG");
             IRestResponse responseMusica = consultarMusicaRequests.ExecuteRequest();
             List<string> listaMusica = ObterListaResponse(responseMusica);
 

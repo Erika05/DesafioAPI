@@ -1,4 +1,5 @@
 ﻿using DesafioAPI.Bases;
+using DesafioAPI.Tests.Spotify;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,11 @@ namespace DesafioAPI.Requests.Spotify.Musica
 {
     public class ConsultarMusicaRequests : RequestBase
     {
-        public ConsultarMusicaRequests(string idPlayList, string accessToken)
+        HelpersSpotify helpersSpotify = new HelpersSpotify();
+
+        public ConsultarMusicaRequests(string idPlayList)
         {
+            accessToken = helpersSpotify.AutenticacaoSpotify();
             requestService = "/playlists/" + idPlayList  + "/tracks";
             method = Method.GET;
             headers.Add("Authorization", "Bearer " + accessToken);
