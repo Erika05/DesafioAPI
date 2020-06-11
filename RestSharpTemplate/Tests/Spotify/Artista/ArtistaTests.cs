@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace DesafioAPI.Tests.Spotify.Artista
 {
+    [TestFixture]
     public class ArtistaTests : TestBase
     {
         public static string accessToken;

@@ -12,6 +12,7 @@ using System.Text;
 namespace DesafioAPI.Tests.Spotify.PlayList
 {
     [TestFixture]
+    // [Parallelizable(ParallelScope.Self)]
     public class ConsultaPlayListTests : TestBase
     {
         public static string accessToken;
@@ -23,7 +24,7 @@ namespace DesafioAPI.Tests.Spotify.PlayList
             accessToken = helpersSpotify.AutenticacaoSpotify();
         }
 
-        [Test]
+        [Test] //[Parallelizable]
         public void ConsultarPlayList()
         {
             ConsultaPlayLisRequest consultaPlayListRequests = new ConsultaPlayLisRequest(accessToken);
