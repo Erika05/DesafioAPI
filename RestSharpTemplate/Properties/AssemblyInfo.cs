@@ -36,4 +36,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 //Paralelização dos testes
-//[assembly: LevelOfParallelism(5)]
+[assembly: LevelOfParallelism(25)]
