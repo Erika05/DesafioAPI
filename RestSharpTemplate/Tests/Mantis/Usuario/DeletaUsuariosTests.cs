@@ -2,13 +2,13 @@
 using NUnit.Framework;
 using RestSharp;
 using DesafioAPI.DBSteps;
-using DesafioAPI.Requests.Projeto;
 using DesafioAPI.Requests.Tarefas;
 using System.Collections.Generic;
 using DesafioAPI.Requests.Usuario;
-using DesafioAPI.Tests.Projeto;
+using DesafioAPI.Tests.Mantis.Projeto;
+using DesafioAPI.TestsMantis.Mantis.Usuario;
 
-namespace DesafioAPI.Tests.Usuario
+namespace DesafioAPI.Tests.Mantis.Usuario
 {
     [TestFixture]
     public class DeletaUsuariosTests : TestBase

@@ -6,7 +6,7 @@ using RestSharp;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace DesafioAPI.Tests.Projeto
+namespace DesafioAPI.Tests.Mantis.Projeto
 {
 
     [TestFixture]

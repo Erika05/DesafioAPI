@@ -47,7 +47,7 @@ namespace DesafioAPI.Helpers
         public static void AddTest()
         {
             string testName = TestContext.CurrentContext.Test.MethodName;
-            string testCategory = TestContext.CurrentContext.Test.ClassName.Substring(Properties.Settings.Default.REPORT_SUBSTRING_LENGTH);
+            string testCategory = (TestContext.CurrentContext.Test.ClassName).Split('.')[4];
 
             TEST = EXTENT_REPORT.CreateTest(testName).AssignCategory(testCategory);
         }

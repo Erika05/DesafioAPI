@@ -4,7 +4,7 @@ using DesafioAPI.Requests.Projeto;
 using NUnit.Framework;
 using RestSharp;
 
-namespace DesafioAPI.Tests.Projeto
+namespace DesafioAPI.Tests.Mantis.Projeto
 {
     [TestFixture]
     public class DeletaProjetoTests : TestBase

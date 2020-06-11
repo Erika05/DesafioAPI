@@ -1,10 +1,11 @@
 ﻿using DesafioAPI.Bases;
 using DesafioAPI.DBSteps;
 using DesafioAPI.Requests.Projeto;
+using DesafioAPI.Tests.Mantis.Projeto;
 using NUnit.Framework;
 using RestSharp;
 
-namespace DesafioAPI.Tests.Projeto
+namespace DesafioAPI.Tests.Mantis.Projeto
 {
     [TestFixture]
     public class AtualizaProjetoTests : TestBase

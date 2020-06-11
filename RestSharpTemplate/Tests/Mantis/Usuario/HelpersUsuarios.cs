@@ -4,7 +4,7 @@ using DesafioAPI.Requests.Tarefas;
 using RestSharp;
 using System.Collections.Generic;
 
-namespace DesafioAPI.Tests.Usuario
+namespace DesafioAPI.TestsMantis.Mantis.Usuario
 {
     public class HelpersUsuarios : TestBase
     {

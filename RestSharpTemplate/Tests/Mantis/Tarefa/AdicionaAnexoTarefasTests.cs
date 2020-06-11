@@ -2,12 +2,12 @@
 using DesafioAPI.DBSteps;
 using DesafioAPI.Requests.Projeto;
 using DesafioAPI.Requests.Tarefas;
-using DesafioAPI.Tests.Projeto;
+using DesafioAPI.Tests.Mantis.Projeto;
 using NUnit.Framework;
 using RestSharp;
 using System.Threading;
 
-namespace DesafioAPI.Tests.Tarefas
+namespace DesafioAPI.Tests.Mantis.Tarefas
 {
     [TestFixture]
     public class AdicionaAnexoTarefasTests : TestBase

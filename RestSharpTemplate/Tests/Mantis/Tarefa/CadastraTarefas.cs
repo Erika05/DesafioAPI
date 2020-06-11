@@ -3,13 +3,13 @@ using DesafioAPI.DBSteps;
 using DesafioAPI.Helpers;
 using DesafioAPI.Requests.Projeto;
 using DesafioAPI.Requests.Tarefas;
-using DesafioAPI.Tests.Projeto;
+using DesafioAPI.Tests.Mantis.Projeto;
 using NUnit.Framework;
 using RestSharp;
 using System.Collections;
 using System.Text.RegularExpressions;
 
-namespace DesafioAPI.Tests.Tarefas
+namespace DesafioAPI.Tests.Mantis.Tarefas
 {
     [TestFixture]
     public class CadastroTarefas : TestBase

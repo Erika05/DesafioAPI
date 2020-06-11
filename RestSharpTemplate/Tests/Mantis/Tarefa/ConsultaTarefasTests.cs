@@ -6,9 +6,9 @@ using DesafioAPI.DBSteps;
 using DesafioAPI.Requests.Projeto;
 using System.Collections;
 using System.Collections.Generic;
-using DesafioAPI.Tests.Projeto;
+using DesafioAPI.Tests.Mantis.Projeto;
 
-namespace DesafioAPI.Tests.Tarefas
+namespace DesafioAPI.Tests.Mantis.Tarefas
 {
     [TestFixture]
     public class ConsultaTarefasTests : TestBase

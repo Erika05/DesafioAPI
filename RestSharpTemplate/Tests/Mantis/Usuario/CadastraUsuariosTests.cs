@@ -3,10 +3,11 @@ using NUnit.Framework;
 using RestSharp;
 using DesafioAPI.DBSteps;
 using DesafioAPI.Requests.Tarefas;
-using DesafioAPI.Tests.Projeto;
+using DesafioAPI.Tests.Mantis.Projeto;
 using System.Text.RegularExpressions;
+using DesafioAPI.TestsMantis.Mantis.Usuario;
 
-namespace DesafioAPI.Tests.Usuario
+namespace DesafioAPI.Tests.Mantis.Usuario
 {
     [TestFixture]
     public class CadastraUsuariosTests : TestBase

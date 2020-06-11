@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesafioAPI.Tests.Projeto
+namespace DesafioAPI.Tests.Mantis.Projeto
 {
     public class HelpersProjetos : TestBase
     {
