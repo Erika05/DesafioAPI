@@ -184,7 +184,7 @@
     <Compile Include="Tests\Mantis\Tarefa\AdicionaAnexoTarefasTests.cs" />
     <Compile Include="Tests\Mantis\Tarefa\DeletaTarefasTests.cs" />
     <Compile Include="Tests\Mantis\Tarefa\AtualizaTarefasTests.cs" />
-    <Compile Include="Tests\Mantis\Tarefa\CadastraTarefas.cs" />
+    <Compile Include="Tests\Mantis\Tarefa\CadastraTarefasTests.cs" />
     <Compile Include="Tests\Mantis\Tarefa\ConsultaTarefasTests.cs" />
     <Compile Include="Tests\Mantis\Usuario\CadastraUsuariosTests.cs" />
     <Compile Include="Tests\Mantis\Usuario\DeletaUsuariosTests.cs" />

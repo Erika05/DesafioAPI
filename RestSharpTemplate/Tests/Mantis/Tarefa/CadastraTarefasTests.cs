@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 namespace DesafioAPI.Tests.Mantis.Tarefas
 {
     [TestFixture]
-    public class CadastroTarefas : TestBase
+    public class CadastraTarefasTests : TestBase
     {
         CadastraTarefaRequest cadastraTarefaRequest = new CadastraTarefaRequest();
         HelpersProjetos helpersProjetos = new HelpersProjetos();
