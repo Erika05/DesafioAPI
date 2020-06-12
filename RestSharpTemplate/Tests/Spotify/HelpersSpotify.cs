@@ -23,7 +23,7 @@ namespace DesafioAPI.Tests.Spotify
             return response.Data["access_token"];
         }
 
-        public static List<string> ObterListaResponse(IRestResponse response)
+        public static List<string> ObterListaResponse(IRestResponse response, Boolean musica)
         {
             var jsonString = response.Content;
 
@@ -35,29 +35,19 @@ namespace DesafioAPI.Tests.Spotify
             foreach (var item in trendsArray.Children())
             {
                 var itemProperties = item.Children<JProperty>();
-                listaResponse.Add(itemProperties.FirstOrDefault(x => x.Name == "name").Value.ToString());
-            }
-            return listaResponse;
-        }
 
-        public static List<string> ObterListaMusica(IRestResponse response)
-        {
-            var jsonString = response.Content;
-
-            var twitterObject = JToken.Parse(jsonString);
-            var trendsArray = twitterObject.Children<JProperty>().FirstOrDefault(x => x.Name == "items").Value;
-
-            List<string> listaResponse = new List<string>();
-
-            foreach (var item in trendsArray.Children())
-            {
-                var itemProperties = item.Children<JProperty>();
-                var tracks = itemProperties.FirstOrDefault(x => x.Name == "track").Value;
-                var itemTracks = tracks.Children<JProperty>();
-                listaResponse.Add(itemTracks.FirstOrDefault(x => x.Name == "name").Value.ToString());
+                if (musica)
+                {
+                    var tracks = itemProperties.FirstOrDefault(x => x.Name == "track").Value;
+                    var itemTracks = tracks.Children<JProperty>();
+                    listaResponse.Add(itemTracks.FirstOrDefault(x => x.Name == "name").Value.ToString());
+                }
+                else
+                {
+                    listaResponse.Add(itemProperties.FirstOrDefault(x => x.Name == "name").Value.ToString());//playList
+                }
 
             }
-
             return listaResponse;
         }
     }

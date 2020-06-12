@@ -24,7 +24,8 @@ namespace DesafioAPI.Tests.Spotify.PlayList
             string statusCodeEsperado = "OK";
             #endregion
             IRestResponse response = consultaPlayListRequests.ExecuteRequest();
-            List<string> listaMusica = HelpersSpotify.ObterListaResponse(response);
+            List<string> listaMusica = HelpersSpotify.ObterListaResponse(response, false);
+
             Assert.Multiple(() =>
                 {
                     Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
@@ -40,29 +41,13 @@ namespace DesafioAPI.Tests.Spotify.PlayList
             string statusCodeEsperado = "OK";
             #endregion
             IRestResponse response = consultaPlayListRequests.ExecuteRequest();
-            List<string> listaMusica = HelpersSpotify.ObterListaResponse(response);
+            List<string> listaMusica = HelpersSpotify.ObterListaResponse(response, false);
+
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
                 Assert.IsFalse(GeneralHelpers.VerificaSeStringEstaContidaNaLista(listaMusica, nomePlayList));
             });
         }
-
-        //public List<string> ObterListaResponse(IRestResponse response)
-        //{
-        //    var jsonString = response.Content;
-
-        //    var twitterObject = JToken.Parse(jsonString);
-        //    var trendsArray = twitterObject.Children<JProperty>().FirstOrDefault(x => x.Name == "items").Value;
-
-        //    List<string> listaResponse = new List<string>();
-
-        //    foreach (var item in trendsArray.Children())
-        //    {
-        //        var itemProperties = item.Children<JProperty>();
-        //        listaResponse.Add(itemProperties.FirstOrDefault(x => x.Name == "name").Value.ToString());
-        //    }
-        //    return listaResponse;
-        //}
     }
 }

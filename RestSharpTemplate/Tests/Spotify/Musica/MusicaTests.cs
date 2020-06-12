@@ -30,7 +30,7 @@ namespace DesafioAPI.Tests.Spotify.Musica
             string statusCodeEsperado = "Created";
             #endregion
 
-         // List<string> list = HelpersSpotify.ObterListaResponse(consultaPlayListRequests.ExecuteRequest());
+            // List<string> list = HelpersSpotify.ObterListaResponse(consultaPlayListRequests.ExecuteRequest());
             //string idPlayList =
 
             cadastrarMusicaRequests.SetJsonBody(idMusica);
@@ -38,7 +38,7 @@ namespace DesafioAPI.Tests.Spotify.Musica
 
             ConsultarMusicaRequests consultarMusicaRequests = new ConsultarMusicaRequests("1QafloWDNYF88IOFcwDakG");
             IRestResponse responseMusica = consultarMusicaRequests.ExecuteRequest();
-            List<string> listaMusica = HelpersSpotify.ObterListaMusica(responseMusica);
+            List<string> listaMusica = HelpersSpotify.ObterListaResponse(responseMusica, true);
 
             Assert.Multiple(() =>
             {
@@ -59,15 +59,15 @@ namespace DesafioAPI.Tests.Spotify.Musica
 
             CadastrarMusicaRequests cadastrarMusicaRequests = new CadastrarMusicaRequests("1QafloWDNYF88IOFcwDakG");
             #region Parameters  
-          //  string nomeMusica = "Please Mister Postman - Remastered 2009";
+            //  string nomeMusica = "Please Mister Postman - Remastered 2009";
             string idMusica = "spotify:track:6wfK1R6FoLpmUA9lk5ll4T";
             #endregion
             cadastrarMusicaRequests.SetJsonBody(idMusica);
             IRestResponse responseCadastro = cadastrarMusicaRequests.ExecuteRequest();
 
-
             IRestResponse response = consultarMusicaRequests.ExecuteRequest();
-            List<string> listaMusica = HelpersSpotify.ObterListaMusica(response);
+            List<string> listaMusica = HelpersSpotify.ObterListaResponse(response, true);
+
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
@@ -99,7 +99,7 @@ namespace DesafioAPI.Tests.Spotify.Musica
 
             ConsultarMusicaRequests consultarMusicaRequests = new ConsultarMusicaRequests("1QafloWDNYF88IOFcwDakG");
             IRestResponse responseMusica = consultarMusicaRequests.ExecuteRequest();
-            List<string> listaMusica = HelpersSpotify.ObterListaMusica(responseMusica);
+            List<string> listaMusica = HelpersSpotify.ObterListaResponse(responseMusica, true);
 
             Assert.Multiple(() =>
             {

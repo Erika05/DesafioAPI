@@ -4,6 +4,7 @@ using DesafioAPI.DBSteps;
 
 namespace DesafioAPI.Bases
 {
+   // [assembly: LevelOfParallelism(2)]
     public class TestBase
     {
         [OneTimeSetUp]
