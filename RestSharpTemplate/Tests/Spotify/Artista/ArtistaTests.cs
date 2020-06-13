@@ -15,12 +15,17 @@ namespace DesafioAPI.Tests.Spotify.Artista
     {
         [Test]
         public void ConsultarArtista()
-        {
-            ConsultaArtistaResquests consultaArtistaResquests = new ConsultaArtistaResquests("6wfK1R6FoLpmUA9lk5ll4T");
+        {            
             #region Parameters           
             string statusCodeEsperado = "OK";
             string nomeArtista = "The Beatles";
             #endregion
+
+            //IRestResponse<dynamic> responsePlayList = consultaPlayListRequests.ExecuteRequest();
+            //string idPlayList = HelpersSpotify.RetornaIdPlayList(responsePlayList, nomePlayList);
+
+            ConsultaArtistaResquests consultaArtistaResquests = new ConsultaArtistaResquests("6wfK1R6FoLpmUA9lk5ll4T");
+
             IRestResponse<dynamic> response = consultaArtistaResquests.ExecuteRequest();
             string artista = response.Data["artists"][0]["name"];
             Assert.Multiple(() =>

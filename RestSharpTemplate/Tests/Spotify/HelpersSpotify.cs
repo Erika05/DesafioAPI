@@ -50,5 +50,19 @@ namespace DesafioAPI.Tests.Spotify
             }
             return listaResponse;
         }
+
+        public static string RetornaIdPlayList(IRestResponse<dynamic> responsePlayList, string nomePlaLyst)
+        {
+            int index = -1;
+            List<string> list = HelpersSpotify.ObterListaResponse(responsePlayList, false);
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].Equals(nomePlaLyst))
+                {
+                    index = i;
+                }
+            }
+            return responsePlayList.Data["items"][index]["id"];
+        }
     }
 }

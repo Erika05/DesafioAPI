@@ -22,27 +22,36 @@ namespace DesafioAPI.Tests.Spotify.Musica
 
         [Test]
         public void CadastrarMusica()
-        {
-            CadastrarMusicaRequests cadastrarMusicaRequests = new CadastrarMusicaRequests("1QafloWDNYF88IOFcwDakG");
+        {           
             #region Parameters  
             string nomeMusica = "Please Mister Postman - Remastered 2009";
+            string nomePlayList = "Teste Postman";
             string idMusica = "spotify:track:6wfK1R6FoLpmUA9lk5ll4T";
             string statusCodeEsperado = "Created";
             #endregion
 
-            // List<string> list = HelpersSpotify.ObterListaResponse(consultaPlayListRequests.ExecuteRequest());
-            //string idPlayList =
+            //IRestResponse<dynamic> responsePlayList = consultaPlayListRequests.ExecuteRequest();
+            //string idPlayList = HelpersSpotify.RetornaIdPlayList(responsePlayList, nomePlayList);
+           
+            DeletarMusicaRequests deletarMusicaRequests = new DeletarMusicaRequests("1QafloWDNYF88IOFcwDakG");
+            // DeletarMusicaRequests deletarMusicaRequests = new DeletarMusicaRequests(idPlayList);
+            deletarMusicaRequests.SetJsonBody(idMusica);
+            IRestResponse response = deletarMusicaRequests.ExecuteRequest();
+
+            CadastrarMusicaRequests cadastrarMusicaRequests = new CadastrarMusicaRequests("1QafloWDNYF88IOFcwDakG");
+           // CadastrarMusicaRequests cadastrarMusicaRequests = new CadastrarMusicaRequests(idPlayList);
 
             cadastrarMusicaRequests.SetJsonBody(idMusica);
-            IRestResponse response = cadastrarMusicaRequests.ExecuteRequest();
+            IRestResponse responseCadastrado = cadastrarMusicaRequests.ExecuteRequest();
 
             ConsultarMusicaRequests consultarMusicaRequests = new ConsultarMusicaRequests("1QafloWDNYF88IOFcwDakG");
+           // ConsultarMusicaRequests consultarMusicaRequests = new ConsultarMusicaRequests(idPlayList);
             IRestResponse responseMusica = consultarMusicaRequests.ExecuteRequest();
             List<string> listaMusica = HelpersSpotify.ObterListaResponse(responseMusica, true);
 
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+                Assert.AreEqual(statusCodeEsperado, responseCadastrado.StatusCode.ToString());
                 Assert.IsTrue(GeneralHelpers.VerificaSeStringEstaContidaNaLista(listaMusica, nomeMusica));
                 Assert.AreEqual(1, listaMusica.Count);
             });
@@ -50,14 +59,19 @@ namespace DesafioAPI.Tests.Spotify.Musica
 
         [Test]
         public void ConsultarMusica()
-        {
-            ConsultarMusicaRequests consultarMusicaRequests = new ConsultarMusicaRequests("1QafloWDNYF88IOFcwDakG");
+        {            
             #region Parameters           
             string nomeMusica = "Please Mister Postman - Remastered 2009";
             string statusCodeEsperado = "OK";
             #endregion
 
+            //IRestResponse<dynamic> responsePlayList = consultaPlayListRequests.ExecuteRequest();
+            //string idPlayList = HelpersSpotify.RetornaIdPlayList(responsePlayList, nomePlayList);            
+
             CadastrarMusicaRequests cadastrarMusicaRequests = new CadastrarMusicaRequests("1QafloWDNYF88IOFcwDakG");
+
+            ConsultarMusicaRequests consultarMusicaRequests = new ConsultarMusicaRequests("1QafloWDNYF88IOFcwDakG");
+
             #region Parameters  
             //  string nomeMusica = "Please Mister Postman - Remastered 2009";
             string idMusica = "spotify:track:6wfK1R6FoLpmUA9lk5ll4T";
@@ -77,13 +91,17 @@ namespace DesafioAPI.Tests.Spotify.Musica
 
         [Test]
         public void DeletarMusica()
-        {
-            DeletarMusicaRequests deletarMusicaRequests = new DeletarMusicaRequests("1QafloWDNYF88IOFcwDakG");
+        {           
             #region Parameters           
             string nomeMusica = "Please Mister Postman - Remastered 2009";
             string idMusica = "spotify:track:6wfK1R6FoLpmUA9lk5ll4T";
             string statusCodeEsperado = "OK";
             #endregion
+
+            //IRestResponse<dynamic> responsePlayList = consultaPlayListRequests.ExecuteRequest();
+            //string idPlayList = HelpersSpotify.RetornaIdPlayList(responsePlayList, nomePlayList);
+
+            DeletarMusicaRequests deletarMusicaRequests = new DeletarMusicaRequests("1QafloWDNYF88IOFcwDakG");
 
             CadastrarMusicaRequests cadastrarMusicaRequests = new CadastrarMusicaRequests("1QafloWDNYF88IOFcwDakG");
             //#region Parameters  
@@ -111,12 +129,17 @@ namespace DesafioAPI.Tests.Spotify.Musica
 
         //[Test]
         //public void ReordenaMusica()
-        //{
-        //    ReordenaMusicaRequests reordenaMusicaRequests = new ReordenaMusicaRequests("1QafloWDNYF88IOFcwDakG", accessToken);
+        //{        
         //    #region Parameters           
         //    string idMusica = "spotify:track:6wfK1R6FoLpmUA9lk5ll4T";
         //    string statusCodeEsperado = "Created";
         //    #endregion
+
+        //IRestResponse<dynamic> responsePlayList = consultaPlayListRequests.ExecuteRequest();
+        //string idPlayList = HelpersSpotify.RetornaIdPlayList(responsePlayList, nomePlayList);
+
+        //    ReordenaMusicaRequests reordenaMusicaRequests = new ReordenaMusicaRequests("1QafloWDNYF88IOFcwDakG", accessToken);
+
         //    reordenaMusicaRequests.SetJsonBody(idMusica);
         //    IRestResponse response = reordenaMusicaRequests.ExecuteRequest();
 
