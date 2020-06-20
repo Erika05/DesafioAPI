@@ -275,5 +275,20 @@ namespace DesafioAPI.Properties {
                 this["AUTHENTICATOR_PASSWORD"] = value;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("usuarioAuthentication")]
+        public string NOME_BRANCH
+        {
+            get
+            {
+                return ((string)(this["NOME_BRANCH"]));
+            }
+            set
+            {
+                this["NOME_BRANCH"] = value;
+            }
+        }
     }
 }

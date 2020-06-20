@@ -34,6 +34,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'dev|AnyCPU'">
+    <OutputPath>bin\dev\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'prod|AnyCPU'">
+    <OutputPath>bin\prod\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'hml|AnyCPU'">
+    <OutputPath>bin\hml\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.3.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>..\packages\BouncyCastle.1.8.3.1\lib\BouncyCastle.Crypto.dll</HintPath>
@@ -195,6 +204,14 @@
     <Compile Include="Tests\Spotify\PlayList\ConsultaPlayListTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.prod.config">
+      <DependentUpon>app.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="app.dev.config">
+      <DependentUpon>app.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
@@ -245,5 +262,9 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.12.0\build\NUnit.props'))" />
     <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.16.1\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.16.1\build\net35\NUnit3TestAdapter.props'))" />
+  </Target>
+  <Target Name="AfterBuild">
+    <Delete Files="$(TargetDir)$(TargetFileName).config" />
+    <Copy SourceFiles="$(ProjectDir)\app.$(Configuration).config" DestinationFiles="$(TargetDir)$(TargetFileName).config" />
   </Target>
 </Project>
