@@ -7,6 +7,9 @@ using DesafioAPI.Tests.Mantis.Projeto;
 using NUnit.Framework;
 using RestSharp;
 using System.Collections;
+using System.Diagnostics;
+using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace DesafioAPI.Tests.Mantis.Tarefas
@@ -54,10 +57,11 @@ namespace DesafioAPI.Tests.Mantis.Tarefas
         [Test]
         public void CadastrarTarefa()
         {
+            string dataHora = GeneralHelpers.GetDataHoraNode();
             //Criar tag 
             #region Parameters
-            string resumo = "Tarefa resumo completa";
-            string descricao = "Tarefa resumo completa";
+            string resumo = "Tarefa resumo completa" + dataHora;
+            string descricao = "Tarefa resumo completa" + dataHora;
             string informacao = "informacao";
             string projeto = "projeto geral";
             string categoria = "General";
@@ -65,14 +69,14 @@ namespace DesafioAPI.Tests.Mantis.Tarefas
             string prioridade = "high";
             string severidade = "trivial";
             string reprodutibilidade = "sometimes";
-          //  string tag = "tag tarefa";
-             string tag = "e";
+            //  string tag = "tag tarefa";
+            string tag = "e";
             string statusCodeEsperado = "Created";
             #endregion
             helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, informacao, projeto, categoria, visibilidade, prioridade, severidade, reprodutibilidade, tag);
             IRestResponse<dynamic> response = cadastraTarefaRequest.ExecuteRequest();
-            
+
             string retornoSummary = response.Data["issue"]["summary"];
             string retornoDescription = response.Data["issue"]["description"];
             string retornoInformation = response.Data["issue"]["additional_information"];

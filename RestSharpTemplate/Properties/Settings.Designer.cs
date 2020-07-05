@@ -191,7 +191,7 @@ namespace DesafioAPI.Properties {
                 this["REPORT_SUBSTRING_LENGTH"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("solsrvtstsql.database.windows.net")]

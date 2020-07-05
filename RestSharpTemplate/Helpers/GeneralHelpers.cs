@@ -136,6 +136,25 @@ namespace DesafioAPI.Helpers
                 return false;
             }
         }
+
+        public static string GetDataHoraNode()
+        {
+            string resultado;
+            string argument = ReturnProjectPath() + "JS/GerarDataHora.js";
+            ProcessStartInfo start = new ProcessStartInfo();
+            start.FileName = @"C:\Program Files\nodejs\node.exe";
+            start.Arguments = argument;
+            start.UseShellExecute = false;
+            start.RedirectStandardOutput = true;
+            using (Process process = Process.Start(start))
+            {
+                using (StreamReader reader = process.StandardOutput)
+                {
+                    resultado = reader.ReadToEnd();
+                }
+            }
+            return resultado.Replace("\n", "");
+        }
     }
 
     static class Extensions

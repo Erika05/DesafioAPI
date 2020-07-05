@@ -243,6 +243,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="JS\GerarDataHora.js" />
     <Content Include="Queries\Projeto\DeletaProjetos.sql" />
     <Content Include="Queries\Projeto\VerificaProjetoExiste.sql" />
     <Content Include="Queries\Tarefa\VerificaTarefaExiste.sql" />
