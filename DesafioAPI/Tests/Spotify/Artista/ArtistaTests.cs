@@ -19,12 +19,13 @@ namespace DesafioAPI.Tests.Spotify.Artista
             #region Parameters           
             string statusCodeEsperado = "OK";
             string nomeArtista = "The Beatles";
+            string idMusica = "6wfK1R6FoLpmUA9lk5ll4T";
             #endregion
 
             //IRestResponse<dynamic> responsePlayList = consultaPlayListRequests.ExecuteRequest();
             //string idPlayList = HelpersSpotify.RetornaIdPlayList(responsePlayList, nomePlayList);
 
-            ConsultaArtistaResquests consultaArtistaResquests = new ConsultaArtistaResquests("6wfK1R6FoLpmUA9lk5ll4T");
+            ConsultaArtistaResquests consultaArtistaResquests = new ConsultaArtistaResquests(idMusica);
 
             IRestResponse<dynamic> response = consultaArtistaResquests.ExecuteRequest();
             string artista = response.Data["artists"][0]["name"];

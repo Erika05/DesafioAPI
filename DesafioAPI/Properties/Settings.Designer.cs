@@ -263,22 +263,38 @@ namespace DesafioAPI.Properties {
                 this["AUTHENTICATOR_USER"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("senhaAuthentication")]
-        public string AUTHENTICATOR_PASSWORD {
-            get {
+        public string AUTHENTICATOR_PASSWORD
+        {
+            get
+            {
                 return ((string)(this["AUTHENTICATOR_PASSWORD"]));
             }
-            set {
+            set
+            {
                 this["AUTHENTICATOR_PASSWORD"] = value;
             }
         }
 
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("usuarioAuthentication")]
+        [global::System.Configuration.DefaultSettingValueAttribute("idPlayList")]
+        public string ID_PLAYLIST
+        {
+            get {
+                return ((string)(this["ID_PLAYLIST"]));
+            }
+            set {
+                this["ID_PLAYLIST"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("nomeBranch")]
         public string NOME_BRANCH
         {
             get

@@ -15,7 +15,6 @@ namespace DesafioAPI.Requests.Spotify.PlayList
             headers.Add("Authorization", "Bearer " + accessToken);
             requestService = "/me/playlists";
             method = Method.GET;
-            //headers.Add("Authorization", "Bearer " + acessToken);
             apiSpotfy = true;
 
         }

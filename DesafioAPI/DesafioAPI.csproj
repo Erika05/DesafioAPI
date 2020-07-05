@@ -212,6 +212,10 @@
       <DependentUpon>app.config</DependentUpon>
       <SubType>Designer</SubType>
     </None>
+     <None Include="app.Debug.config">
+      <DependentUpon>app.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
