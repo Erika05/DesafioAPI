@@ -64,7 +64,8 @@ namespace DesafioAPI.Tests.Mantis.Tarefas
             string categoria = "General";
             string descricaoI = "tarefa todas as consultas I";
             string descricaoII = "tarefa todas as consultas II";
-            #endregion            
+            string valorChave = "description";
+            #endregion
             helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
 
             cadastraTarefaRequest.SetJsonBody(resumo, descricaoI, categoria, projeto);
@@ -75,7 +76,7 @@ namespace DesafioAPI.Tests.Mantis.Tarefas
 
             consultaTodasTarefasRequest.SetParameters("10", "1");
             IRestResponse response = consultaTodasTarefasRequest.ExecuteRequest();
-            List<string> listaTarefas = GeneralHelpers.ObterListaResponse(response, nomeVetor, true, false, false);
+            List<string> listaTarefas = GeneralHelpers.ObterListaResponse(response, nomeVetor, valorChave);
 
             Assert.Multiple(() =>
             {
@@ -130,23 +131,25 @@ namespace DesafioAPI.Tests.Mantis.Tarefas
             string projeto = "projeto consultar tarefas por projeto";
             string projetoI = "projeto geral";
             string statusCodeEsperado = "OK";
-            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
+            string nomeVetorFilho = "project";
+            string valorChave = "name";
+            string idProjeto = helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
             helpersProjetos.PreparaBaseCadastradoProjeto(projetoI);
 
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
-            string idProjeto = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["project"]["id"];
+            cadastraTarefaRequest.ExecuteRequest();
 
             cadastraTarefaRequest.SetJsonBody(resumo, descricaoII, categoria, projeto);
             cadastraTarefaRequest.ExecuteRequest();
 
             cadastraTarefaRequest.SetJsonBody(resumo, descricaoIII, categoria, projetoI);
-            string idProjeto2 = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["project"]["id"];            
+            cadastraTarefaRequest.ExecuteRequest();           
 
             #endregion
             consultaTarefasProjetoRequest.SetParameters(idProjeto);
             IRestResponse response = consultaTarefasProjetoRequest.ExecuteRequest();
 
-            List<string> listaTarefasDoProjeto = GeneralHelpers.ObterListaResponse(response, nomeVetor, false, true, false);
+            List<string> listaTarefasDoProjeto = GeneralHelpers.ObterListaResponse(response, nomeVetor, nomeVetorFilho, valorChave);
 
             Assert.Multiple(() =>
             {

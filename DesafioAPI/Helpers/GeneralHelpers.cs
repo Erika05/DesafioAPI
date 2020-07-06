@@ -139,12 +139,12 @@ namespace DesafioAPI.Helpers
             }
         }
 
-        public static List<string> ObterListaResponse(IRestResponse response, string nomeVetor, Boolean issue,  Boolean projectIssues, Boolean musica)
+        public static List<string> ObterListaResponse(IRestResponse response, string nomeVetorPai, string nomeVetorFilho, string valorChave)
         {
             var jsonString = response.Content;
 
             var twitterObject = JToken.Parse(jsonString);
-            var trendsArray = twitterObject.Children<JProperty>().FirstOrDefault(x => x.Name == nomeVetor).Value;
+            var trendsArray = twitterObject.Children<JProperty>().FirstOrDefault(x => x.Name == nomeVetorPai).Value;
 
             List<string> listaResponse = new List<string>();
 
@@ -152,28 +152,27 @@ namespace DesafioAPI.Helpers
             {
                 var itemProperties = item.Children<JProperty>();
 
-                if (musica)
-                {
-                    var tracks = itemProperties.FirstOrDefault(x => x.Name == "track").Value;
-                    var itemTracks = tracks.Children<JProperty>();
-                    listaResponse.Add(itemTracks.FirstOrDefault(x => x.Name == "name").Value.ToString());
-                }
-                else if(issue)
-                {
-                    listaResponse.Add(itemProperties.FirstOrDefault(x => x.Name == "description").Value.ToString());
-                  
-                }
-                else if (projectIssues)
-                {
-                    var tracks = itemProperties.FirstOrDefault(x => x.Name == "project").Value;
-                    var itemTracks = tracks.Children<JProperty>();
-                    listaResponse.Add(itemTracks.FirstOrDefault(x => x.Name == "name").Value.ToString());
-                }
-                else
-                {
-                    listaResponse.Add(itemProperties.FirstOrDefault(x => x.Name == "name").Value.ToString());
-                }
+                var tracks = itemProperties.FirstOrDefault(x => x.Name == nomeVetorFilho).Value;
+                var itemTracks = tracks.Children<JProperty>();
+                listaResponse.Add(itemTracks.FirstOrDefault(x => x.Name == valorChave).Value.ToString());
+            }
+            return listaResponse;
+        }
 
+        public static List<string> ObterListaResponse(IRestResponse response, string nomeVetorPai, string valorChave)
+        {
+            var jsonString = response.Content;
+
+            var twitterObject = JToken.Parse(jsonString);
+            var trendsArray = twitterObject.Children<JProperty>().FirstOrDefault(x => x.Name == nomeVetorPai).Value;
+
+            List<string> listaResponse = new List<string>();
+
+            foreach (var item in trendsArray.Children())
+            {
+                var itemProperties = item.Children<JProperty>();
+
+                listaResponse.Add(itemProperties.FirstOrDefault(x => x.Name == valorChave).Value.ToString());
             }
             return listaResponse;
         }

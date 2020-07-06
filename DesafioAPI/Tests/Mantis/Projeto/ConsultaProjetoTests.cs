@@ -20,6 +20,7 @@ namespace DesafioAPI.Tests.Mantis.Projeto
         HelpersProjetos helpersProjetos = new HelpersProjetos();
         DeletaProjetoRequests deletaProjetoRequests = new DeletaProjetoRequests();
         string nomeVetor = "projects";
+        string valorChave = "name";
 
         [Test]
         public void ConsultarProjeto()
@@ -75,7 +76,7 @@ namespace DesafioAPI.Tests.Mantis.Projeto
             helpersProjetos.PreparaBaseCadastradoProjeto(nomeProjetoI);
             helpersProjetos.PreparaBaseCadastradoProjeto(nomeProjetoII);
             IRestResponse response = consultaTodosProjetosRequest.ExecuteRequest();
-            List<string> listaProjetos = GeneralHelpers.ObterListaResponse(response, nomeVetor, false, false, false);
+            List<string> listaProjetos = GeneralHelpers.ObterListaResponse(response, nomeVetor, valorChave);
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());

@@ -27,7 +27,7 @@ namespace DesafioAPI.Tests.Spotify
         public static string RetornaIdPlayList(IRestResponse<dynamic> responsePlayList, string nomePlaLyst)
         {
             int index = -1;
-            List<string> list = GeneralHelpers.ObterListaResponse(responsePlayList, "items", false, false, false);
+            List<string> list = GeneralHelpers.ObterListaResponse(responsePlayList, "items", "name");
             for (int i = 0; i < list.Count; i++)
             {
                 if (list[i].Equals(nomePlaLyst))
