@@ -15,6 +15,7 @@ namespace DesafioAPI.Tests.Spotify.PlayList
     public class ConsultaPlayListTests : TestBase
     {
         ConsultaPlayLisRequest consultaPlayListRequests = new ConsultaPlayLisRequest();
+        string nomeVetor = "items";
 
         [Test]
         public void ConsultarPlayList()
@@ -24,7 +25,7 @@ namespace DesafioAPI.Tests.Spotify.PlayList
             string statusCodeEsperado = "OK";
             #endregion
             IRestResponse response = consultaPlayListRequests.ExecuteRequest();
-            List<string> listaMusica = HelpersSpotify.ObterListaResponse(response, false);
+            List<string> listaMusica = GeneralHelpers.ObterListaResponse(response, nomeVetor, false, false, false);
 
             Assert.Multiple(() =>
                 {
@@ -41,7 +42,7 @@ namespace DesafioAPI.Tests.Spotify.PlayList
             string statusCodeEsperado = "OK";
             #endregion
             IRestResponse response = consultaPlayListRequests.ExecuteRequest();
-            List<string> listaMusica = HelpersSpotify.ObterListaResponse(response, false);
+            List<string> listaMusica = GeneralHelpers.ObterListaResponse(response, nomeVetor, false, false, false);
 
             Assert.Multiple(() =>
             {

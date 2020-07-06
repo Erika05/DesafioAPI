@@ -20,6 +20,7 @@ namespace DesafioAPI.Tests.Spotify.Musica
     {
         ConsultaPlayLisRequest consultaPlayListRequests = new ConsultaPlayLisRequest();
         string idPlaylist = Properties.Settings.Default.ID_PLAYLIST;
+        string nomeVetor = "items";
 
         [Test]
         public void CadastrarMusica()
@@ -48,7 +49,7 @@ namespace DesafioAPI.Tests.Spotify.Musica
             ConsultarMusicaRequests consultarMusicaRequests = new ConsultarMusicaRequests(idPlaylist);
            // ConsultarMusicaRequests consultarMusicaRequests = new ConsultarMusicaRequests(idPlayList);
             IRestResponse responseMusica = consultarMusicaRequests.ExecuteRequest();
-            List<string> listaMusica = HelpersSpotify.ObterListaResponse(responseMusica, true);
+            List<string> listaMusica = GeneralHelpers.ObterListaResponse(responseMusica, "items", false, false, true);
 
             Assert.Multiple(() =>
             {
@@ -118,7 +119,7 @@ namespace DesafioAPI.Tests.Spotify.Musica
 
             ConsultarMusicaRequests consultarMusicaRequests = new ConsultarMusicaRequests(idPlaylist);
             IRestResponse responseMusica = consultarMusicaRequests.ExecuteRequest();
-            List<string> listaMusica = HelpersSpotify.ObterListaResponse(responseMusica, true);
+            List<string> listaMusica = GeneralHelpers.ObterListaResponse(responseMusica, nomeVetor, false, false, true);
 
             Assert.Multiple(() =>
             {

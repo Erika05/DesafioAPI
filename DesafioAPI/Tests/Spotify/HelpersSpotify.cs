@@ -1,4 +1,5 @@
 ﻿using DesafioAPI.Bases;
+using DesafioAPI.Helpers;
 using DesafioAPI.Requests.Spotify.PlayList;
 using Newtonsoft.Json.Linq;
 using RestSharp;
@@ -23,38 +24,10 @@ namespace DesafioAPI.Tests.Spotify
             return response.Data["access_token"];
         }
 
-        public static List<string> ObterListaResponse(IRestResponse response, Boolean musica)
-        {
-            var jsonString = response.Content;
-
-            var twitterObject = JToken.Parse(jsonString);
-            var trendsArray = twitterObject.Children<JProperty>().FirstOrDefault(x => x.Name == "items").Value;
-
-            List<string> listaResponse = new List<string>();
-
-            foreach (var item in trendsArray.Children())
-            {
-                var itemProperties = item.Children<JProperty>();
-
-                if (musica)
-                {
-                    var tracks = itemProperties.FirstOrDefault(x => x.Name == "track").Value;
-                    var itemTracks = tracks.Children<JProperty>();
-                    listaResponse.Add(itemTracks.FirstOrDefault(x => x.Name == "name").Value.ToString());
-                }
-                else
-                {
-                    listaResponse.Add(itemProperties.FirstOrDefault(x => x.Name == "name").Value.ToString());//playList
-                }
-
-            }
-            return listaResponse;
-        }
-
         public static string RetornaIdPlayList(IRestResponse<dynamic> responsePlayList, string nomePlaLyst)
         {
             int index = -1;
-            List<string> list = HelpersSpotify.ObterListaResponse(responsePlayList, false);
+            List<string> list = GeneralHelpers.ObterListaResponse(responsePlayList, "items", false, false, false);
             for (int i = 0; i < list.Count; i++)
             {
                 if (list[i].Equals(nomePlaLyst))

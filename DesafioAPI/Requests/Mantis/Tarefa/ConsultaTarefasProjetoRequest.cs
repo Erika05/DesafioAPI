@@ -12,7 +12,7 @@ namespace DesafioAPI.Requests.Tarefas
     {
         public ConsultaTarefasProjetoRequest()
         {
-            requestService = "/api/rest/issues";
+            requestService = "/api/rest/issues/{project_id}";
             method = Method.GET;
             headers.Add("Authorization", Properties.Settings.Default.TOKEN);
         }

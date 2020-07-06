@@ -7,6 +7,7 @@ using DesafioAPI.Requests.Projeto;
 using System.Collections;
 using System.Collections.Generic;
 using DesafioAPI.Tests.Mantis.Projeto;
+using DesafioAPI.Helpers;
 
 namespace DesafioAPI.Tests.Mantis.Tarefas
 {
@@ -19,15 +20,16 @@ namespace DesafioAPI.Tests.Mantis.Tarefas
         ConsultaTarefasAnexosRequest consultaTarefasAnexosRequest = new ConsultaTarefasAnexosRequest();
         ConsultaTarefasProjetoRequest consultaTarefasProjetoRequest = new ConsultaTarefasProjetoRequest();
         HelpersProjetos helpersProjetos = new HelpersProjetos();
+        string nomeVetor = "issues";
 
         [Test]
         public void ConsultarTarefa()
-        {           
+        {
             #region Parameters
             string resumo = "Tarefa consulta";
             string descricao = "descricao";
             string categoria = "General";
-            string projeto = "projeto geral";            
+            string projeto = "projeto geral";
             string statusCodeEsperado = "OK";
             helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
@@ -57,10 +59,31 @@ namespace DesafioAPI.Tests.Mantis.Tarefas
         {
             #region Parameters
             string statusCodeEsperado = "OK";
+            string projeto = "projeto geral";
+            string resumo = "Tarefa consulta";
+            string categoria = "General";
+            string descricaoI = "tarefa todas as consultas I";
+            string descricaoII = "tarefa todas as consultas II";
             #endregion            
+            helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
+
+            cadastraTarefaRequest.SetJsonBody(resumo, descricaoI, categoria, projeto);
+            cadastraTarefaRequest.ExecuteRequest();
+
+            cadastraTarefaRequest.SetJsonBody(resumo, descricaoII, categoria, projeto);
+            cadastraTarefaRequest.ExecuteRequest();
+
             consultaTodasTarefasRequest.SetParameters("10", "1");
-            IRestResponse<dynamic> response = consultaTodasTarefasRequest.ExecuteRequest();
-            Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+            IRestResponse response = consultaTodasTarefasRequest.ExecuteRequest();
+            List<string> listaTarefas = GeneralHelpers.ObterListaResponse(response, nomeVetor, true, false, false);
+
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+                Assert.IsTrue(GeneralHelpers.VerificaSeStringEstaContidaNaLista(listaTarefas, descricaoI));
+                Assert.IsTrue(GeneralHelpers.VerificaSeStringEstaContidaNaLista(listaTarefas, descricaoII));
+                Assert.IsTrue(listaTarefas.Count >= 2);
+            });
         }
 
         [Test]
@@ -90,7 +113,6 @@ namespace DesafioAPI.Tests.Mantis.Tarefas
             {
                 Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
                 Assert.AreEqual(idAnexo, retornoId);
-               // Assert.AreEqual(idAnexo, response.Data["files"][0]["id"]);
                 Assert.AreEqual(nomeAnexo, retornoNomeAnexo);
                 Assert.AreEqual(anexo, retornoAnexo);
             });
@@ -102,21 +124,35 @@ namespace DesafioAPI.Tests.Mantis.Tarefas
             #region Parameters
             string resumo = "Tarefa consulta projeto";
             string descricao = "descricao consulta tarefas projeto";
+            string descricaoII = "descricao consulta tarefas projetoII";
+            string descricaoIII = "descricao consulta tarefas projetoIII";
             string categoria = "General";
-            string projeto = "projeto geral";
+            string projeto = "projeto consultar tarefas por projeto";
+            string projetoI = "projeto geral";
             string statusCodeEsperado = "OK";
             helpersProjetos.PreparaBaseCadastradoProjeto(projeto);
+            helpersProjetos.PreparaBaseCadastradoProjeto(projetoI);
+
             cadastraTarefaRequest.SetJsonBody(resumo, descricao, categoria, projeto);
             string idProjeto = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["project"]["id"];
+
+            cadastraTarefaRequest.SetJsonBody(resumo, descricaoII, categoria, projeto);
+            cadastraTarefaRequest.ExecuteRequest();
+
+            cadastraTarefaRequest.SetJsonBody(resumo, descricaoIII, categoria, projetoI);
+            string idProjeto2 = cadastraTarefaRequest.ExecuteRequest().Data["issue"]["project"]["id"];            
+
             #endregion
             consultaTarefasProjetoRequest.SetParameters(idProjeto);
-            IRestResponse<dynamic> response = consultaTarefasProjetoRequest.ExecuteRequest();
-            string retornoProjeto = response.Data["issues"][0]["project"]["name"];
+            IRestResponse response = consultaTarefasProjetoRequest.ExecuteRequest();
+
+            List<string> listaTarefasDoProjeto = GeneralHelpers.ObterListaResponse(response, nomeVetor, false, true, false);
 
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
-                Assert.AreEqual(projeto, retornoProjeto);
+                Assert.IsTrue(GeneralHelpers.VerificaSeStringEstaContidaNaLista(listaTarefasDoProjeto, projeto));
+                Assert.IsFalse(GeneralHelpers.VerificaSeStringEstaContidaNaLista(listaTarefasDoProjeto, projetoI));
             });
         }
 
@@ -137,12 +173,5 @@ namespace DesafioAPI.Tests.Mantis.Tarefas
                 Assert.That(true, descricaoErro, retornoMensagemErro);
             });
         }
-
-
-        //Consulta utilizando filtro cadastrado pelo usuário (Get issues matching filter)
-        //Consulta tarefas associadas a um usuário (Get issues assigned to me)
-        //Consulta tarefas criadas por um usuário (Get issues reported by me)
-        //Consulta tarefas monitoradaas por um usuário (Get unassigned issues)
-
     }
 }

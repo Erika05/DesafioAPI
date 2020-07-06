@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using RestSharp;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -69,6 +70,7 @@ namespace DesafioAPI.Helpers
                         break;
                 }
             }
+            string x = sb.ToString();
             return sb.ToString();
         }
 
@@ -135,6 +137,45 @@ namespace DesafioAPI.Helpers
             {
                 return false;
             }
+        }
+
+        public static List<string> ObterListaResponse(IRestResponse response, string nomeVetor, Boolean issue,  Boolean projectIssues, Boolean musica)
+        {
+            var jsonString = response.Content;
+
+            var twitterObject = JToken.Parse(jsonString);
+            var trendsArray = twitterObject.Children<JProperty>().FirstOrDefault(x => x.Name == nomeVetor).Value;
+
+            List<string> listaResponse = new List<string>();
+
+            foreach (var item in trendsArray.Children())
+            {
+                var itemProperties = item.Children<JProperty>();
+
+                if (musica)
+                {
+                    var tracks = itemProperties.FirstOrDefault(x => x.Name == "track").Value;
+                    var itemTracks = tracks.Children<JProperty>();
+                    listaResponse.Add(itemTracks.FirstOrDefault(x => x.Name == "name").Value.ToString());
+                }
+                else if(issue)
+                {
+                    listaResponse.Add(itemProperties.FirstOrDefault(x => x.Name == "description").Value.ToString());
+                  
+                }
+                else if (projectIssues)
+                {
+                    var tracks = itemProperties.FirstOrDefault(x => x.Name == "project").Value;
+                    var itemTracks = tracks.Children<JProperty>();
+                    listaResponse.Add(itemTracks.FirstOrDefault(x => x.Name == "name").Value.ToString());
+                }
+                else
+                {
+                    listaResponse.Add(itemProperties.FirstOrDefault(x => x.Name == "name").Value.ToString());
+                }
+
+            }
+            return listaResponse;
         }
 
         public static string GetDataHoraNode()

@@ -1,10 +1,13 @@
 ﻿using DesafioAPI.Bases;
 using DesafioAPI.DBSteps;
+using DesafioAPI.Helpers;
 using DesafioAPI.Requests.Projeto;
+using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using RestSharp;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DesafioAPI.Tests.Mantis.Projeto
 {
@@ -16,6 +19,7 @@ namespace DesafioAPI.Tests.Mantis.Projeto
         ConsultaTodosProjetosRequest consultaTodosProjetosRequest = new ConsultaTodosProjetosRequest();
         HelpersProjetos helpersProjetos = new HelpersProjetos();
         DeletaProjetoRequests deletaProjetoRequests = new DeletaProjetoRequests();
+        string nomeVetor = "projects";
 
         [Test]
         public void ConsultarProjeto()
@@ -24,7 +28,7 @@ namespace DesafioAPI.Tests.Mantis.Projeto
             string nomeProjeto = "projeto consulta";
             string statusCodeEsperado = "OK";
             #endregion
-            string  idProjeto = helpersProjetos.PreparaBaseCadastradoProjeto(nomeProjeto);
+            string idProjeto = helpersProjetos.PreparaBaseCadastradoProjeto(nomeProjeto);
             consultaProjetoRequests.SetParameters(idProjeto);
             IRestResponse<dynamic> response = consultaProjetoRequests.ExecuteRequest();
             string retornoIdProjeto = response.Data["projects"][0]["id"];
@@ -43,7 +47,7 @@ namespace DesafioAPI.Tests.Mantis.Projeto
             #region Parameters
             string idProjeto = "1414";
             string statusCodeEsperado = "NotFound";
-            string mensagemErro = "Project #"+idProjeto+" not found";
+            string mensagemErro = "Project #" + idProjeto + " not found";
             #endregion
             if (!ProjetoDBSteps.VerificaProjetoPeloId(idProjeto).Equals(0))
             {
@@ -70,8 +74,15 @@ namespace DesafioAPI.Tests.Mantis.Projeto
             #endregion
             helpersProjetos.PreparaBaseCadastradoProjeto(nomeProjetoI);
             helpersProjetos.PreparaBaseCadastradoProjeto(nomeProjetoII);
-            IRestResponse<dynamic> response = consultaTodosProjetosRequest.ExecuteRequest();
-            Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+            IRestResponse response = consultaTodosProjetosRequest.ExecuteRequest();
+            List<string> listaProjetos = GeneralHelpers.ObterListaResponse(response, nomeVetor, false, false, false);
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(statusCodeEsperado, response.StatusCode.ToString());
+                Assert.IsTrue(GeneralHelpers.VerificaSeStringEstaContidaNaLista(listaProjetos, nomeProjetoI));
+                Assert.IsTrue(GeneralHelpers.VerificaSeStringEstaContidaNaLista(listaProjetos, nomeProjetoII));
+                Assert.IsTrue(listaProjetos.Count>=2);
+            });
         }
     }
 }
