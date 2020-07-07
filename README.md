@@ -18,35 +18,30 @@ Instalação Jenkins: https://blog.tiagopariz.com/jenkins-instalar-no-windows/
     - https://nunit.org/download/
 Criar build
 Novo job -> Construir um projeto de software free-style
-  1.Geral
-  
+  1.Geral  
     a.Selecionar GitHub Project
     
        i.GitHub Project
        
           1.Adicionar o valor -> https://github.com/Erika05/DesafioAPI.git/
           
-  2.Gerenciamento de código fonte 
-  
+  2.Gerenciamento de código fonte   
     a.Selecionar Git
     
-       i.Repositories
-       
-          1.Adicionar repositor URL-> https://github.com/Erika05/DesafioAPI.git
-          
+       i.Repositories       
+           1.Adicionar repositor URL-> https://github.com/Erika05/DesafioAPI.git          
        ii.Branches to build
-          1.Adicionar branch-> */master          
+           1.Adicionar branch-> */master          
           
-  3.Trigger de builds
-  
+  3.Trigger de builds  
     a.Selecionar Consultar periodicamente o SCM.
     
 4.Ambiente de build
-
     a.Selecionar Delete workspace before build starts
 
 5.Build
     a.Adicionar passo na build para executar no comando Windows:
+    
        i."C:\\Program Files (x86)\\NuGet\\nuget.exe" restore "C:\Users\erika\\Documents\GitHub\DesafioAPI\DesafioAPI.sln"
        
        ii."C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\MSBuild\\15.0\\Bin\\MSBuild.exe" /t:Clean,Build /p:Configuration=Debug "C:\Users\erika\Documents\GitHub\DesafioAPI\DesafioAPI.sln"
