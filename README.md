@@ -1,6 +1,6 @@
 # Desafio API Rest
 
-##PI usados na construção do projeto:**
+## API usados na construção do projeto:**
    - https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP?version=latest
    - https://developer.spotify.com/console/get-current-user-playlists/
    
