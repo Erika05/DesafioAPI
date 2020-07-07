@@ -10,12 +10,12 @@
 
 Configuração Jenkins
 Instalação Jenkins: https://blog.tiagopariz.com/jenkins-instalar-no-windows/
-1.	Nuget: Baixar pacote/dependências do projeto
-•	https://www.nuget.org/downloads
-2.	MsBuild: Compilar o projeto de testes
-•	https://www.microsoft.com/en-us/download/details.aspx?id=48159
-3.	Nunit3Console: Executar os testes
-•	https://nunit.org/download/
+ 1.Nuget: Baixar pacote/dependências do projeto  
+    - https://www.nuget.org/downloads
+ 2.MsBuild: Compilar o projeto de testes
+    - https://www.microsoft.com/en-us/download/details.aspx?id=48159
+ 3.Nunit3Console: Executar os testes
+    - https://nunit.org/download/
 Criar build
 Novo job -> Construir um projeto de software free-style
 1.	Geral
@@ -38,11 +38,3 @@ i.	"C:\\Program Files (x86)\\NuGet\\nuget.exe" restore "C:\Users\erika\\Document
 ii.	"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\MSBuild\\15.0\\Bin\\MSBuild.exe" /t:Clean,Build /p:Configuration=Debug "C:\Users\erika\Documents\GitHub\DesafioAPI\DesafioAPI.sln"
 iii.	cd C:\\Users\\erika\\Documents\\GitHub\\DesafioAPI\\RestSharpTemplate\\bin\\Debug
 "C:\Program Files (x86)\NUnit.Console-3.11.1\bin\net35\nunit3-console.exe" "DesafioAPI.dll" --inprocess --labels=On
-
- 
-
- 
- 
- 
- 
- 
