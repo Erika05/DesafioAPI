@@ -4,15 +4,18 @@
    - https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP?version=latest
    - https://developer.spotify.com/console/get-current-user-playlists/
    
-## Configuração Jenkins
+## Adicionar teste em uma rotina no Jenkins
+### Configuraão da máquina:
 - Instalação Jenkins: 
    - https://blog.tiagopariz.com/jenkins-instalar-no-windows/
 - Nuget: ***Baixar pacote/dependências do projeto***
    - https://www.nuget.org/downloads
-- MsBuild: **Compilar o projeto de testes**
+- MsBuild: ***Compilar o projeto de testes***
    - https://www.microsoft.com/en-us/download/details.aspx?id=48159
-- Nunit3Console: **Executar os testes**
+- Nunit3Console: ***Executar os testes***
    - https://nunit.org/download/
+
+### Criar rotina:   
 - Criar build
    - Novo job -> Construir um projeto de software free-style
      - Geral  
