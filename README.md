@@ -4,11 +4,6 @@
    - https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP?version=latest
    - https://developer.spotify.com/console/get-current-user-playlists/
    
-- Teste com Data-Driven: Mantis ->Tarefa -> CadastraTarefasTests -> CadastrarTarefaMinimal
-- Autenticação com OAuth2: Spotify
-- Validação usando REGEX(Expressões Regulares): Mantis -> Usuario -> CadastraUsuariosTests -> CadastrarUsuario
-- Script com código Node.js: Mantis ->Tarefa -> CadastraTarefasTests -> CadastrarTarefa
-
 **Configuração Jenkins**
 - Instalação Jenkins: https://blog.tiagopariz.com/jenkins-instalar-no-windows/
    - Nuget: Baixar pacote/dependências do projeto  
@@ -46,3 +41,9 @@
        
         - cd C:\\Users\\erika\\Documents\\GitHub\\DesafioAPI\\RestSharpTemplate\\bin\\Debug
        "C:\Program Files (x86)\NUnit.Console-3.11.1\bin\net35\nunit3-console.exe" "DesafioAPI.dll" --inprocess --labels=On
+
+**Observações Gerais**
+- Teste com Data-Driven: Mantis ->Tarefa -> CadastraTarefasTests -> CadastrarTarefaMinimal
+- Autenticação com OAuth2: Spotify
+- Validação usando REGEX(Expressões Regulares): Mantis -> Usuario -> CadastraUsuariosTests -> CadastrarUsuario
+- Script com código Node.js: Mantis ->Tarefa -> CadastraTarefasTests -> CadastrarTarefa
