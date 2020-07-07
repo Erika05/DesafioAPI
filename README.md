@@ -12,27 +12,25 @@
 **Configuração Jenkins**
 - Instalação Jenkins: https://blog.tiagopariz.com/jenkins-instalar-no-windows/
    - Nuget: Baixar pacote/dependências do projeto  
-       - https://www.nuget.org/downloads
+     - https://www.nuget.org/downloads
    - MsBuild: Compilar o projeto de testes
-       - https://www.microsoft.com/en-us/download/details.aspx?id=48159
+     - https://www.microsoft.com/en-us/download/details.aspx?id=48159
    - Nunit3Console: Executar os testes
-       - https://nunit.org/download/
+     - https://nunit.org/download/
 - Criar build
-Novo job -> Construir um projeto de software free-style
-  1.Geral  
-    a.Selecionar GitHub Project
-    
-       i.GitHub Project
-       
-          1.Adicionar o valor -> https://github.com/Erika05/DesafioAPI.git/
+   - Novo job -> Construir um projeto de software free-style
+     - Geral  
+       - Selecionar GitHub Project           
+           - GitHub Project
+              - Adicionar o valor -> https://github.com/Erika05/DesafioAPI.git/
           
-  2.Gerenciamento de código fonte   
-    a.Selecionar Git
-    
-       i.Repositories       
-           1.Adicionar repositor URL-> https://github.com/Erika05/DesafioAPI.git          
-       ii.Branches to build
-           1.Adicionar branch-> */master          
+  - Gerenciamento de código fonte   
+     - Selecionar Git
+     
+           - Repositories       
+                - Adicionar repositor URL-> https://github.com/Erika05/DesafioAPI.git          
+           - Branches to build
+                 - Adicionar branch-> */master          
           
   3.Trigger de builds  
     a.Selecionar Consultar periodicamente o SCM.
