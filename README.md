@@ -25,25 +25,24 @@
               - Adicionar o valor -> https://github.com/Erika05/DesafioAPI.git/
           
   - Gerenciamento de código fonte   
-     - Selecionar Git
-     
+     - Selecionar Git     
            - Repositories       
                 - Adicionar repositor URL-> https://github.com/Erika05/DesafioAPI.git          
            - Branches to build
                  - Adicionar branch-> */master          
           
-  3.Trigger de builds  
-    a.Selecionar Consultar periodicamente o SCM.
+  - Trigger de builds  
+     - Selecionar Consultar periodicamente o SCM.
     
-4.Ambiente de build
-    a.Selecionar Delete workspace before build starts
-
-5.Build
-    a.Adicionar passo na build para executar no comando Windows:
+   - Ambiente de build
+     - Selecionar Delete workspace before build starts
+  
+  - Build
+     - Adicionar passo na build para executar no comando Windows:
     
-       i."C:\\Program Files (x86)\\NuGet\\nuget.exe" restore "C:\Users\erika\\Documents\GitHub\DesafioAPI\DesafioAPI.sln"
+         - "C:\\Program Files (x86)\\NuGet\\nuget.exe" restore "C:\Users\erika\\Documents\GitHub\DesafioAPI\DesafioAPI.sln"
        
-       ii."C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\MSBuild\\15.0\\Bin\\MSBuild.exe" /t:Clean,Build /p:Configuration=Debug "C:\Users\erika\Documents\GitHub\DesafioAPI\DesafioAPI.sln"
+         - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\MSBuild\\15.0\\Bin\\MSBuild.exe" /t:Clean,Build /p:Configuration=Debug "C:\Users\erika\Documents\GitHub\DesafioAPI\DesafioAPI.sln"
        
-      iii.cd C:\\Users\\erika\\Documents\\GitHub\\DesafioAPI\\RestSharpTemplate\\bin\\Debug
+        - cd C:\\Users\\erika\\Documents\\GitHub\\DesafioAPI\\RestSharpTemplate\\bin\\Debug
        "C:\Program Files (x86)\NUnit.Console-3.11.1\bin\net35\nunit3-console.exe" "DesafioAPI.dll" --inprocess --labels=On
