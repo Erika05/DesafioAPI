@@ -1,6 +1,6 @@
 ## Desafio API Rest
 
-- API usados na construção do projeto:
+**API usados na construção do projeto:**
    - https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP?version=latest
    - https://developer.spotify.com/console/get-current-user-playlists/
 - Teste com Data-Driven: Mantis ->Tarefa -> CadastraTarefasTests -> CadastrarTarefaMinimal
@@ -8,14 +8,14 @@
 - Validação usando REGEX(Expressões Regulares): Mantis -> Usuario -> CadastraUsuariosTests -> CadastrarUsuario
 - Script com código Node.js: Mantis ->Tarefa -> CadastraTarefasTests -> CadastrarTarefa
 
-Configuração Jenkins
+**Configuração Jenkins**
 Instalação Jenkins: https://blog.tiagopariz.com/jenkins-instalar-no-windows/
- 1.Nuget: Baixar pacote/dependências do projeto  
-     - https://www.nuget.org/downloads
- 2.MsBuild: Compilar o projeto de testes
+   1.Nuget: Baixar pacote/dependências do projeto  
+       - https://www.nuget.org/downloads
+   2.MsBuild: Compilar o projeto de testes
       - https://www.microsoft.com/en-us/download/details.aspx?id=48159
- 3.Nunit3Console: Executar os testes
-    - https://nunit.org/download/
+   3.Nunit3Console: Executar os testes
+     - https://nunit.org/download/
 Criar build
 Novo job -> Construir um projeto de software free-style
   1.Geral  
