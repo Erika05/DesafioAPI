@@ -8,11 +8,11 @@
 ### Configuração da máquina:
 - Instalação Jenkins: 
    - https://blog.tiagopariz.com/jenkins-instalar-no-windows/
-- Nuget: ****Baixar pacote/dependências do projeto****
+- Nuget: ***Baixar pacote/dependências do projeto***
    - https://www.nuget.org/downloads
-- MsBuild: ****Compilar o projeto de testes****
+- MsBuild: ***Compilar o projeto de testes***
    - https://www.microsoft.com/en-us/download/details.aspx?id=48159
-- Nunit3Console: ****Executar os testes****
+- Nunit3Console: ***Executar os testes***
    - https://nunit.org/download/
 
 ### Criar rotina:   
