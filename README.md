@@ -60,7 +60,7 @@
 ![buildII](https://user-images.githubusercontent.com/37153504/86859005-20701600-c098-11ea-8603-43b9bb6dc15a.PNG)
 
 ## Observações Gerais
-- Teste com Data-Driven: Mantis ->Tarefa -> CadastraTarefasTests -> CadastrarTarefaMinimal
-- Autenticação com OAuth2: Spotify
-- Validação usando REGEX(Expressões Regulares): Mantis -> Usuario -> CadastraUsuariosTests -> CadastrarUsuario
-- Script com código Node.js: Mantis ->Tarefa -> CadastraTarefasTests -> CadastrarTarefa
+- **Teste com Data-Driven:** Mantis ->Tarefa -> CadastraTarefasTests -> CadastrarTarefaMinimal
+- **Autenticação com OAuth2:** Spotify
+- **Validação usando REGEX(Expressões Regulares):** Mantis -> Usuario -> CadastraUsuariosTests -> CadastrarUsuario
+- **Script com código Node.js:** Mantis ->Tarefa -> CadastraTarefasTests -> CadastrarTarefa
