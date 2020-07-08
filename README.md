@@ -5,7 +5,7 @@
    - https://developer.spotify.com/console/get-current-user-playlists/
    
 ## Adicionar teste em uma rotina no Jenkins
-### Configuraão da máquina:
+### Configuração da máquina:
 - Instalação Jenkins: 
    - https://blog.tiagopariz.com/jenkins-instalar-no-windows/
 - Nuget: ***Baixar pacote/dependências do projeto***
