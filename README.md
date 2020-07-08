@@ -18,7 +18,7 @@
 ### Criar rotina:   
 - Criar build
    - Novo job -> Construir um projeto de software free-style
-     - Geral  
+     - General  
        - Selecionar GitHub Project           
            - GitHub Project
               - Adicionar o valor -> https://github.com/Erika05/DesafioAPI.git/
