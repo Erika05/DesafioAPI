@@ -3,7 +3,13 @@
 ## APIs usados na construção do projeto:
    - **Mantis ->** https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP?version=latest
    - **Spotify->** https://developer.spotify.com/console/get-current-user-playlists/
-   
+
+### Relatório dos Testes
+
+![RelatorioI](https://user-images.githubusercontent.com/37153504/86861290-21577680-c09d-11ea-9d3e-11af3330a22c.PNG)
+![relatorioIII](https://user-images.githubusercontent.com/37153504/86861296-23213a00-c09d-11ea-80db-d9d9fd419302.PNG)
+![relatorioII](https://user-images.githubusercontent.com/37153504/86861295-23213a00-c09d-11ea-92f4-a99dfaa6e498.PNG)
+
 ## Adicionar teste em uma rotina no Jenkins
 ### Configuração da máquina:
 - Instalação Jenkins: 
