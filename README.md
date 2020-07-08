@@ -27,9 +27,9 @@
   - Gerenciamento de código fonte   
      - Selecionar Git     
            - Repositories       
-                  -> Adicionar repositor URL-> https://github.com/Erika05/DesafioAPI.git          
+                   - Adicionar repositor URL-> https://github.com/Erika05/DesafioAPI.git          
            - Branches to build
-                  -> Adicionar branch-> */master          
+                   - Adicionar branch-> */master          
           
   - Trigger de builds  
      - Selecionar Consultar periodicamente o SCM.
