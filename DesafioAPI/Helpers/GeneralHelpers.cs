@@ -177,34 +177,31 @@ namespace DesafioAPI.Helpers
             return listaResponse;
         }
 
-        public static string GetDataHoraNode()
+        public static String ReturnEmailRandomico(int tamanho)
         {
-            string resultado;
-            string argument = ReturnProjectPath() + "JS/GerarDataHora.js";
-            ProcessStartInfo start = new ProcessStartInfo();
-            start.FileName = @"C:\Program Files\nodejs\node.exe";
-            start.Arguments = argument;
-            start.UseShellExecute = false;
-            start.RedirectStandardOutput = true;
-            using (Process process = Process.Start(start))
-            {
-                using (StreamReader reader = process.StandardOutput)
-                {
-                    resultado = reader.ReadToEnd();
-                }
-            }
-            return resultado.Replace("\n", "");
+            return ReturnStringWithRandomCharacters(tamanho) + "@testdata.com";
+        }
+
+        public static string ReturnStringWithRandomCharacters(int tamanho)
+        {
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var random = new Random();
+            var result = new string(
+                Enumerable.Repeat(chars, tamanho)
+                          .Select(s => s[random.Next(s.Length)])
+                          .ToArray());
+            return result;
         }
     }
+}
 
-    static class Extensions
+static class Extensions
+{
+    public static void ForEach<T>(this IEnumerable<T> ie, Action<T> action)
     {
-        public static void ForEach<T>(this IEnumerable<T> ie, Action<T> action)
+        foreach (var i in ie)
         {
-            foreach (var i in ie)
-            {
-                action(i);
-            }
+            action(i);
         }
     }
 }

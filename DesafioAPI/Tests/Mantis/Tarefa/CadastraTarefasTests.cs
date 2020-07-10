@@ -15,9 +15,10 @@ using System.Text.RegularExpressions;
 namespace DesafioAPI.Tests.Mantis.Tarefas
 {
     [TestFixture]
+    [Parallelizable(ParallelScope.All)]
     public class CadastraTarefasTests : TestBase
     {
-        CadastraTarefaRequest cadastraTarefaRequest = new CadastraTarefaRequest();
+        CadastraTarefaRequest cadastraTarefaRequest;
         HelpersProjetos helpersProjetos = new HelpersProjetos();
 
         #region Data Driven 
@@ -30,6 +31,8 @@ namespace DesafioAPI.Tests.Mantis.Tarefas
         [Test, TestCaseSource("CriarTarefa")]
         public void CadastrarTarefaMinimal(ArrayList testData)
         {
+            cadastraTarefaRequest = new CadastraTarefaRequest();
+
             #region Parameters
             string resumo = "Tarefa minima";
             string descricao = "tarefa minimal";
@@ -57,11 +60,11 @@ namespace DesafioAPI.Tests.Mantis.Tarefas
         [Test]
         public void CadastrarTarefa()
         {
-            string dataHora = GeneralHelpers.GetDataHoraNode();
+            cadastraTarefaRequest = new CadastraTarefaRequest();
             //Criar tag 
             #region Parameters
-            string resumo = "Tarefa resumo completa" + dataHora;
-            string descricao = "Tarefa resumo completa" + dataHora;
+            string resumo = "Tarefa resumo completa";
+            string descricao = "Tarefa resumo completa";
             string informacao = "informacao";
             string projeto = "projeto geral";
             string categoria = "General";
@@ -107,6 +110,7 @@ namespace DesafioAPI.Tests.Mantis.Tarefas
         [Test]
         public void CadastrarTarefaAnexo()
         {
+            cadastraTarefaRequest = new CadastraTarefaRequest();
             #region Parameters
             string resumo = "This is a test issue";
             string descricao = "This is a test description";
@@ -138,6 +142,7 @@ namespace DesafioAPI.Tests.Mantis.Tarefas
         [Test]
         public void ResumoTarefaNaoInformado()
         {
+            cadastraTarefaRequest = new CadastraTarefaRequest();
             #region Parameters
             string descricao = "descricao";
             string categoria = "General";
@@ -159,6 +164,7 @@ namespace DesafioAPI.Tests.Mantis.Tarefas
         [Test]
         public void DescricaoTarefaNaoInformado()
         {
+            cadastraTarefaRequest = new CadastraTarefaRequest();
             #region Parameters
             string resumo = "resumo";
             string descricao = "descricao";
@@ -179,6 +185,7 @@ namespace DesafioAPI.Tests.Mantis.Tarefas
         [Test]
         public void ProjetoTarefaNaoInformado()
         {
+            cadastraTarefaRequest = new CadastraTarefaRequest();
             #region Parameters
             string resumo = "resumo";
             string categoria = "General";

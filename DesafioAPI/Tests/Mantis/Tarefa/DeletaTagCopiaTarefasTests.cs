@@ -9,6 +9,7 @@ using RestSharp;
 namespace DesafioAPI.Tests.Mantis.Tarefas
 {
     [TestFixture]
+    [Parallelizable(ParallelScope.All)]
     public class DeletaTagCopiaTarefasTests : TestBase
     {
         HelpersProjetos helpersProjetos = new HelpersProjetos();

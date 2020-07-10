@@ -6,6 +6,7 @@ using DesafioAPI.Requests.Tarefas;
 using DesafioAPI.Tests.Mantis.Projeto;
 using System.Text.RegularExpressions;
 using DesafioAPI.TestsMantis.Mantis.Usuario;
+using DesafioAPI.Helpers;
 
 namespace DesafioAPI.Tests.Mantis.Usuario
 {
@@ -105,7 +106,7 @@ namespace DesafioAPI.Tests.Mantis.Usuario
             #region Parameters Cadastro Tarefa
             string nome = "nome user";
             string nomeReal = "nome real";
-            string email = "erika@gmail.com";
+            string email = "" + GeneralHelpers.ReturnEmailRandomico(8);
             string senha = "administrator";
             string projeto = "projeto geral";
             string statusCodeEsperado = "BadRequest";

@@ -11,6 +11,7 @@ using System.Threading;
 namespace DesafioAPI.Tests.Mantis.Tarefas
 {
     [TestFixture]
+    [Parallelizable(ParallelScope.All)]
     public class DeletaTarefasTests : TestBase
     {
         HelpersProjetos helpersProjetos = new HelpersProjetos();

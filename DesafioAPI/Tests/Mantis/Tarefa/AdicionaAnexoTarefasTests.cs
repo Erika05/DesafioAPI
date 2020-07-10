@@ -10,6 +10,7 @@ using System.Threading;
 namespace DesafioAPI.Tests.Mantis.Tarefas
 {
     [TestFixture]
+    [Parallelizable(ParallelScope.All)]
     public class AdicionaAnexoTarefasTests : TestBase
     {
         CadastraTarefaRequest cadastraTarefaRequest = new CadastraTarefaRequest();

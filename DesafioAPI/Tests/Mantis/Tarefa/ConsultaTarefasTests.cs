@@ -12,6 +12,7 @@ using DesafioAPI.Helpers;
 namespace DesafioAPI.Tests.Mantis.Tarefas
 {
     [TestFixture]
+    [Parallelizable(ParallelScope.All)]
     public class ConsultaTarefasTests : TestBase
     {
         ConsultaTodasTarefasRequest consultaTodasTarefasRequest = new ConsultaTodasTarefasRequest();
