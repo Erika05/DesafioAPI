@@ -31,11 +31,17 @@
 ### Gerar refresh token
 
 Token Name: qualquer nome 
+
 Auth URL: https://accounts.spotify.com/authorize
+
 Access Token URL: https://accounts.spotify.com/api/token
+
 Client ID:
+
 Client Secret:
+
 Scope: playlist-read-private playlist-modify-private
+
 Grant Type: Authorization Code
    
 ### Relatório dos Testes
