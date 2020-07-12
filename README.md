@@ -5,7 +5,7 @@
    - **Spotify->** https://developer.spotify.com/console/get-current-user-playlists/
    
 ## Geração token OAuth 2.0   
-## Configurar Client ID e Client Secret do Spotify
+### Configurar Client ID e Client Secret do Spotify
    - Acessar o link abaixo:
          - https://developer.spotify.com/dashboard/applications
 ![dasboard](https://user-images.githubusercontent.com/37153504/87255860-cfc83680-c464-11ea-8eda-9b695469ead6.png)
