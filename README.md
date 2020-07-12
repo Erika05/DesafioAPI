@@ -10,23 +10,23 @@
         
        https://developer.spotify.com/dashboard/applications
        
-   - Create an app
+   - Criar um aplicativo (Registrar):
    
 ![dasboard](https://user-images.githubusercontent.com/37153504/87255860-cfc83680-c464-11ea-8eda-9b695469ead6.png)
 
-   - Adicionar nome e descrião.
+   - Adicionar nome e descrião do aplicativo.
 
 ![createanapp](https://user-images.githubusercontent.com/37153504/87255862-d191fa00-c464-11ea-8b87-807acc9899ea.png)
 
 ![tokenGerado](https://user-images.githubusercontent.com/37153504/87255939-609f1200-c465-11ea-8602-4d4c1399607f.png)
 
-   - Edite settings
-   
+   - Editar configurações:
+        Informe o campo "Redirect URIs" com o valor http://localhost:8888/callback/
+          
 ![editSettings](https://user-images.githubusercontent.com/37153504/87257686-584dd380-c473-11ea-8726-6351ae5a632d.png)
 
-  http://localhost:8888/callback/
-
-    
+Documentação oficial: https://developer.spotify.com/documentation/general/guides/app-settings/   
+   
 ### Relatório dos Testes
 
 ![RelatorioI](https://user-images.githubusercontent.com/37153504/86861290-21577680-c09d-11ea-9d3e-11af3330a22c.PNG)
