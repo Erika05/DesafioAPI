@@ -5,7 +5,13 @@
    - **Spotify->** https://developer.spotify.com/console/get-current-user-playlists/
    
 ### Geração token OAuth 2.0   
-   
+https://developer.spotify.com/dashboard/applications
+
+![dasboard](https://user-images.githubusercontent.com/37153504/87255860-cfc83680-c464-11ea-8eda-9b695469ead6.png)
+
+![createanapp](https://user-images.githubusercontent.com/37153504/87255862-d191fa00-c464-11ea-8b87-807acc9899ea.png)
+
+![tokenGerado](https://user-images.githubusercontent.com/37153504/87255861-d0f96380-c464-11ea-9e36-78e8158d42b8.png)
     
 ### Relatório dos Testes
 
