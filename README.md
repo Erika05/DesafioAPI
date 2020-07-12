@@ -13,6 +13,8 @@ https://developer.spotify.com/dashboard/applications
 
 ![tokenGerado](https://user-images.githubusercontent.com/37153504/87255939-609f1200-c465-11ea-8602-4d4c1399607f.png)
 
+![editSettings](https://user-images.githubusercontent.com/37153504/87257686-584dd380-c473-11ea-8726-6351ae5a632d.png)
+
     
 ### Relatório dos Testes
 
