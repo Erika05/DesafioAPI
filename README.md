@@ -44,7 +44,7 @@ Scope: playlist-read-private playlist-modify-private
 
 Grant Type: Authorization Code
    
-### Relatório dos Testes
+## Relatório dos Testes
 
 ![RelatorioI](https://user-images.githubusercontent.com/37153504/86861290-21577680-c09d-11ea-9d3e-11af3330a22c.PNG)
 ![relatorioIII](https://user-images.githubusercontent.com/37153504/86861296-23213a00-c09d-11ea-80db-d9d9fd419302.PNG)
