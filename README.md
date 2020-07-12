@@ -27,6 +27,16 @@
 ![editSettings](https://user-images.githubusercontent.com/37153504/87257686-584dd380-c473-11ea-8726-6351ae5a632d.png)
 
 ***Documentação oficial: https://developer.spotify.com/documentation/general/guides/app-settings/***
+
+### Gerar refresh token
+
+Token Name: qualquer nome 
+Auth URL: https://accounts.spotify.com/authorize
+Access Token URL: https://accounts.spotify.com/api/token
+Client ID:
+Client Secret:
+Scope: playlist-read-private playlist-modify-private
+Grant Type: Authorization Code
    
 ### Relatório dos Testes
 
