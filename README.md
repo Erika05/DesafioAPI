@@ -26,7 +26,7 @@
           
 ![editSettings](https://user-images.githubusercontent.com/37153504/87257686-584dd380-c473-11ea-8726-6351ae5a632d.png)
 
-Documentação oficial: https://developer.spotify.com/documentation/general/guides/app-settings/   
+***Documentação oficial: https://developer.spotify.com/documentation/general/guides/app-settings/***
    
 ### Relatório dos Testes
 
