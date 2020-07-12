@@ -13,12 +13,14 @@ namespace DesafioAPI.Tests.Mantis.Tarefas
     public class AdicionaNotaTarefasTests : TestBase
     {
         HelpersProjetos helpersProjetos = new HelpersProjetos();
-        CadastraTarefaRequest cadastraTarefaRequest = new CadastraTarefaRequest();
-        AdicionaNotaTarefaRequest adicionaNotaTarefaRequest = new AdicionaNotaTarefaRequest();
+        CadastraTarefaRequest cadastraTarefaRequest;
+        AdicionaNotaTarefaRequest adicionaNotaTarefaRequest;
 
         [Test]
         public void AdicionarNotaTarefa()
         {
+            cadastraTarefaRequest = new CadastraTarefaRequest();
+            adicionaNotaTarefaRequest = new AdicionaNotaTarefaRequest();
             //Criar tag 
             #region Parameters Cadastro Tarefa
             string resumo = "Tarefa adicionar nota tarefa";
@@ -52,6 +54,8 @@ namespace DesafioAPI.Tests.Mantis.Tarefas
         [Test]
         public void NotaTarefaNaoinformada()
         {
+            cadastraTarefaRequest = new CadastraTarefaRequest();
+            adicionaNotaTarefaRequest = new AdicionaNotaTarefaRequest();
             //Criar tag 
             #region Parameters Cadastro Tarefa
             string resumo = "Tarefa adicionar nota tarefa";
@@ -82,6 +86,8 @@ namespace DesafioAPI.Tests.Mantis.Tarefas
         [Test]
         public void AdicionarNotaComTempoTarefa()
         {
+            cadastraTarefaRequest = new CadastraTarefaRequest();
+            adicionaNotaTarefaRequest = new AdicionaNotaTarefaRequest();
             //Criar tag 
             #region Parameters Cadastro Tarefa
             string resumo = "Tarefa adicionar nota com duracao tarefa";
@@ -116,6 +122,8 @@ namespace DesafioAPI.Tests.Mantis.Tarefas
         [Test]
         public void AdicionarNotaComAnexoTarefa()
         {
+            cadastraTarefaRequest = new CadastraTarefaRequest();
+            adicionaNotaTarefaRequest = new AdicionaNotaTarefaRequest();
             //Criar tag 
             #region Parameters Cadastro Tarefa
             string resumo = "Tarefa adicionar nota  com anexo tarefa";
