@@ -16,7 +16,7 @@
 
 ![tokenGerado](https://user-images.githubusercontent.com/37153504/87255939-609f1200-c465-11ea-8602-4d4c1399607f.png)
 
-       http://localhost:8888/callback/
+  http://localhost:8888/callback/
 
 ![editSettings](https://user-images.githubusercontent.com/37153504/87257686-584dd380-c473-11ea-8726-6351ae5a632d.png)
 
