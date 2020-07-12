@@ -11,7 +11,8 @@ https://developer.spotify.com/dashboard/applications
 
 ![createanapp](https://user-images.githubusercontent.com/37153504/87255862-d191fa00-c464-11ea-8b87-807acc9899ea.png)
 
-![tokenGerado](https://user-images.githubusercontent.com/37153504/87255861-d0f96380-c464-11ea-9e36-78e8158d42b8.png)
+![tokenGerado](https://user-images.githubusercontent.com/37153504/87255939-609f1200-c465-11ea-8602-4d4c1399607f.png)
+
     
 ### Relatório dos Testes
 
