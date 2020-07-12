@@ -3,7 +3,10 @@
 ## APIs usados na construção do projeto:
    - **Mantis ->** https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP?version=latest
    - **Spotify->** https://developer.spotify.com/console/get-current-user-playlists/
-
+   
+### Geração token OAuth 2.0   
+   
+    
 ### Relatório dos Testes
 
 ![RelatorioI](https://user-images.githubusercontent.com/37153504/86861290-21577680-c09d-11ea-9d3e-11af3330a22c.PNG)
